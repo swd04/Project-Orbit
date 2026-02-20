@@ -13,7 +13,17 @@ public class PlayerDash : MonoBehaviour
         isDashPlayer = false;
     }
 
+    
     private void Update()
+    {
+        // プレイヤーのダッシュ判定を行うメソッドを呼び出す処理
+        PlayerDashJudge();
+    }
+
+    /// <summary>
+    /// プレイヤーの走る判定を行うメソッド
+    /// </summary>
+    private void PlayerDashJudge()
     {
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
