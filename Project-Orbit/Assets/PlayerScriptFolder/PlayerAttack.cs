@@ -24,6 +24,9 @@ public class PlayerAttack : MonoBehaviour
     [Header("マウスボタンを押した回数")]
     [SerializeField] public int attackCommandCount = 0;
 
+    [Header("モード切替のクールタイム")]
+    [SerializeField] private float modeChangeCoolTime = 0.0f;
+
     [Header("攻撃の回転の速さ")]
     [SerializeField] private float rotateSpeed = 0.0f;
 
@@ -44,10 +47,25 @@ public class PlayerAttack : MonoBehaviour
     /// </summary>
     private void Update()
     {
+        InputKey();
 
+        // 攻撃コマンドの入力回数をカウントする処理
+        if (isAttack)
+        {
+            attackCommandCount++;
+            weaponCollider.enabled = true;
+        }
+
+    }
+
+    /// <summary>
+    /// キーボードを入力したときの処理全般を行うメソッド
+    /// </summary>
+    private void InputKey()
+    {
         if (Input.GetMouseButtonDown(0))
         {
-            // 左クリックで香華劇を行う処理
+            // 左クリックで攻撃を行う処理
 
             Attack();
 
@@ -74,14 +92,9 @@ public class PlayerAttack : MonoBehaviour
 
 
 
-        // 攻撃コマンドの入力回数をカウントする処理
-        if (isAttack)
-        {
-            attackCommandCount++;
-            weaponCollider.enabled = true;
-        }
-
+       
     }
+
 
     /// <summary>
     /// 攻撃処理を行うメソッド
