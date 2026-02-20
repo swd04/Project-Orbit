@@ -9,8 +9,8 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class HPBarTestController : MonoBehaviour
 {
-    [SerializeField] private HPBarBase hpBarUI;
-    [SerializeField] private DamageFlashUI damageFlashUI;
+    [SerializeField] private HPBarBase hpBarUI = null;
+    [SerializeField] private DamageFlashUI damageFlashUI = null;
 
     [SerializeField] private float maxHP = 100f;
     [SerializeField] private float currentHP = 100f;

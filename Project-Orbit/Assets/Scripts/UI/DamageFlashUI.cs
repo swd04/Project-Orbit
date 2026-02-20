@@ -9,7 +9,7 @@ public class DamageFlashUI : MonoBehaviour
 {
     [Header("フラッシュ用画像")]
     //画面全体を覆うImage
-    [SerializeField] private Image overlayImage;
+    [SerializeField] private Image overlayImage = null;
 
     [Header("フラッシュ時の最大アルファ値")]
     [SerializeField] private float flashAlpha = 0.5f;
