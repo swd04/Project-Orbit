@@ -35,7 +35,9 @@ public class PlayerAttack : MonoBehaviour
 
 
 
-
+    /// <summary>
+    /// 初期化を行うメソッド
+    /// </summary>
     private void Start()
     {
         isAttack = false;
@@ -89,10 +91,6 @@ public class PlayerAttack : MonoBehaviour
             }
             Debug.Log("現在の攻撃モードは" + playerChoseAttackMode.currentAttackMode + "です");
         }
-
-
-
-       
     }
 
 

@@ -1,9 +1,14 @@
+using UnityEditor;
 using UnityEngine;
+using static PlayerChoseAttackMode;
 
 public class CoreCollection : MonoBehaviour
 {
     [Header("コアの数")]
     [SerializeField] public int coreCount = 0;
+
+    [Header("プレイヤーの武器モード")]
+    [SerializeField] private PlayerChoseAttackMode playerChoseAttackMode = null;
 
     private void Start()
     {
@@ -11,15 +16,24 @@ public class CoreCollection : MonoBehaviour
         coreCount = 0;
     }
 
-    /// <summary>
-    /// コア取得のメソッド
-    /// </summary>
-    private void OnCollisionEnter(Collision collision)
+    private void Update()
     {
-        if (collision.gameObject.CompareTag("Core"))
+
+    }
+
+    /// <summary>
+    /// コア取得と取得した際にコア取得数を増やす処理
+    /// </summary>
+    private void OnTriggerEnter(Collider other)
+    {
+        if (playerChoseAttackMode.currentAttackMode == AttackMode.SOULREINFORCE)
         {
-            // 獲得コアの数を増やす処理
-            coreCount++;
+            // コアに触れたとき、コア取得数を増やす
+            if (other.gameObject.CompareTag("Core"))
+            {
+                coreCount++;
+                Debug.Log("コアを取得しました 現在のコア数: " + coreCount);
+            }
         }
     }
 }
