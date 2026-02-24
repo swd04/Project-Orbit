@@ -649,6 +649,7 @@ GameObject:
   - component: {fileID: 1433804828}
   - component: {fileID: 1433804829}
   - component: {fileID: 1433804830}
+  - component: {fileID: 1433804831}
   - component: {fileID: 1433804827}
   m_Layer: 0
   m_Name: Player
@@ -855,6 +856,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coreCount: 0
+  playerChoseAttackMode: {fileID: 1433804829}
+--- !u!114 &1433804831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433804820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54f2ef51a715fd6438f84a46df282b92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSkillList:
+  - {fileID: 11400000, guid: 8ab7a32b3c1051e458ebf938d014802f, type: 2}
+  - {fileID: 11400000, guid: ce96198d9ac81554994e70378e6d8ae8, type: 2}
+  mouseScrollWheelValue: 0
+  currentSelectSkillNumber: 0
 --- !u!1 &1731048676
 GameObject:
   m_ObjectHideFlags: 0
