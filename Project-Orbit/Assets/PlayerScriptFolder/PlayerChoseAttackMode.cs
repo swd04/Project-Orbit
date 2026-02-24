@@ -17,12 +17,18 @@ public class PlayerChoseAttackMode : MonoBehaviour
     [Header("現在の攻撃モード")]
     [SerializeField] public AttackMode currentAttackMode = AttackMode.SOULREINFORCE;
 
+    /// <summary>
+    /// 武器のモードを設定するメソッド
+    /// </summary>
     public void SetAttackMode(AttackMode mode)
     {
         attackMode = mode;
         currentAttackMode = attackMode;
     }
 
+    /// <summary>
+    /// 武器のモードを取得するメソッド
+    /// </summary>
     public AttackMode GetAttackMode()
     {
         return attackMode;
