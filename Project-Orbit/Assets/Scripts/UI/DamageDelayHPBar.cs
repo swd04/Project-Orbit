@@ -18,11 +18,17 @@ public class DamageDelayHPBar : HPBarBase
     //遅延バーがメインHPバーに追いつく速度
     [SerializeField] private float catchUpSpeed = 1f;
 
+    [Header("遅延バーの色")]
+    [SerializeField] private Color delayColor = new Color(1f, 0.5f, 0f);
+
     //遅延バーが最終的に目指すHP割合
     private float targetRatio = 0.0f;
 
     //遅延処理用タイマー
     private float delayTimer = 0.0f;
+
+    //遅延バーのImage
+    private Image delayFillImage;
 
     /// <summary>
     /// 初期化処理
@@ -42,6 +48,13 @@ public class DamageDelayHPBar : HPBarBase
             //初期状態ではメインHPバーと同じ値にする
             delaySlider.value = hpSlider.value;
             targetRatio = hpSlider.value;
+        }
+
+        //遅延バーのImageを取得して色を設定
+        if (delaySlider.fillRect != null)
+        {
+            delayFillImage = delaySlider.fillRect.GetComponent<Image>();
+            delayFillImage.color = delayColor;
         }
     }
 

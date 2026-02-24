@@ -1635,6 +1635,7 @@ MonoBehaviour:
   delaySlider: {fileID: 882523381}
   delayDuration: 0.5
   catchUpSpeed: 1
+  delayColor: {r: 1, g: 0.52920973, b: 0, a: 1}
   highHPColor: {r: 0, g: 1, b: 0, a: 1}
   midHPColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   lowHPColor: {r: 1, g: 0, b: 0, a: 1}
