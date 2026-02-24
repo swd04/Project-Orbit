@@ -1,10 +1,14 @@
-using UnityEngine;
 using DG.Tweening;
+using UnityEngine;
+using static PlayerChoseAttackMode;
 /// <summary>
 /// プレイヤーが攻撃をする処理を行うクラス
 /// </summary>
 public class PlayerAttack : MonoBehaviour
 {
+    [Header("PlayerChoseAttackModeを取得")]
+    [SerializeField] private PlayerChoseAttackMode playerChoseAttackMode = null;
+
     [Header("プレイヤーのTransform")]
     [SerializeField] private Transform playerTransform = null;
 
@@ -20,6 +24,9 @@ public class PlayerAttack : MonoBehaviour
     [Header("マウスボタンを押した回数")]
     [SerializeField] public int attackCommandCount = 0;
 
+    [Header("モード切替のクールタイム")]
+    [SerializeField] private float modeChangeCoolTime = 0.0f;
+
     [Header("攻撃の回転の速さ")]
     [SerializeField] private float rotateSpeed = 0.0f;
 
@@ -28,21 +35,23 @@ public class PlayerAttack : MonoBehaviour
 
 
 
+    /// <summary>
+    /// 初期化を行うメソッド
+    /// </summary>
     private void Start()
     {
         isAttack = false;
         weaponCollider.enabled = false;
     }
 
+    /// <summary>
+    /// プレイヤーの攻撃処理を行うメソッド
+    /// </summary>
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Attack();
+        InputKey();
 
-            isAttack = true;
-        }
-
+        // 攻撃コマンドの入力回数をカウントする処理
         if (isAttack)
         {
             attackCommandCount++;
@@ -50,6 +59,40 @@ public class PlayerAttack : MonoBehaviour
         }
 
     }
+
+    /// <summary>
+    /// キーボードを入力したときの処理全般を行うメソッド
+    /// </summary>
+    private void InputKey()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            // 左クリックで攻撃を行う処理
+
+            Attack();
+
+            isAttack = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Space))
+        {
+            playerChoseAttackMode.GetAttackMode();
+
+            // Spaceキーで攻撃モードを切り替える処理
+
+            if (playerChoseAttackMode.currentAttackMode == AttackMode.PREDATION)
+            {
+                // プレイヤーの攻撃モードを魂化に変更
+                playerChoseAttackMode.SetAttackMode(AttackMode.SOULREINFORCE);
+            }
+            else if (playerChoseAttackMode.currentAttackMode == AttackMode.SOULREINFORCE)
+            {
+                // プレイヤーの攻撃モードを捕食に変更
+                playerChoseAttackMode.SetAttackMode(AttackMode.PREDATION);
+            }
+            Debug.Log("現在の攻撃モードは" + playerChoseAttackMode.currentAttackMode + "です");
+        }
+    }
+
 
     /// <summary>
     /// 攻撃処理を行うメソッド
@@ -70,7 +113,12 @@ public class PlayerAttack : MonoBehaviour
             }
 
         });
+
+        // 攻撃コマンドの回数をカウント
+        attackCommandCount++;
     }
+
+
 
     public void OnTriggerEnter(Collider other)
     {

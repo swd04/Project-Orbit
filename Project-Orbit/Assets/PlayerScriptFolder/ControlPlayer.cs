@@ -35,6 +35,12 @@ public class ControlPlayer : MonoBehaviour
     /// </summary>
     private void FixedUpdate()
     {
+        // プレイヤー操作
+        PlayerMovement();
+    }
+
+    private void PlayerMovement()
+    {
         // ダッシュ状態に応じて速度を切り替える
         if (playerDash.isDashPlayer)
         {

@@ -78,6 +78,7 @@ public class PlayerCameraController : MonoBehaviour
         float applyDelta = targetPitch - currentPitch;
         currentPitch = targetPitch;
 
+        // プレイヤーを中心にして回転
         transform.RotateAround(playerObject.transform.position, transform.right, applyDelta);
     }
 
