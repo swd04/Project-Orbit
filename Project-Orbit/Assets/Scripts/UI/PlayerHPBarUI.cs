@@ -3,7 +3,7 @@ using UnityEngine;
 /// <summary>
 /// プレイヤー用HPバーUIクラス
 /// </summary>
-public class PlayerHPBarUI : HPBarBase
+public class PlayerHPBarUI : DamageDelayHPBar
 {
     [Header("HPバーの色設定")]
 

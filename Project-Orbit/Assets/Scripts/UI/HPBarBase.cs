@@ -6,7 +6,7 @@ using UnityEngine.UI;
 /// </summary>
 public abstract class HPBarBase : MonoBehaviour
 {
-    [Header("HPバーの塗り部分")]
+    [Header("HPスライダー")]
     [SerializeField] protected Slider hpSlider = null;
 
     //SliderのFill部分に付いているImage
@@ -41,7 +41,7 @@ public abstract class HPBarBase : MonoBehaviour
     /// 更新ルールは全UI共通
     /// 色変更や演出などの見た目処理はUpdateVisualに任せる
     /// </summary>
-    public void UpdateHP(float current, float max)
+    public virtual void UpdateHP(float current, float max)
     {
         //Image未設定時の事故防止
         if (hpSlider == null) return;
