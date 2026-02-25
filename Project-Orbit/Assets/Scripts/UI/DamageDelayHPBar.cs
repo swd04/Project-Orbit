@@ -28,7 +28,7 @@ public class DamageDelayHPBar : HPBarBase
     private float delayTimer = 0.0f;
 
     //遅延バーのImage
-    private Image delayFillImage;
+    private Image delayFillImage = null;
 
     /// <summary>
     /// 初期化処理
@@ -75,7 +75,7 @@ public class DamageDelayHPBar : HPBarBase
         //メインHPバーの更新処理
         base.UpdateHP(current, max);
 
-        // HPが減少した場合
+        //HPが減少した場合
         if (newRatio < prevRatio)
         {
             //遅延バーの目標値を設定

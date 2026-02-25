@@ -11,6 +11,7 @@ public class HPBarTestController : MonoBehaviour
 {
     [SerializeField] private HPBarBase hpBarUI = null;
     [SerializeField] private DamageFlashUI damageFlashUI = null;
+    [SerializeField] private HPTextDisplay hPTextDisplay = null;
 
     [SerializeField] private float maxHP = 100f;
     [SerializeField] private float currentHP = 100f;
@@ -40,6 +41,7 @@ public class HPBarTestController : MonoBehaviour
 
         currentHP = Mathf.Clamp(currentHP + amount, 0f, maxHP);
         hpBarUI.UpdateHP(currentHP, maxHP);
+        hPTextDisplay?.UpdateHP(currentHP, maxHP);
 
         if (currentHP < previousHP)
         {

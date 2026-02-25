@@ -9,7 +9,6 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject menuPanel = null;
 
     [Header("タブパネル")]
-
     //ステータス画面のパネル
     [SerializeField] private GameObject statusPanel = null;
 

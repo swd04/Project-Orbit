@@ -1,12 +1,11 @@
 using UnityEngine;
 
 /// <summary>
-/// プレイヤー用HPバーUIクラス
+/// プレイヤー専用HPバーUIクラス
 /// </summary>
 public class PlayerHPBarUI : DamageDelayHPBar
 {
-    [Header("プレイヤーHPバーの色設定")]
-
+    [Header("プレイヤーHPバーのHP割合に応じた色設定")]
     //100%～50％
     [SerializeField] private Color highHPColor = Color.green;
 
