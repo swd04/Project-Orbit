@@ -6,6 +6,10 @@ public class SkillDate : ScriptableObject
     [Header("スキル名")]
     [SerializeField] public string skillName = "";
 
+    [Header("スキルアイコン")]
+    //スキルホイールUIなどで表示
+    public Sprite icon = null;
+
     [Header("スキルのクールタイム")]
     [SerializeField] public float skillCoolTime = 0.0f;
 

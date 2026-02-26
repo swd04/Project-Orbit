@@ -16,9 +16,9 @@ public class DamageDelayHPBar : HPBarBase
 
     [Header("追従速度")]
     //遅延バーがメインHPバーに追いつく速度
-    [SerializeField] private float catchUpSpeed = 1f;
+    [SerializeField] private float catchUpSpeed = 3f;
 
-    [Header("遅延バーの色")]
+    [Header("遅延バーの色設定")]
     [SerializeField] private Color delayColor = new Color(1f, 0.5f, 0f);
 
     //遅延バーが最終的に目指すHP割合
