@@ -21,7 +21,7 @@ public class CoreEffectScript : MonoBehaviour
         duration = particle.main.duration;
 
         // 最後の状態を作っておく
-        particle.Simulate(duration, true, true);
+        particle.Simulate(duration, false, false);
         particle.Pause();
     }
 
@@ -37,10 +37,13 @@ public class CoreEffectScript : MonoBehaviour
             ParticleTime();
         }
 
+        // 敵が死んだ判定になったらパーティクルを再生するようにする
 
     }
 
-
+    /// <summary>
+    /// 逆再生開始判定のメソッド
+    /// </summary>
     private void StartReverse()
     {
         currentParticlePlayTime = duration;
