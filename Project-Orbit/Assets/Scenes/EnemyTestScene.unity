@@ -222,9 +222,10 @@ GameObject:
   - component: {fileID: 986768220}
   - component: {fileID: 986768219}
   - component: {fileID: 986768218}
+  - component: {fileID: 986768221}
+  - component: {fileID: 986768215}
   - component: {fileID: 986768217}
   - component: {fileID: 986768216}
-  - component: {fileID: 986768215}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -242,7 +243,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 0
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -372,6 +373,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &986768221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 986768214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c90e1aede49a57045a4e4263530fe640, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerObject: {fileID: 1840228761}
+  enemyAgent: {fileID: 986768215}
+  enemySpeed: 4
+  stopDistance: 3
 --- !u!1 &1700476407
 GameObject:
   m_ObjectHideFlags: 0
