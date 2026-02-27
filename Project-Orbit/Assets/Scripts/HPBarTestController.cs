@@ -43,14 +43,14 @@ public class HPBarTestController : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        //Aキーが押されたらHPを減少
-        if (Input.GetKeyDown(KeyCode.A))
+        //指定のキーが押されたらHPを減少
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             ChangeHP(-maxHP * changeRate);
         }
 
-        //Dキーが押されたらHPを回復
-        if (Input.GetKeyDown(KeyCode.D))
+        //指定のが押されたらHPを回復
+        if (Input.GetKeyDown(KeyCode.E))
         {
             ChangeHP(maxHP * changeRate);
         }

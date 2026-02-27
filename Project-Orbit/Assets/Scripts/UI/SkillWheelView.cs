@@ -1,176 +1,100 @@
-using System.Collections;
 using UnityEngine;
 
 /// <summary>
-/// 
+/// スキルホイールの見た目を担当するクラス
 /// </summary>
 public class SkillWheelView : MonoBehaviour
 {
-    [Header("")]
-    //
-    [SerializeField] private SkillSlotUI slotCurrent;
+    [Header("スキルスロットUI")]
 
-    //
-    [SerializeField] private SkillSlotUI slotNext;
+    //現在選択中のスキル表示用スロット
+    [SerializeField] private SkillSlotUI skillSlotCurrent = null;
 
-    //
-    [SerializeField] private SkillSlotUI slotPrev;
+    //次のスキル表示用スロット
+    [SerializeField] private SkillSlotUI skillSlotNext = null;
 
-    [Header("")]
-    //
-    [SerializeField] private Transform posCurrent;
+    //前のスキル表示用スロット
+    [SerializeField] private SkillSlotUI skillSlotPrevious = null;
 
-    //
-    [SerializeField] private Transform posNext;
+    [Header("スロット配置位置")]
 
-    //
-    [SerializeField] private Transform posPrev;
+    //現在選択中のスキルスロットの表示位置
+    [SerializeField] private Transform posCurrentSkillSlot = null;
 
-    [Header("")]
-    [SerializeField] private float moveDuration = 0.15f;
+    //次スキルスロットの表示位置
+    [SerializeField] private Transform posNextSkillSlot = null;
 
-    //
-    public bool IsAnimating { get; private set; }
+    //前スキルスロットの表示位置
+    [SerializeField] private Transform posPrevSkillSlot = null;
 
     /// <summary>
-    /// 
+    /// モデルの状態を元にスキルホイールの表示を更新する処理
     /// </summary>
     public void Refresh(SkillWheelModel model)
     {
-        //
+        //登録されているスキル数を取得
         int count = model.Count;
 
-        //
-        slotCurrent.gameObject.SetActive(false);
-        slotNext.gameObject.SetActive(false);
-        slotPrev.gameObject.SetActive(false);
+        //一旦すべてのスロットを非表示にする
+        skillSlotCurrent.gameObject.SetActive(false);
+        skillSlotNext.gameObject.SetActive(false);
+        skillSlotPrevious.gameObject.SetActive(false);
 
-        //
-        if (count <= 1) return;
+        //スキルが0個ならすべて非表示
+        if (count == 0) return;
 
-        //
-        slotCurrent.gameObject.SetActive(true);
-        slotCurrent.transform.position = posCurrent.position;
-        slotCurrent.Set(model.Skills[model.CurrentIndex], true);
+        //現在選択中スキルの表示
+        skillSlotCurrent.gameObject.SetActive(true);
+        skillSlotCurrent.transform.position = posCurrentSkillSlot.position;
+        skillSlotCurrent.Set(model.Skills[model.CurrentIndex], true);
 
-        //
-        slotNext.gameObject.SetActive(true);
-        slotNext.transform.position = posNext.position;
-        slotNext.Set(model.Skills[model.NextIndex], false);
+        //スキルが１個ならここで終了
+        if (count == 1) return;
 
-        //
+        //次スキルの表示
+        skillSlotNext.gameObject.SetActive(true);
+        skillSlotNext.transform.position = posNextSkillSlot.position;
+        skillSlotNext.Set(model.Skills[model.NextIndex], false);
+
+        //スキルが3つ以上ある場合のみ前スキルを表示
         if (count >= 3)
         {
-            slotPrev.gameObject.SetActive(true);
-            slotPrev.transform.position = posPrev.position;
-            slotPrev.Set(model.Skills[model.PrevIndex], false);
+            skillSlotPrevious.gameObject.SetActive(true);
+            skillSlotPrevious.transform.position = posPrevSkillSlot.position;
+            skillSlotPrevious.Set(model.Skills[model.PrevIndex], false);
         }
     }
 
     /// <summary>
-    /// 
+    /// 現在選択中のスキルスロットのTransformを取得する
     /// </summary>
-    public void PlayRotate(SkillWheelModel model, RotateDirection direction)
-    {
-        //
-        if (IsAnimating || model.Count <= 1) return;
-
-        //
-        StartCoroutine(RotateRoutine(model, direction));
-    }
+    public Transform CurrentSkillSlot =>
+    skillSlotCurrent.gameObject.activeSelf ? skillSlotCurrent.transform : null;
 
     /// <summary>
-    /// 
+    /// 次スキルスロットのTransformを取得する
     /// </summary>
-    private IEnumerator RotateRoutine(SkillWheelModel model, RotateDirection direction)
-    {
-        //
-        IsAnimating = true;
-
-        //
-        if (model.Count == 2)
-        {
-            //
-            yield return MovePair(
-                slotCurrent.transform, posNext.position,
-                slotNext.transform, posCurrent.position
-            );
-        }
-        else
-        {
-            //
-            if (direction == RotateDirection.CounterClockwise)
-            {
-                //
-                yield return MoveTriple(
-                    slotPrev.transform, posCurrent.position,
-                    slotCurrent.transform, posNext.position,
-                    slotNext.transform, posPrev.position
-                );
-            }
-            else
-            {
-                //
-                yield return MoveTriple(
-                    slotPrev.transform, posNext.position,
-                    slotCurrent.transform, posPrev.position,
-                    slotNext.transform, posCurrent.position
-                );
-            }
-        }
-
-        //
-        Refresh(model);
-
-        //
-        IsAnimating = false;
-    }
+    public Transform NextSkillSlot =>
+    skillSlotNext.gameObject.activeSelf ? skillSlotNext.transform : null;
 
     /// <summary>
-    /// 
+    /// 前スキルスロットのTransformを取得する
     /// </summary>
-    private IEnumerator MovePair(Transform a, Vector3 aTo, Transform b, Vector3 bTo)
-    {
-        //
-        StartCoroutine(MoveTo(a, aTo));
-        StartCoroutine(MoveTo(b, bTo));
-
-        //
-        yield return new WaitForSeconds(moveDuration);
-    }
+    public Transform PreviousSkillSlot =>
+    skillSlotPrevious.gameObject.activeSelf ? skillSlotPrevious.transform : null;
 
     /// <summary>
-    /// 
+    /// 現在選択中のスキルスロットの基準表示位置
     /// </summary>
-    private IEnumerator MoveTriple(Transform a, Vector3 aTo, Transform b, Vector3 bTo, Transform c, Vector3 cTo)
-    {
-        //
-        StartCoroutine(MoveTo(a, aTo));
-        StartCoroutine(MoveTo(b, bTo));
-        StartCoroutine(MoveTo(c, cTo));
-
-        //
-        yield return new WaitForSeconds(moveDuration);
-    }
+    public Vector3 PosCurrent => posCurrentSkillSlot.position;
 
     /// <summary>
-    /// 
+    /// 次スキルスロットの基準表示位置
     /// </summary>
-    private IEnumerator MoveTo(Transform target, Vector3 to)
-    {
-        //
-        Vector3 from = target.position;
-        float t = 0f;
+    public Vector3 PosNext => posNextSkillSlot.position;
 
-        //
-        while (t < moveDuration)
-        {
-            t += Time.deltaTime;
-            target.position = Vector3.Lerp(from, to, t / moveDuration);
-            yield return null;
-        }
-
-        //
-        target.position = to;
-    }
+    /// <summary>
+    /// 前スキルスロットの基準表示位置
+    /// </summary>
+    public Vector3 PosPrev => posPrevSkillSlot.position;
 }

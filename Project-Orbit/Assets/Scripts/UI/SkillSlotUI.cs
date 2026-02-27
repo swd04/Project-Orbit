@@ -17,15 +17,20 @@ public class SkillSlotUI : MonoBehaviour
     [SerializeField] private CanvasGroup canvasGroup = null;
 
     /// <summary>
-    /// スキル情報をUIに反映する処理
+    /// スキルデータを受け取り、UI表示を更新する処理
     /// </summary>
     public void Set(SkillDate skill, bool isSelected)
     {
-        //スキルデータからアイコンと名前を設定
+        //スキルアイコンを設定
         icon.sprite = skill.icon;
+
+        //スキル名テキストを設定
         skillName.text = skill.skillName;
 
+        //選択中なら不透明、非選択なら半透明にする
         canvasGroup.alpha = isSelected ? 1.0f : 0.5f;
-        transform.localScale = isSelected ? Vector3.one * 1.2f : Vector3.one;
+
+        //選択中のスキルを少し拡大して強調表示
+        transform.localScale = isSelected ? Vector3.one * 2f : Vector3.one;
     }
 }
