@@ -33,8 +33,6 @@ public class PlayerAttack : MonoBehaviour
     [Header("武器の回転角度")]
     [SerializeField] private Vector3 rotateAngle = Vector3.zero;
 
-
-
     /// <summary>
     /// 初期化を行うメソッド
     /// </summary>
@@ -75,24 +73,27 @@ public class PlayerAttack : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Space))
         {
-            playerChoseAttackMode.GetAttackMode();
+            //playerChoseAttackMode.GetAttackMode();
 
             // Spaceキーで攻撃モードを切り替える処理
 
-            if (playerChoseAttackMode.currentAttackMode == AttackMode.PREDATION)
-            {
-                // プレイヤーの攻撃モードを魂化に変更
-                playerChoseAttackMode.SetAttackMode(AttackMode.SOULREINFORCE);
-            }
-            else if (playerChoseAttackMode.currentAttackMode == AttackMode.SOULREINFORCE)
-            {
-                // プレイヤーの攻撃モードを捕食に変更
-                playerChoseAttackMode.SetAttackMode(AttackMode.PREDATION);
-            }
-            Debug.Log("現在の攻撃モードは" + playerChoseAttackMode.currentAttackMode + "です");
+            //攻撃モードをトグル切替
+            playerChoseAttackMode.Toggle();
+
+            //if (playerChoseAttackMode.currentAttackMode == AttackMode.PREDATION)
+            //{
+            //    // プレイヤーの攻撃モードを魂化に変更
+            //    playerChoseAttackMode.SetAttackMode(AttackMode.SOULREINFORCE);
+            //}
+            //else if (playerChoseAttackMode.currentAttackMode == AttackMode.SOULREINFORCE)
+            //{
+            //    // プレイヤーの攻撃モードを捕食に変更
+            //    playerChoseAttackMode.SetAttackMode(AttackMode.PREDATION);
+            //}
+
+            Debug.Log("現在の攻撃モードは" + playerChoseAttackMode.CurrentAttackMode + "です");
         }
     }
-
 
     /// <summary>
     /// 攻撃処理を行うメソッド

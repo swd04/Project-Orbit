@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class SkillActivation : MonoBehaviour
@@ -13,7 +12,17 @@ public class SkillActivation : MonoBehaviour
     [Header("現在選んでいるスキルナンバー")]
     [SerializeField] private int currentSelectSkillNumber = 0;
 
+    [Header("スキルホイールUI")]
+    [SerializeField] private SkillWheelUI skillWheelUI = null;
 
+    /// <summary>
+    /// 初期化処理
+    /// </summary>
+    private void Start()
+    {
+        //スキルホイールUIを初期状態で表示
+        skillWheelUI.Initialize(playerSkillList, 0);
+    }
 
     private void Update()
     {
@@ -28,26 +37,33 @@ public class SkillActivation : MonoBehaviour
     {
         if (mouseScrollWheelValue > 0)
         {
-            // ホイールを上に動かした場合
+            //ホイールを上に動かした場合
+            //currentSelectSkillNumber = (currentSelectSkillNumber + 1) % playerSkillList.Count;
 
-            currentSelectSkillNumber = (currentSelectSkillNumber + 1) % playerSkillList.Count;
+            //UIに選択変更を通知
+            skillWheelUI.RotateCounterClockwise();
         }
         else if (mouseScrollWheelValue < 0)
         {
-            // ホイールを下に動かした場合
-            currentSelectSkillNumber = (currentSelectSkillNumber - 1 + playerSkillList.Count) % playerSkillList.Count;
+            //ホイールを下に動かした場合
+            //currentSelectSkillNumber = (currentSelectSkillNumber - 1 + playerSkillList.Count) % playerSkillList.Count;
+
+            //UIに選択変更を通知
+            skillWheelUI.RotateClockwise();
         }
     }
-
 
     private void ActivationSkill()
     {
-        // スキルの発動処理
+        //スキルの発動処理
         if (Input.GetMouseButtonDown(1))
         {
-            // 右クリックでスキル発動
-            Debug.Log("スキル " + playerSkillList[currentSelectSkillNumber].skillName + " を発動しました！");
+            SkillDate skill = skillWheelUI.CurrentSkill;
+
+            if (skill == null) return;
+
+            //右クリックでスキル発動
+            Debug.Log("スキル " + skill.skillName + " を発動しました！");
         }
     }
-
 }
