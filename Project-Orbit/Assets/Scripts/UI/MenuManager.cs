@@ -9,17 +9,20 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject menuPanel = null;
 
     [Header("タブパネル")]
-    //ステータス画面のパネル
+    //プレイヤーステータスの画面パネル
     [SerializeField] private GameObject statusPanel = null;
 
-    //武器画面のパネル
-    [SerializeField] private GameObject weaponPanel = null;
+    //装備している技の画面パネル
+    [SerializeField] private GameObject techniquePanel = null;
 
-    //パッシブ画面のパネル
+    //装備しているパッシブスキルの画面パネル
     [SerializeField] private GameObject passivePanel = null;
 
-    //操作方法画面のパネル
-    [SerializeField] private GameObject operationPanel = null;
+    //セーブの画面パネル
+    [SerializeField] private GameObject savePanel = null;
+
+    //設定の画面パネル
+    [SerializeField] private GameObject settingPanel = null;
 
     /// <summary>
     /// 初期化処理
@@ -84,7 +87,7 @@ public class MenuManager : MonoBehaviour
     public void OpenWeapon()
     {
         //武器パネルのみを表示
-        ShowOnly(weaponPanel);
+        ShowOnly(techniquePanel);
     }
 
     /// <summary>
@@ -102,7 +105,7 @@ public class MenuManager : MonoBehaviour
     public void OpenOperation()
     {
         //操作方法パネルのみを表示
-        ShowOnly(operationPanel);
+        ShowOnly(settingPanel);
     }
 
     /// <summary>
@@ -128,8 +131,9 @@ public class MenuManager : MonoBehaviour
     {
         //各タブパネルが設定されている場合のみ非表示にする
         if (statusPanel != null) statusPanel.SetActive(false);
-        if (weaponPanel != null) weaponPanel.SetActive(false);
+        if (techniquePanel != null) techniquePanel.SetActive(false);
         if (passivePanel != null) passivePanel.SetActive(false);
-        if (operationPanel != null) operationPanel.SetActive(false);
+        if (savePanel != null) savePanel.SetActive(false);
+        if (settingPanel != null) settingPanel.SetActive(false);
     }
 }
