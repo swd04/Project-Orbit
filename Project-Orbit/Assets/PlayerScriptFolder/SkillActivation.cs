@@ -3,8 +3,11 @@ using UnityEngine;
 
 public class SkillActivation : MonoBehaviour
 {
-    [Header("プレイヤーのスキルリスト")]
-    [SerializeField] private List<SkillDate> playerSkillList = new List<SkillDate>();
+    [Header("プレイヤーの装備スキルリスト")]
+    [SerializeField] private List<SkillDate> equippedSkills = new List<SkillDate>();
+
+    [Header("プレイヤーの未装備スキルリスト")]
+    [SerializeField] private List<SkillDate> unequippedSkills = new List<SkillDate>();
 
     [Header("ホイールの回転する値を取得")]
     [SerializeField] private float mouseScrollWheelValue = 0.0f;
@@ -21,7 +24,7 @@ public class SkillActivation : MonoBehaviour
     private void Start()
     {
         //スキルホイールUIを初期状態で表示
-        skillWheelUI.Initialize(playerSkillList, 0);
+        skillWheelUI.Initialize(equippedSkills, 0);
     }
 
     private void Update()
@@ -65,5 +68,72 @@ public class SkillActivation : MonoBehaviour
             //右クリックでスキル発動
             Debug.Log("スキル " + skill.skillName + " を発動しました！");
         }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public bool EquipSkill(SkillDate skill)
+    {
+        //
+        if (equippedSkills.Count >= 3) return false;
+
+        //
+        if (unequippedSkills.Remove(skill))
+        {
+            //
+            equippedSkills.Add(skill);
+
+            //
+            skillWheelUI.Initialize(equippedSkills, 0);
+
+            return true;
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public bool UnequipSkill(SkillDate skill)
+    {
+        //
+        if (equippedSkills.Remove(skill))
+        {
+            //
+            unequippedSkills.Add(skill);
+
+            //
+            skillWheelUI.Initialize(equippedSkills, 0);
+
+            return true;
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public bool IsEquipped(SkillDate skill)
+    {
+        return equippedSkills.Contains(skill);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public List<SkillDate> GetEquippedSkills()
+    {
+        return equippedSkills;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public List<SkillDate> GetUnequippedSkills()
+    {
+        return unequippedSkills;
     }
 }
