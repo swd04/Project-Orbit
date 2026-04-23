@@ -12,8 +12,8 @@ public class MenuManager : MonoBehaviour
     //プレイヤーステータスの画面パネル
     [SerializeField] private GameObject statusPanel = null;
 
-    //装備している技の画面パネル
-    [SerializeField] private GameObject techniquePanel = null;
+    //装備しているスキルの画面パネル
+    [SerializeField] private GameObject skillPanel = null;
 
     //装備しているパッシブスキルの画面パネル
     [SerializeField] private GameObject passivePanel = null;
@@ -82,29 +82,38 @@ public class MenuManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 武器画面を表示
+    /// スキル画面を表示
     /// </summary>
-    public void OpenWeapon()
+    public void OpenSkill()
     {
-        //武器パネルのみを表示
-        ShowOnly(techniquePanel);
+        //スキルパネルのみを表示
+        ShowOnly(skillPanel);
     }
 
     /// <summary>
-    /// パッシブ画面を表示
+    /// パッシブスキル画面を表示
     /// </summary>
     public void OpenPassive()
     {
-        //パッシブパネルのみを表示
+        //パッシブスキルパネルのみを表示
         ShowOnly(passivePanel);
     }
 
     /// <summary>
-    /// 操作方法画面を表示
+    /// セーブ画面を表示
     /// </summary>
-    public void OpenOperation()
+    public void OpenSave()
     {
-        //操作方法パネルのみを表示
+        //セーブ画面パネルのみを表示
+        ShowOnly(savePanel);
+    }
+
+    /// <summary>
+    /// 設定画面を表示
+    /// </summary>
+    public void OpenSetting()
+    {
+        //設定画面パネルのみを表示
         ShowOnly(settingPanel);
     }
 
@@ -131,7 +140,7 @@ public class MenuManager : MonoBehaviour
     {
         //各タブパネルが設定されている場合のみ非表示にする
         if (statusPanel != null) statusPanel.SetActive(false);
-        if (techniquePanel != null) techniquePanel.SetActive(false);
+        if (skillPanel != null) skillPanel.SetActive(false);
         if (passivePanel != null) passivePanel.SetActive(false);
         if (savePanel != null) savePanel.SetActive(false);
         if (settingPanel != null) settingPanel.SetActive(false);
