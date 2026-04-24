@@ -98,7 +98,7 @@ public class PlayerAttack : MonoBehaviour
     /// <summary>
     /// 攻撃処理を行うメソッド
     /// </summary>
-    public void Attack()
+    private void Attack()
     {
         weaponObject.transform.DOLocalRotate(new Vector3(rotateAngle.x, rotateAngle.y, rotateAngle.z), rotateSpeed).SetEase(Ease.Linear).OnComplete(() =>
         {

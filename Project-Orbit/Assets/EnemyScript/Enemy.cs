@@ -1,16 +1,10 @@
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    // çsìÆÇÃï]âø
+    public abstract float Evaluate(EnemyAIController enemy);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    // é¿ç€ÇÃçsìÆ
+    public abstract void Execute(EnemyAIController enemy);
 }

@@ -506,6 +506,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: X Bot@Great Sword Casting
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e36c101a94e5f5f4facfa4803f75f8a2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

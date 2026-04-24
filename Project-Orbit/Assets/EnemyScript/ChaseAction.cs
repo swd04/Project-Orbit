@@ -1,0 +1,24 @@
+using UnityEngine;
+
+public class ChaseAction : Enemy
+{
+    [Header("“G‚ÌˆÚ“®ƒXƒRƒA")]
+    [SerializeField] public float score = 0f;
+
+    public override float Evaluate(EnemyAIController enemy)
+    {
+        float distance = enemy.DistanceToTarget();
+
+        if(distance < enemy.GetDetectionRange())
+        {
+            return score;
+        }
+
+        return 0f;
+    }
+
+    public override void Execute(EnemyAIController enemy)
+    {
+        enemy.agent.SetDestination(enemy.target.position);
+    }
+}
