@@ -4,8 +4,8 @@ using UnityEngine.InputSystem;
 /// <summary>
 /// HPバー動作確認用テストスクリプト
 /// 
-/// Aキー：HPを10%減らす
-/// Dキー：HPを10%増やす
+/// Qキー：HPを10%減らす
+/// Eキー：HPを10%増やす
 /// </summary>
 public class HPBarTestController : MonoBehaviour
 {

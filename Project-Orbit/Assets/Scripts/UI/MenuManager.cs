@@ -1,41 +1,40 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 /// <summary>
-/// メニュー画面全体を管理するクラス
+/// メニュー画面全体の表示制御とタブ切り替えを管理するクラス
 /// </summary>
 public class MenuManager : MonoBehaviour
 {
     [Header("メニュー画面")]
+    //メニュー全体の表示・非表示を切り替える
     [SerializeField] private GameObject menuPanel = null;
 
-    [Header("タブパネル")]
-    //プレイヤーステータスの画面パネル
-    [SerializeField] private GameObject statusPanel = null;
+    [Header("メニュー画面のタブ一覧")]
+    //スキル・設定などの各タブをまとめたリスト
+    [SerializeField] private List<GameObject> menuTabPanels = new List<GameObject>();
 
-    //装備しているスキルの画面パネル
-    [SerializeField] private GameObject skillPanel = null;
+    //現在表示中のタブ状態
+    private MenuTab currentTab;
 
-    //装備しているパッシブスキルの画面パネル
-    [SerializeField] private GameObject passivePanel = null;
-
-    //セーブの画面パネル
-    [SerializeField] private GameObject savePanel = null;
-
-    //設定の画面パネル
-    [SerializeField] private GameObject settingPanel = null;
+    /// <summary>
+    /// メニューが開いているかどうか
+    /// 他クラスから参照するためのプロパティ
+    /// </summary>
+    public bool IsMenuOpen => menuPanel != null && menuPanel.activeSelf;
 
     /// <summary>
     /// 初期化処理
     /// </summary>
     private void Start()
     {
-        //メニュー画面が設定されている場合は非表示にする
+        //メニューが設定されていれば初期状態では非表示にする
         if (menuPanel != null)
         {
             menuPanel.SetActive(false);
         }
 
-        //タブパネルをすべて閉じた状態で開始
+        //すべてのタブを非表示にして開始
         CloseAllTabs();
     }
 
@@ -44,7 +43,7 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        //ESCキーが押されたらメニューの表示状態を切り替える
+        //ESCキーでメニューの開閉を切り替える
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             ToggleMenu();
@@ -52,97 +51,82 @@ public class MenuManager : MonoBehaviour
     }
 
     /// <summary>
-    /// メニューの表示状態を切り替える処理
+    /// メニューの表示/非表示を切り替える処理
     /// </summary>
     public void ToggleMenu()
     {
-        //メニュー画面が未設定の場合は処理しない
+        //メニューが未設定なら何もしない
         if (menuPanel == null) return;
 
         //現在の表示状態を取得
         bool isActive = menuPanel.activeSelf;
 
-        //表示状態を反転させる
+        //表示状態を反転
         menuPanel.SetActive(!isActive);
 
-        //メニューを開いたときは必ずステータス画面を表示
+        //メニューを開いたときは最初のタブを表示
         if (!isActive)
         {
-            OpenStatus();
+            OpenTab(MenuTab.Status);
         }
     }
 
     /// <summary>
-    /// ステータス画面を表示
+    /// 指定したタブのみを表示する処理
     /// </summary>
-    public void OpenStatus()
+    public void OpenTab(MenuTab tab)
     {
-        //ステータスパネルのみを表示
-        ShowOnly(statusPanel);
-    }
-
-    /// <summary>
-    /// スキル画面を表示
-    /// </summary>
-    public void OpenSkill()
-    {
-        //スキルパネルのみを表示
-        ShowOnly(skillPanel);
-    }
-
-    /// <summary>
-    /// パッシブスキル画面を表示
-    /// </summary>
-    public void OpenPassive()
-    {
-        //パッシブスキルパネルのみを表示
-        ShowOnly(passivePanel);
-    }
-
-    /// <summary>
-    /// セーブ画面を表示
-    /// </summary>
-    public void OpenSave()
-    {
-        //セーブ画面パネルのみを表示
-        ShowOnly(savePanel);
-    }
-
-    /// <summary>
-    /// 設定画面を表示
-    /// </summary>
-    public void OpenSetting()
-    {
-        //設定画面パネルのみを表示
-        ShowOnly(settingPanel);
-    }
-
-    /// <summary>
-    /// 指定されたパネルのみを表示し、
-    /// それ以外のタブパネルをすべて非表示にする処理
-    /// </summary>
-    private void ShowOnly(GameObject target)
-    {
-        //すべてのタブパネルを一旦非表示にする
+        //一度すべてのタブを閉じる
         CloseAllTabs();
 
-        //指定されたパネルが存在する場合のみ表示
-        if (target != null)
+        //enum → indexに変換
+        int index = (int)tab;
+
+        //範囲チェック
+        if (index < 0 || index >= menuTabPanels.Count)
         {
-            target.SetActive(true);
+            Debug.LogWarning("Tab index out of range: " + tab);
+            return;
         }
+
+        //対応するタブのみ表示
+        menuTabPanels[index].SetActive(true);
+
+        //現在のタブ状態を更新
+        currentTab = tab;
     }
 
     /// <summary>
-    /// すべてのタブパネルを非表示にする処理
+    /// ButtonのOnClick用
+    /// </summary>
+    public void OpenTabByIndex(int index)
+    {
+        OpenTab((MenuTab)index);
+    }
+
+    /// <summary>
+    /// すべてのタブを非表示にする処理
     /// </summary>
     private void CloseAllTabs()
     {
-        //各タブパネルが設定されている場合のみ非表示にする
-        if (statusPanel != null) statusPanel.SetActive(false);
-        if (skillPanel != null) skillPanel.SetActive(false);
-        if (passivePanel != null) passivePanel.SetActive(false);
-        if (savePanel != null) savePanel.SetActive(false);
-        if (settingPanel != null) settingPanel.SetActive(false);
+        //登録されているすべてのタブを順番に非表示
+        foreach (var tab in menuTabPanels)
+        {
+            if (tab != null)
+            {
+                tab.SetActive(false);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Inspector変更時のチェック処理
+    /// </summary>
+    private void OnValidate()
+    {
+        if (menuTabPanels.Count != System.Enum.GetValues(typeof(MenuTab)).Length)
+        {
+            Debug.LogWarning("MenuTabとListの数が一致してない！");
+        }
     }
 }

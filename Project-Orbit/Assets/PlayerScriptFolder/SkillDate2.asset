@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b42aea59ae9d4eb46ab78ce9857445e1, type: 3}
   m_Name: SkillDate2
   m_EditorClassIdentifier: 
-  skillName: 2
+  skillName: Water
+  icon: {fileID: 0}
   skillCoolTime: 0
   skillPower: 0
