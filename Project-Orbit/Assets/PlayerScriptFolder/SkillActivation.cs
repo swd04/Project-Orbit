@@ -71,20 +71,19 @@ public class SkillActivation : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// スキルを装備する
     /// </summary>
     public bool EquipSkill(SkillDate skill)
     {
-        //
+        //装備数制限チェック
         if (equippedSkills.Count >= 3) return false;
 
-        //
+        //未装備リストから削除できた場合のみ装備
         if (unequippedSkills.Remove(skill))
         {
-            //
             equippedSkills.Add(skill);
 
-            //
+            //UIを再初期化
             skillWheelUI.Initialize(equippedSkills, 0);
 
             return true;
@@ -94,17 +93,16 @@ public class SkillActivation : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// スキルの装備を解除する
     /// </summary>
     public bool UnequipSkill(SkillDate skill)
     {
-        //
+        //装備リストから削除できた場合のみ処理
         if (equippedSkills.Remove(skill))
         {
-            //
             unequippedSkills.Add(skill);
 
-            //
+            //UIを再初期化
             skillWheelUI.Initialize(equippedSkills, 0);
 
             return true;
@@ -114,7 +112,7 @@ public class SkillActivation : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// 指定したスキルが装備されているか判定
     /// </summary>
     public bool IsEquipped(SkillDate skill)
     {
@@ -122,7 +120,7 @@ public class SkillActivation : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// 装備中スキルリストを取得
     /// </summary>
     public List<SkillDate> GetEquippedSkills()
     {
@@ -130,7 +128,7 @@ public class SkillActivation : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// 未装備スキルリストを取得
     /// </summary>
     public List<SkillDate> GetUnequippedSkills()
     {
