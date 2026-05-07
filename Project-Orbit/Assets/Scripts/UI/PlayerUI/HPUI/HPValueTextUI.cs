@@ -4,10 +4,10 @@ using TMPro;
 /// <summary>
 /// HPの数字表示を管理するクラス
 /// </summary>
-public class HPTextDisplay : MonoBehaviour
+public class HPValueTextUI : MonoBehaviour
 {
     [Header("表示用テキスト")]
-    //HPを数字で表示するTextMeshPro
+    //HPを数字で表示するText
     [SerializeField] private TMP_Text hpText = null;
 
     /// <summary>

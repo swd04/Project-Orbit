@@ -9,15 +9,6 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class HPBarTestController : MonoBehaviour
 {
-    //HPバーUI
-    [SerializeField] private HPBarBase hpBarUI = null;
-
-    //HP数値表示
-    [SerializeField] private HPTextDisplay hPTextDisplay = null;
-
-    //被ダメージ時のフラッシュ演出
-    [SerializeField] private DamageFlashUI damageFlashUI = null;
-
     //最大HP
     [SerializeField] private float maxHP = 100f;
 
@@ -34,8 +25,7 @@ public class HPBarTestController : MonoBehaviour
     private void Start()
     {
         //ゲーム開始時にHPバーを初期状態へ反映
-        hpBarUI.UpdateHP(currentHP, maxHP);
-        hPTextDisplay?.UpdateHP(currentHP, maxHP);
+        UIManager.Instance.UpdatePlayerHP(currentHP, maxHP, false);
     }
 
     /// <summary>
@@ -67,16 +57,10 @@ public class HPBarTestController : MonoBehaviour
         //HPを加算し、0～maxHPの範囲に制限
         currentHP = Mathf.Clamp(currentHP + amount, 0f, maxHP);
 
-        //HPバーUI更新
-        hpBarUI.UpdateHP(currentHP, maxHP);
+        //
+        bool isDamaged = currentHP < previousHP;
 
-        //HPテキスト更新
-        hPTextDisplay?.UpdateHP(currentHP, maxHP);
-
-        //HPが減少していたらダメージ演出を再生
-        if (currentHP < previousHP)
-        {
-            damageFlashUI?.PlayDamageFlash();
-        }
+        //
+        UIManager.Instance.UpdatePlayerHP(currentHP, maxHP, isDamaged);
     }
 }
