@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// 攻撃クラス
+/// </summary>
 public class AttackAction : Enemy
 {
     [Header("敵の攻撃アクションが起きる範囲")]
@@ -15,7 +18,7 @@ public class AttackAction : Enemy
             return score;
         }
 
-        return 0f;
+        return 0.0f;
     }
 
     public override void Execute(EnemyAIController enemy)

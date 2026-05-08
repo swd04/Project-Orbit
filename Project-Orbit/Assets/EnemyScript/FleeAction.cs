@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// プレイヤーから逃げるクラス
+/// </summary>
 public class FleeAction : Enemy
 {
     [Header("現在の体力の割合")]
