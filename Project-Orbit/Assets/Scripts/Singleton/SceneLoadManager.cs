@@ -51,15 +51,28 @@ public class SceneLoadManager : SingletonBehaviour<SceneLoadManager>
         //フェード無し、またはFadeManagerが存在しない場合は即シーン遷移
         if (fadeType == FadeType.None || FadeManager.Instance == null)
         {
-            isLoading = true;
-
-            SceneManager.LoadScene(sceneName);
+            StartCoroutine(LoadSceneWithoutFade(sceneName));
 
             return;
         }
 
         //フェード有りの場合はコルーチンで遷移処理を行う
         StartCoroutine(LoadSceneWithFade(sceneName, fadeType));
+    }
+
+    /// <summary>
+    /// フェード無しシーン遷移
+    /// </summary>
+    private IEnumerator LoadSceneWithoutFade(string sceneName)
+    {
+        isLoading = true;
+
+        SceneManager.LoadScene(sceneName);
+
+        //1フレーム待つ
+        yield return null;
+
+        isLoading = false;
     }
 
     /// <summary>

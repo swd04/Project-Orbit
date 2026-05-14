@@ -4,5 +4,18 @@
 /// </summary>
 public enum SceneType
 {
-    TitleScene,  //タイトルシーン
+    /// <summary>
+    /// ゲームタイトルシーン
+    /// </summary>
+    GameTitleScene,
+
+    /// <summary>
+    /// ゲームプレイシーン
+    /// </summary>
+    GamePlayScene,
+
+    /// <summary>
+    /// ゲームエンドシーン
+    /// </summary>
+    GameEndScene
 }
