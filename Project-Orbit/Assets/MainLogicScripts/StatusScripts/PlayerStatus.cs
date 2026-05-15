@@ -41,6 +41,8 @@ public class PlayerStatus : UnitStatusBase
 
         }
 
+        DamageManager.Instance.GetPlayerPower(unitAttackPoint);
+
         Debug.LogFormat("プレイヤーのHP{0}です", unitLifePoint);
 
         if (Input.GetKeyDown(KeyCode.T))

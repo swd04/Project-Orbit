@@ -42,6 +42,9 @@ public class EnemyStatus : UnitStatusBase
 
         DamageManager.Instance.GetEnemyPower(unitAttackPoint);
 
+        int damage = DamageManager.Instance.EnemyDamageCalculation(unitLifePoint);
+        unitLifePoint = damage;
+
         //ここがちえぐ
         //enemyAIController.GetEnemyInitialStatus(unitLifePoint, unitAttackPoint, unitDefencePoint, moveSpeed);
 
