@@ -7,7 +7,7 @@ using UnityEngine;
 public class SkillWheelAnimator : MonoBehaviour
 {
     [Header("スロット移動にかかる時間")]
-    [SerializeField] private float moveDuration = 0.15f;
+    [SerializeField] private float moveDuration = 0.2f;
 
     /// <summary>
     /// 現在アニメーション再生中かどうか
