@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -22,6 +23,10 @@ public class ControlPlayer : MonoBehaviour
 
     [Header("プレイヤーのダッシュ判定を行うスクリプトの取得")]
     [SerializeField] private PlayerDash playerDash = default;
+
+   
+
+   
 
 
     private void Start()
@@ -82,4 +87,6 @@ public class ControlPlayer : MonoBehaviour
         // Rigidbodyの速度を更新
         playerRigidbody.linearVelocity = direction;
     }
+
+    
 }

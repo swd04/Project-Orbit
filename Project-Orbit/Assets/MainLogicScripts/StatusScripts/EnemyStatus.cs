@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -24,6 +25,9 @@ public class EnemyStatus : UnitStatusBase
     [Header("コアのプレハブ")]
     [SerializeField] private SoulCore soulCore = null;
 
+    [Header("Control Playerの取得")]
+    [SerializeField] private ControlPlayer controlPlayer = null;
+
     // 最大体力
     public int maxHp => unitLifePoint;
 
@@ -35,6 +39,8 @@ public class EnemyStatus : UnitStatusBase
             SoulCore dropSoul = Instantiate(soulCore, transform.position, transform.rotation);
             Destroy(gameObject);
         }
+
+        DamageManager.Instance.GetEnemyPower(unitAttackPoint);
 
         //ここがちえぐ
         //enemyAIController.GetEnemyInitialStatus(unitLifePoint, unitAttackPoint, unitDefencePoint, moveSpeed);
@@ -60,7 +66,10 @@ public class EnemyStatus : UnitStatusBase
     public void PlayerEnemyEating()
     {
     }
+
+    
 }
+
 
 /// <summary>
 /// 敵のタイプ

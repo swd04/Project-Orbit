@@ -158,7 +158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitLifePoint: 100
-  unitAttackPoint: 0
+  unitAttackPoint: 10
   unitDefencePoint: 12
   moveSpeed: 0
   unitTypes: 1
@@ -169,6 +169,7 @@ MonoBehaviour:
   phase: {fileID: 0}
   statusBounus: {fileID: 11400000, guid: 3500f6f677a6b3e4987c42304e1c7d68, type: 2}
   soulCore: {fileID: 8271277268464571018, guid: 2b967ff45f43b20418fc3482fd9b1639, type: 3}
+  controlPlayer: {fileID: 0}
 --- !u!54 &-74469619911934843
 Rigidbody:
   m_ObjectHideFlags: 0

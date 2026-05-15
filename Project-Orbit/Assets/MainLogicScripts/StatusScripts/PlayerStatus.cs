@@ -1,32 +1,59 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+
+
 
 public class PlayerStatus : UnitStatusBase
 {
     [SerializeField] public List<SoulCore> soulCoresList = new List<SoulCore>();
 
     [SerializeField] private List<int> soulLevel = new List<int>();
+
+    [SerializeField] private ControlPlayer controlPlayer = null;
+
+    [SerializeField] public int maxHp = 0;
+
+
+
+
+    private void Start()
+    {
+        maxHp = unitLifePoint;
+    }
+
     /// <summary>
     /// 更新
     /// </summary>
     private void Update()
     {
-        if(soulLevel.Count < soulCoresList.Count)
+        if (soulLevel.Count < soulCoresList.Count)
         {
             soulLevel.Add(0);
         }
 
-        for(int i = 0; i < soulLevel.Count; i++)
+        for (int i = 0; i < soulLevel.Count; i++)
         {
             if (soulCoresList[i] != null)
             {
                 soulLevel[i] = soulCoresList[i].soulLevel;
             }
-            
+
         }
+
+        Debug.LogFormat("プレイヤーのHP{0}です", unitLifePoint);
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            int damage = DamageManager.Instance.PlayerDamageCalculation(unitLifePoint);
+            unitLifePoint = damage;
+        }
+
     }
 
-    public void EnchantStatus(int hp,int attack,int defence,float speed)
+
+
+    public void EnchantStatus(int hp, int attack, int defence, float speed)
     {
         unitLifePoint += hp;
         unitAttackPoint += attack;
@@ -38,10 +65,16 @@ public class PlayerStatus : UnitStatusBase
     {
         if (other != null)
         {
-           // UnitManager.Instance.PhaseStart();
+            // UnitManager.Instance.PhaseStart();
         }
 
-        if(other.CompareTag("Soul"))
+        //if (other.CompareTag("EnemyWeapon") || Input.GetKeyDown(KeyCode.T))
+        //{
+        //    int damage = DamageManager.Instance.PlayerDamageCalculation(unitLifePoint);
+        //    unitLifePoint -= damage;
+        //}
+
+        if (other.CompareTag("Soul"))
         {
             int soulNotGetCount = 0;
             var getSoul = other.gameObject.GetComponent<SoulCore>();

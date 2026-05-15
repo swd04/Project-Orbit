@@ -5,13 +5,19 @@ public class DamageManager : SingletonBehaviour<DamageManager>
     [Header("UŒ‚—Í‚ð•ÛŽ‚·‚é•Ï”")]
     [SerializeField] private int attackPower = 0;
 
-    public void GetDamage(int damage)
+    public void GetEnemyPower(int damage)
     {
         attackPower = damage;
     }
 
-    private void DamageCalculation(int hp)
+    public int PlayerDamageCalculation(int hp)
     {
-        hp = hp - attackPower;
+        if (hp > 0)
+        {
+            hp = hp - attackPower;
+        }
+        return hp;
     }
+
+
 }
