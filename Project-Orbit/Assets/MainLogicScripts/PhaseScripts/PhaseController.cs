@@ -95,7 +95,7 @@ public class PhaseController : MonoBehaviour
                 var enemy = factory.CreateEnemyObject(phaseSpwanEnemys[phaseCount].spwanEnemyTypes[i]).GetComponent<EnemyStatus>();
 
                 
-                enemyAIController.InitializeTarget(player.transform);
+                //enemyAIController.InitializeTarget(player.transform);
 
                 enemy.PhaseControllerSet(this);
                 enemy.transform.parent = transform;
