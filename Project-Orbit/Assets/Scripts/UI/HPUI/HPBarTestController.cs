@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 /// <summary>
 /// HPバー動作確認用テストスクリプト
@@ -9,6 +8,8 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class HPBarTestController : MonoBehaviour
 {
+    [Header("テスト設定")]
+
     //最大HP
     [SerializeField] private float maxHP = 100f;
 
@@ -24,8 +25,8 @@ public class HPBarTestController : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        //ゲーム開始時にHPバーを初期状態へ反映
-        UIManager.Instance.UpdatePlayerHP(currentHP, maxHP, false);
+        //初期HP反映
+        UpdateUI();
     }
 
     /// <summary>
@@ -33,13 +34,13 @@ public class HPBarTestController : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        //指定のキーが押されたらHPを減少
+        //HP減少
         if (Input.GetKeyDown(KeyCode.Q))
         {
             ChangeHP(-maxHP * changeRate);
         }
 
-        //指定のが押されたらHPを回復
+        //HP回復
         if (Input.GetKeyDown(KeyCode.E))
         {
             ChangeHP(maxHP * changeRate);
@@ -47,20 +48,30 @@ public class HPBarTestController : MonoBehaviour
     }
 
     /// <summary>
-    /// HPを増減させ、UIへ反映する処理
+    /// HP変更処理
     /// </summary>
     private void ChangeHP(float amount)
     {
-        //変更前のHPを保持
-        float previousHP = currentHP;
+        //HP変更
+        currentHP = Mathf.Clamp(
+            currentHP + amount,
+            0f,
+            maxHP
+        );
 
-        //HPを加算し、0～maxHPの範囲に制限
-        currentHP = Mathf.Clamp(currentHP + amount, 0f, maxHP);
+        //UI更新
+        UpdateUI();
+    }
 
-        //
-        bool isDamaged = currentHP < previousHP;
+    /// <summary>
+    /// UI更新処理
+    /// </summary>
+    private void UpdateUI()
+    {
+        //UIManager未生成時
+        if (UIManager.Instance == null) return;
 
-        //
-        UIManager.Instance.UpdatePlayerHP(currentHP, maxHP, isDamaged);
+        //プレイヤーHP更新
+        UIManager.Instance.UpdatePlayerHP(currentHP, maxHP);
     }
 }

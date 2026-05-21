@@ -4780,14 +4780,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8a4056683a2086439de4c6d5a1e521f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpSlider: {fileID: 1883093660}
-  delaySlider: {fileID: 206558160}
+  hpImage: {fileID: 0}
+  delayImage: {fileID: 0}
   delayDuration: 0.5
   catchUpSpeed: 5
-  delayColor: {r: 1, g: 0.52920973, b: 0, a: 1}
   highHPColor: {r: 0, g: 1, b: 0, a: 1}
   midHPColor: {r: 1, g: 1, b: 0.015686275, a: 1}
   lowHPColor: {r: 1, g: 0, b: 0, a: 1}
+  delayBarColor: {r: 1, g: 0.5, b: 0, a: 1}
+  midHPThreshold: 0.5
+  lowHPThreshold: 0.25
 --- !u!1 &1832750344
 GameObject:
   m_ObjectHideFlags: 0
