@@ -26,13 +26,18 @@ public class EnemyAIController : MonoBehaviour
         // EnemyStatusの取得
         enemyStatus = GetComponent<EnemyStatus>();
         currentAction = GetComponent<Enemy>();
+
+        target = GameObject.FindGameObjectWithTag("Player").transform;
+        InitializeTarget(target);
     }
 
     private void Update()
     {
         // 行動選択メソッド
         SelectAction();
-        currentAction?.Execute(this);
+        currentAction.Execute(this);
+
+        
     }
 
     /// <summary>

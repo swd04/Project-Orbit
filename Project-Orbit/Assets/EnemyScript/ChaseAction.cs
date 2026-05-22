@@ -8,6 +8,9 @@ public class ChaseAction : Enemy
     [Header("敵の移動スコア")]
     [SerializeField] public float score = 0f;
 
+    /// <summary>
+    /// 敵の行動を評価するメソッド
+    /// </summary>
     public override float Evaluate(EnemyAIController enemy)
     {
         float distance = enemy.DistanceToTarget();
