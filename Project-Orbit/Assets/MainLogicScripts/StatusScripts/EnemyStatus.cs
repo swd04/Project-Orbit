@@ -14,6 +14,9 @@ public class EnemyStatus : UnitStatusBase
     [Header("敵がプレイヤーを感知する距離")]
     [SerializeField] public float detectionRange = 0f;
 
+    [Header("ダメージを受けた判定")]
+    [SerializeField] private bool isDamaged = false;
+
     [Header("EnemyAIControllerの取得")]
     [SerializeField] private EnemyAIController enemyAIController = null;
 
@@ -44,8 +47,12 @@ public class EnemyStatus : UnitStatusBase
 
         DamageManager.Instance.GetEnemyPower(unitAttackPoint);
 
-        int damage = DamageManager.Instance.EnemyDamageCalculation(unitLifePoint);
-        unitLifePoint = damage;
+        // ダメージを受ける処理
+        if (isDamaged)
+        {
+            int damage = DamageManager.Instance.EnemyDamageCalculation(unitLifePoint);
+            unitLifePoint = damage;
+        }
 
         //ここがちえぐ
         //enemyAIController.GetEnemyInitialStatus(unitLifePoint, unitAttackPoint, unitDefencePoint, moveSpeed);
@@ -78,7 +85,21 @@ public class EnemyStatus : UnitStatusBase
     {
     }
 
-    
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Weapon"))
+        {
+            isDamaged = true;
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Weapon"))
+        {
+            isDamaged = false;
+        }
+    }
 }
 
 
