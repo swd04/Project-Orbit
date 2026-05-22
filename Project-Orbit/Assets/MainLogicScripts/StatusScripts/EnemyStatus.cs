@@ -14,8 +14,8 @@ public class EnemyStatus : UnitStatusBase
     [Header("敵がプレイヤーを感知する距離")]
     [SerializeField] public float detectionRange = 0f;
 
-    [Header("EnemyAIControllerの取得")]
-    [SerializeField] private EnemyAIController enemyAIController = null;
+    [Header("ダメージを受けた判定")]
+    [SerializeField] private bool isDamaged = false;
 
     [SerializeField] private PhaseController phase = null;
 
@@ -26,9 +26,6 @@ public class EnemyStatus : UnitStatusBase
 
     [Header("コアのプレハブ")]
     [SerializeField] private SoulCore soulCore = null;
-
-    [Header("Control Playerの取得")]
-    [SerializeField] private ControlPlayer controlPlayer = null;
 
     // 最大体力
     public int maxHp => unitLifePoint;
@@ -44,8 +41,12 @@ public class EnemyStatus : UnitStatusBase
 
         DamageManager.Instance.GetEnemyPower(unitAttackPoint);
 
-        int damage = DamageManager.Instance.EnemyDamageCalculation(unitLifePoint);
-        unitLifePoint = damage;
+        // ダメージを受ける処理
+        if (isDamaged)
+        {
+            int damage = DamageManager.Instance.EnemyDamageCalculation(unitLifePoint);
+            unitLifePoint = damage;
+        }
 
         //ここがちえぐ
         //enemyAIController.GetEnemyInitialStatus(unitLifePoint, unitAttackPoint, unitDefencePoint, moveSpeed);
@@ -78,7 +79,21 @@ public class EnemyStatus : UnitStatusBase
     {
     }
 
-    
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(TagStock.Instance.WEAPON_TAG))
+        {
+            isDamaged = true;
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag(TagStock.Instance.WEAPON_TAG))
+        {
+            isDamaged = false;
+        }
+    }
 }
 
 

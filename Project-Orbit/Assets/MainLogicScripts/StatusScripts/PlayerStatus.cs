@@ -14,6 +14,8 @@ public class PlayerStatus : UnitStatusBase
 
     [SerializeField] public int maxHp = 0;
 
+    [Header("ダメージを受けた判定")]
+    [SerializeField] public bool isDamage = false;
 
 
 
@@ -45,7 +47,7 @@ public class PlayerStatus : UnitStatusBase
 
         Debug.LogFormat("プレイヤーのHP{0}です", unitLifePoint);
 
-        if (Input.GetKeyDown(KeyCode.T))
+        if (isDamage)
         {
             int damage = DamageManager.Instance.PlayerDamageCalculation(unitLifePoint);
             unitLifePoint = damage;
@@ -75,6 +77,11 @@ public class PlayerStatus : UnitStatusBase
         //    int damage = DamageManager.Instance.PlayerDamageCalculation(unitLifePoint);
         //    unitLifePoint -= damage;
         //}
+
+        if (other.CompareTag(TagStock.Instance.ENEMY_WEAPON_TAG))
+        {
+            isDamage = true;
+        }
 
         if (other.CompareTag("Soul"))
         {
@@ -108,6 +115,14 @@ public class PlayerStatus : UnitStatusBase
                     getSoul.gameObject.SetActive(false);
                 }
             }
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag(TagStock.Instance.ENEMY_WEAPON_TAG))
+        {
+            isDamage = false;
         }
     }
 }
