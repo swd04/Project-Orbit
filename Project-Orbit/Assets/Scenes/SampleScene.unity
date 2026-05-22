@@ -460,7 +460,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e81e42d5d15636408c9a93b9a067c13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackPower: 0
+  enemyAttackPower: 0
+  playerAttackPower: 0
 --- !u!4 &157517550
 Transform:
   m_ObjectHideFlags: 0
@@ -2457,6 +2458,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sharedProfile: {fileID: 0}
+  isGlobal: 0
+  blendDistance: 0
+  weight: 1
+  priority: 0
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2469,6 +2475,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  volumeTrigger: {fileID: 0}
+  volumeLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  stopNaNPropagation: 1
+  finalBlitToCameraTarget: 0
+  antialiasingMode: 0
+  temporalAntialiasing:
+    jitterSpread: 0.75
+    sharpness: 0.25
+    stationaryBlending: 0.95
+    motionBlending: 0.85
+  subpixelMorphologicalAntialiasing:
+    quality: 2
+  fastApproximateAntialiasing:
+    fastMode: 0
+    keepAlpha: 0
+  fog:
+    enabled: 1
+    excludeSkybox: 1
+  debugLayer:
+    lightMeter:
+      width: 512
+      height: 256
+      showCurves: 1
+    histogram:
+      width: 512
+      height: 256
+      channel: 3
+    waveform:
+      exposure: 0.12
+      height: 256
+    vectorscope:
+      size: 256
+      exposure: 0.12
+    overlaySettings:
+      linearDepth: 0
+      motionColorIntensity: 4
+      motionGridSize: 64
+      colorBlindnessType: 0
+      colorBlindnessStrength: 1
+  m_Resources: {fileID: 0}
+  m_ShowToolkit: 0
+  m_ShowCustomSorter: 0
+  breakBeforeColorGrading: 0
+  m_BeforeTransparentBundles: []
+  m_BeforeStackBundles: []
+  m_AfterStackBundles: []
 --- !u!1 &968734980
 GameObject:
   m_ObjectHideFlags: 0
@@ -3934,14 +3988,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8a4056683a2086439de4c6d5a1e521f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpSlider: {fileID: 1042448939}
-  delaySlider: {fileID: 1867347765}
+  hpImage: {fileID: 0}
+  delayImage: {fileID: 0}
   delayDuration: 0.5
   catchUpSpeed: 3
-  delayColor: {r: 1, g: 0.52920973, b: 0, a: 1}
   highHPColor: {r: 0, g: 1, b: 0, a: 1}
   midHPColor: {r: 1, g: 1, b: 0.015686275, a: 1}
   lowHPColor: {r: 1, g: 0, b: 0, a: 1}
+  delayBarColor: {r: 1, g: 0.5, b: 0, a: 1}
+  midHPThreshold: 0.5
+  lowHPThreshold: 0.25
 --- !u!114 &1427192606 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6796319796385555961, guid: 2a622d318a3338e4ea43d4d0315e5621, type: 3}
