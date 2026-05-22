@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: -2041929037405821066}
   m_Layer: 0
   m_Name: EnemyObject 1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -167,6 +167,7 @@ MonoBehaviour:
   detectionRange: 0
   enemyAIController: {fileID: 0}
   phase: {fileID: 0}
+  damageManager: {fileID: 0}
   statusBounus: {fileID: 11400000, guid: 3500f6f677a6b3e4987c42304e1c7d68, type: 2}
   soulCore: {fileID: 8271277268464571018, guid: 2b967ff45f43b20418fc3482fd9b1639, type: 3}
   controlPlayer: {fileID: 0}

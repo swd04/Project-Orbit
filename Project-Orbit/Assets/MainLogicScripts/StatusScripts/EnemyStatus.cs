@@ -19,6 +19,8 @@ public class EnemyStatus : UnitStatusBase
 
     [SerializeField] private PhaseController phase = null;
 
+    [SerializeField] private DamageManager damageManager = null;
+
     [Header("ステータスの強化値のデータ")]
     [SerializeField] private EnemyStatusBounus statusBounus = null;
 
@@ -52,6 +54,12 @@ public class EnemyStatus : UnitStatusBase
     public void PhaseControllerSet(PhaseController phase)
     {
         this.phase = phase;
+    }
+
+    public void DamageManagerSet(DamageManager damageManager)
+    {
+        // ダメージマネージャーの設定処理をここに追加
+        this.damageManager = damageManager;
     }
 
     public void EnemyPhaseStatusBounus()
