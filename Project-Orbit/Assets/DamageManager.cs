@@ -8,6 +8,27 @@ public class DamageManager : SingletonBehaviour<DamageManager>
     [Header("プレイヤーの攻撃力を保持する変数")]
     [SerializeField] private int playerAttackPower = 0;
 
+    [Header("Enemyタグが付いているオブジェクトを取得")]
+    [SerializeField] private GameObject enemyObject = null;
+
+
+
+    private void Update()
+    {
+        enemyObject = GameObject.FindGameObjectWithTag("Enemy");
+
+        if (enemyObject != null)
+        {
+            // 敵にDamageManagerをセットする
+            var enemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyStatus>();
+            enemy.DamageManagerSet(this);
+        }
+        else
+        {
+            return;
+        }
+    }
+
     public void GetPlayerPower(int playerpower)
     {
         playerAttackPower = playerpower;
