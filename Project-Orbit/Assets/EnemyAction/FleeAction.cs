@@ -3,6 +3,7 @@ using UnityEngine;
 /// <summary>
 /// プレイヤーから逃げるクラス
 /// </summary>
+[CreateAssetMenu(menuName = "AI/Action/Flee")]
 public class FleeAction : Enemy
 {
     [Header("現在の体力の割合")]
@@ -16,7 +17,7 @@ public class FleeAction : Enemy
 
     public override float Evaluate(EnemyAIController enemy)
     {
-        if(enemy.GetHpRatio() < HpThreshold)
+        if (enemy.GetHpRatio() < HpThreshold)
         {
             return score;
         }
@@ -28,5 +29,8 @@ public class FleeAction : Enemy
     {
         Vector3 direction = (enemy.transform.position - enemy.target.position).normalized;
         Vector3 position = enemy.transform.position + direction * fleeDistance;
+
+        enemy.agent.isStopped = false;
+        enemy.agent.SetDestination(position);
     }
 }

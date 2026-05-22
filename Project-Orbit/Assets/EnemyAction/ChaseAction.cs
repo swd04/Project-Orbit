@@ -3,6 +3,7 @@ using UnityEngine;
 /// <summary>
 /// プレイヤーを追うクラス
 /// </summary>
+[CreateAssetMenu(menuName = "AI/Action/Chase")]
 public class ChaseAction : Enemy
 {
     [Header("敵の移動スコア")]

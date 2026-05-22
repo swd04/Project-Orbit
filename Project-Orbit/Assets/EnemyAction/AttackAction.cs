@@ -3,6 +3,8 @@ using UnityEngine;
 /// <summary>
 /// 攻撃クラス
 /// </summary>
+/// 
+[CreateAssetMenu(menuName = "AI/Action/Attack")]
 public class AttackAction : Enemy
 {
     [Header("敵の攻撃アクションが起きる範囲")]

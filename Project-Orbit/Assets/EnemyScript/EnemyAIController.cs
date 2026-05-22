@@ -15,6 +15,9 @@ public class EnemyAIController : MonoBehaviour
     [Header("実行時のステータス")]
     [SerializeField] public float currentHp = 0f;
 
+    [Header("EnemyDataの取得")]
+    [SerializeField] private EnemyData1 enemyData = null;
+
     [Header("Enemyスクリプトの取得")]
     [SerializeField] private Enemy currentAction = null;
 
@@ -25,7 +28,7 @@ public class EnemyAIController : MonoBehaviour
 
         // EnemyStatusの取得
         enemyStatus = GetComponent<EnemyStatus>();
-        currentAction = GetComponent<Enemy>();
+        //currentAction = GetComponent<Enemy>();
 
         target = GameObject.FindGameObjectWithTag(TagStock.Instance.PLAYER_TAG).transform;
         InitializeTarget(target);
@@ -36,8 +39,7 @@ public class EnemyAIController : MonoBehaviour
         // 行動選択メソッド
         SelectAction();
         currentAction.Execute(this);
-
-        
+        Debug.Log(currentAction);
     }
 
     /// <summary>
@@ -69,7 +71,7 @@ public class EnemyAIController : MonoBehaviour
         Enemy bestAction = null;
 
         // 敵の行動リストをループさせて、各行動のスコアを評価する
-        foreach (var action in enemyStatus.actions)
+        foreach (var action in enemyData.actions)
         {
             // スコア評価
             float score = action.Evaluate(this);
