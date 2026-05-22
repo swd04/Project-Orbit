@@ -45,9 +45,6 @@ public class PhaseController : MonoBehaviour
     [Header("フェーズ進行中プレイヤーが外に出ないための障壁オブジェクトリスト")]
     [SerializeField] private List<GameObject> phaseBoderObject = new List<GameObject>();
 
-    [Header("EnemyAIControllerの取得")]
-    [SerializeField] private EnemyAIController enemyAIController = null;
-
     [Header("出現している敵の最大数")]
     [SerializeField] private int phaseEnemyMaxCount = 0;
 
@@ -74,7 +71,7 @@ public class PhaseController : MonoBehaviour
         gauge.DOFillAmount(gaugeCount, 1.0f);
         if (isPhaseStartFlag)
         {
-           
+
             if (nowPhaseEnemyObjects.Count <= 0 && !isPhaseChanging && phaseCount <= maxPhaseCount)
             {
                 StartCoroutine(PhaseChange());
@@ -89,12 +86,12 @@ public class PhaseController : MonoBehaviour
     {
         for (int i = 0; i < phaseSpwanEnemys[phaseCount].spwanEnemyTypes.Count; i++)
         {
-            for(int j = 0; j < phaseSpwanEnemys[phaseCount].spwanEnemyCount[i];j++)
+            for (int j = 0; j < phaseSpwanEnemys[phaseCount].spwanEnemyCount[i]; j++)
             {
 
                 var enemy = factory.CreateEnemyObject(phaseSpwanEnemys[phaseCount].spwanEnemyTypes[i]).GetComponent<EnemyStatus>();
 
-                
+
                 //enemyAIController.InitializeTarget(player.transform);
 
                 enemy.PhaseControllerSet(this);
@@ -107,10 +104,10 @@ public class PhaseController : MonoBehaviour
             }
         }
         phaseEnemyMaxCount = nowPhaseEnemyObjects.Count;
-        for(int i = 0; i < nowPhaseEnemyObjects.Count;i++)
+        for (int i = 0; i < nowPhaseEnemyObjects.Count; i++)
         {
-            nowPhaseEnemyObjects[i].transform.position = transform.position + new Vector3(Random.Range(-10,10),0, Random.Range(-10, 10));
-        }    
+            nowPhaseEnemyObjects[i].transform.position = transform.position + new Vector3(Random.Range(-10, 10), 0, Random.Range(-10, 10));
+        }
     }
 
     /// <summary>
@@ -128,7 +125,7 @@ public class PhaseController : MonoBehaviour
     public void PhaseStart()
     {
         isPhaseChanging = true;
-        for(int i = 0;i < phaseBoderObject.Count; i++)
+        for (int i = 0; i < phaseBoderObject.Count; i++)
         {
             phaseBoderObject[i].SetActive(true);
         }
