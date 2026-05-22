@@ -15,12 +15,12 @@ public class DamageManager : SingletonBehaviour<DamageManager>
 
     private void Update()
     {
-        enemyObject = GameObject.FindGameObjectWithTag("Enemy");
+        enemyObject = GameObject.FindGameObjectWithTag(TagStock.Instance.ENEMY_TAG);
 
         if (enemyObject != null)
         {
             // “G‚ÉDamageManager‚ðƒZƒbƒg‚·‚é
-            var enemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyStatus>();
+            var enemy = GameObject.FindGameObjectWithTag(TagStock.Instance.ENEMY_TAG).GetComponent<EnemyStatus>();
             enemy.DamageManagerSet(this);
         }
         else

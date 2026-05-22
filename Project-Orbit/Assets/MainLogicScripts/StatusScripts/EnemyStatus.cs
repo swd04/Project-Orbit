@@ -17,9 +17,6 @@ public class EnemyStatus : UnitStatusBase
     [Header("ダメージを受けた判定")]
     [SerializeField] private bool isDamaged = false;
 
-    [Header("EnemyAIControllerの取得")]
-    [SerializeField] private EnemyAIController enemyAIController = null;
-
     [SerializeField] private PhaseController phase = null;
 
     [SerializeField] private DamageManager damageManager = null;
@@ -29,9 +26,6 @@ public class EnemyStatus : UnitStatusBase
 
     [Header("コアのプレハブ")]
     [SerializeField] private SoulCore soulCore = null;
-
-    [Header("Control Playerの取得")]
-    [SerializeField] private ControlPlayer controlPlayer = null;
 
     // 最大体力
     public int maxHp => unitLifePoint;
@@ -87,7 +81,7 @@ public class EnemyStatus : UnitStatusBase
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Weapon"))
+        if (other.CompareTag(TagStock.Instance.WEAPON_TAG))
         {
             isDamaged = true;
         }
@@ -95,7 +89,7 @@ public class EnemyStatus : UnitStatusBase
 
     public void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Weapon"))
+        if (other.CompareTag(TagStock.Instance.WEAPON_TAG))
         {
             isDamaged = false;
         }

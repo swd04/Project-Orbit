@@ -78,7 +78,7 @@ public class PlayerStatus : UnitStatusBase
         //    unitLifePoint -= damage;
         //}
 
-        if (other.CompareTag("EnemyWeapon"))
+        if (other.CompareTag(TagStock.Instance.ENEMY_WEAPON_TAG))
         {
             isDamage = true;
         }
@@ -120,7 +120,7 @@ public class PlayerStatus : UnitStatusBase
 
     public void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("EnemyWeapon"))
+        if (other.CompareTag(TagStock.Instance.ENEMY_WEAPON_TAG))
         {
             isDamage = false;
         }

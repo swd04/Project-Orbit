@@ -24,9 +24,6 @@ public class ControlPlayer : MonoBehaviour
     [Header("プレイヤーのダッシュ判定を行うスクリプトの取得")]
     [SerializeField] private PlayerDash playerDash = default;
 
-   
-
-   
 
 
     private void Start()
@@ -88,5 +85,5 @@ public class ControlPlayer : MonoBehaviour
         playerRigidbody.linearVelocity = direction;
     }
 
-    
+
 }

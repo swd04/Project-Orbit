@@ -27,7 +27,7 @@ public class EnemyAIController : MonoBehaviour
         enemyStatus = GetComponent<EnemyStatus>();
         currentAction = GetComponent<Enemy>();
 
-        target = GameObject.FindGameObjectWithTag("Player").transform;
+        target = GameObject.FindGameObjectWithTag(TagStock.Instance.PLAYER_TAG).transform;
         InitializeTarget(target);
     }
 
