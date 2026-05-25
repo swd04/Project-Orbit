@@ -49,6 +49,18 @@ public abstract class DelayImageHPBarBase : ImageHPBarBase
     }
 
     /// <summary>
+    /// 
+    /// </summary>
+    protected virtual void Start()
+    {
+        //
+        if (hpImage == null || delayImage == null) return;
+
+        //
+        delayImage.fillAmount = hpImage.fillAmount;
+    }
+
+    /// <summary>
     /// HP表示更新処理
     /// </summary>
     protected override void UpdateVisual(float ratio)
@@ -71,12 +83,13 @@ public abstract class DelayImageHPBarBase : ImageHPBarBase
         //HP回復時：遅延バーは即追従
         else
         {
+            targetRatio = ratio;
+
             if (delayImage != null)
             {
-                delayImage.fillAmount = ratio;
+                delayImage.fillAmount = GetVisualRatio(ratio);
+                delayTimer = 0f;
             }
-
-            targetRatio = ratio;
         }
     }
 
