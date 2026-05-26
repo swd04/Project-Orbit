@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d30ed9fff37e7114cb447ace988f4ce3, type: 3}
   m_Name: EnemyData1
   m_EditorClassIdentifier: 
-  maxHp: 0
-  detectionRange: 0
-  moveSpeed: 0
+  maxHp: 100
+  detectionRange: 2
+  moveSpeed: 10
   actions:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 678c8f53c725ef549acfb376b645c3d2, type: 2}
+  - {fileID: 11400000, guid: 0c0b738c3220af3499049847629dea56, type: 2}
+  - {fileID: 11400000, guid: e9c08c239c10e574c86ce337676fc774, type: 2}

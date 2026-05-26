@@ -18,7 +18,7 @@ public class FleeAction0 : Enemy
     {
         if(enemy.GetHpRatio() < HpThreshold)
         {
-            return score;
+            return score + (1.0f - enemy.GetHpRatio()) * 100.0f;
         }
 
         return 0.0f;
@@ -26,7 +26,10 @@ public class FleeAction0 : Enemy
 
     public override void Execute(EnemyAIController enemy)
     {
+        Debug.Log("FleeAction");
         Vector3 direction = (enemy.transform.position - enemy.target.position).normalized;
         Vector3 position = enemy.transform.position + direction * fleeDistance;
+
+        enemy.agent.SetDestination(position);
     }
 }

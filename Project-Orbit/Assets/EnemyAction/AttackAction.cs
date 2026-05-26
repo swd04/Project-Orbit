@@ -17,7 +17,9 @@ public class AttackAction : Enemy
     {
         if (enemy.DistanceToTarget() <= attackRange)
         {
-            return score;
+            // UŒ‚”ÍˆÍ“à‚É‚¢‚éê‡AƒXƒRƒA‚ğŒvZ‚µ‚Ä•Ô‚·
+            // ”š‚Í‰¼
+            return score + (10.0f - enemy.DistanceToTarget());
         }
 
         return 0.0f;
@@ -25,7 +27,15 @@ public class AttackAction : Enemy
 
     public override void Execute(EnemyAIController enemy)
     {
-        enemy.agent.ResetPath();
+        float distance = enemy.DistanceToTarget();
+
+        if (distance > attackRange)
+        {
+            enemy.agent.isStopped = false;
+            return;
+        }
+
+        enemy.agent.isStopped = true;
         Debug.Log("UŒ‚");
     }
 }

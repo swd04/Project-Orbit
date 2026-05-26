@@ -163,7 +163,7 @@ MonoBehaviour:
   target: {fileID: 0}
   enemyStatus: {fileID: 0}
   currentHp: 0
-  enemyData: {fileID: 0}
+  enemyData: {fileID: 11400000, guid: f0f67d85a4b08b54c9a6dd8409f17c56, type: 2}
   currentAction: {fileID: 0}
 --- !u!114 &408891315037831956
 MonoBehaviour:
@@ -183,8 +183,6 @@ MonoBehaviour:
   moveSpeed: 0
   unitTypes: 1
   enemyType: 0
-  actions:
-  - {fileID: 0}
   detectionRange: 0
   isDamaged: 0
   phase: {fileID: 0}
@@ -260,6 +258,6 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 0
+  m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4

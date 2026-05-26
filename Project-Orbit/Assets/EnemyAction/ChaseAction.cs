@@ -16,9 +16,9 @@ public class ChaseAction : Enemy
     {
         float distance = enemy.DistanceToTarget();
 
-        if(distance < enemy.GetDetectionRange())
+        if (distance < enemy.GetDetectionRange())
         {
-            return score;
+            return score + (enemy.GetDetectionRange() - distance);
         }
 
         return 0.0f;
@@ -26,6 +26,8 @@ public class ChaseAction : Enemy
 
     public override void Execute(EnemyAIController enemy)
     {
+        enemy.agent.isStopped = false;
+        Debug.Log("¡ƒvƒŒƒCƒ„[‚ð’Ç‚Á‚Ä‚¢‚Ü‚·");
         enemy.agent.SetDestination(enemy.target.position);
     }
 }
