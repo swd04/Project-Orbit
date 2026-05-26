@@ -15,4 +15,7 @@ MonoBehaviour:
   maxHp: 0
   detectionRange: 0
   moveSpeed: 0
-  actions: []
+  actions:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
