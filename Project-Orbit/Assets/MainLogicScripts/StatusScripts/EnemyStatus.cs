@@ -8,9 +8,6 @@ public class EnemyStatus : UnitStatusBase
     [Header("敵のタイプ")]
     [SerializeField] private EnemyType enemyType = EnemyType.None;
 
-    [Header("どんな行動をするのか設定をする")]
-    [SerializeField] public List<Enemy> actions = new List<Enemy>();
-
     [Header("敵がプレイヤーを感知する距離")]
     [SerializeField] public float detectionRange = 0f;
 

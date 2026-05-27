@@ -3,18 +3,22 @@ using UnityEngine;
 /// <summary>
 /// プレイヤーを追うクラス
 /// </summary>
-public class ChaseAction0 : Enemy
+[CreateAssetMenu(menuName = "AI/Action/Chase")]
+public class ChaseAction : Enemy
 {
     [Header("敵の移動スコア")]
     [SerializeField] public float score = 0f;
 
+    /// <summary>
+    /// 敵の行動を評価するメソッド
+    /// </summary>
     public override float Evaluate(EnemyAIController enemy)
     {
         float distance = enemy.DistanceToTarget();
 
-        if(distance < enemy.GetDetectionRange())
+        if (distance < enemy.GetDetectionRange())
         {
-            return score;
+            return score + (enemy.GetDetectionRange() - distance);
         }
 
         return 0.0f;
@@ -22,6 +26,8 @@ public class ChaseAction0 : Enemy
 
     public override void Execute(EnemyAIController enemy)
     {
+        enemy.agent.isStopped = false;
+        Debug.Log("今プレイヤーを追っています");
         enemy.agent.SetDestination(enemy.target.position);
     }
 }

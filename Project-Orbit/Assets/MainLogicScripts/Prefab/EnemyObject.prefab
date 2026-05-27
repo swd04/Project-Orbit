@@ -119,9 +119,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8367702142725326814}
+  - component: {fileID: -8665739983074022530}
   - component: {fileID: 408891315037831956}
   - component: {fileID: -6825909272333961180}
   - component: {fileID: 4620370559415813243}
+  - component: {fileID: -3270927495638831206}
   m_Layer: 0
   m_Name: EnemyObject
   m_TagString: Enemy
@@ -145,6 +147,24 @@ Transform:
   - {fileID: 6223972203118656192}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-8665739983074022530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8815404796577700937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae6f533f37deb4941945eee66327a329, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: -3270927495638831206}
+  target: {fileID: 0}
+  enemyStatus: {fileID: 0}
+  currentHp: 0
+  enemyData: {fileID: 11400000, guid: f0f67d85a4b08b54c9a6dd8409f17c56, type: 2}
+  currentAction: {fileID: 0}
 --- !u!114 &408891315037831956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,14 +183,12 @@ MonoBehaviour:
   moveSpeed: 0
   unitTypes: 1
   enemyType: 0
-  actions: []
   detectionRange: 0
-  enemyAIController: {fileID: 0}
+  isDamaged: 0
   phase: {fileID: 0}
   damageManager: {fileID: 0}
   statusBounus: {fileID: 11400000, guid: 24a72328994c06140ab96b4f265a6ee0, type: 2}
   soulCore: {fileID: 6796319796385555961, guid: 2a622d318a3338e4ea43d4d0315e5621, type: 3}
-  controlPlayer: {fileID: 0}
 --- !u!54 &-6825909272333961180
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -221,3 +239,25 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!195 &-3270927495638831206
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8815404796577700937}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4

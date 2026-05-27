@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class Enemy0 : MonoBehaviour
+public abstract class Enemy : ScriptableObject
 {
     // s“®‚Ì•]‰¿
     public abstract float Evaluate(EnemyAIController enemy);

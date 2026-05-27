@@ -15,17 +15,25 @@ public class EnemyAIController : MonoBehaviour
     [Header("実行時のステータス")]
     [SerializeField] public float currentHp = 0f;
 
+    [Header("EnemyDataの取得")]
+    [SerializeField] private EnemyData1 enemyData = null;
+
     [Header("Enemyスクリプトの取得")]
     [SerializeField] private Enemy currentAction = null;
 
     private void Start()
     {
+        enemyStatus = GetComponent<EnemyStatus>();
+
+        // ★これ追加
+        currentHp = enemyStatus.maxHp;
+
         //// 初期化メソッドを置く
         //Initialize();
 
         // EnemyStatusの取得
         enemyStatus = GetComponent<EnemyStatus>();
-        currentAction = GetComponent<Enemy>();
+        //currentAction = GetComponent<Enemy>();
 
         target = GameObject.FindGameObjectWithTag(TagStock.Instance.PLAYER_TAG).transform;
         InitializeTarget(target);
@@ -35,9 +43,19 @@ public class EnemyAIController : MonoBehaviour
     {
         // 行動選択メソッド
         SelectAction();
-        currentAction.Execute(this);
 
-        
+        Debug.Log(agent.speed);
+        Debug.Log(agent.hasPath);
+        agent.SetDestination(target.position);
+
+        if (currentAction == null)
+        {
+            //Debug.Log("currentActionがnull");
+            return;
+        }
+
+        currentAction.Execute(this);
+        //Debug.Log("target: " + target);
     }
 
     /// <summary>
@@ -60,21 +78,74 @@ public class EnemyAIController : MonoBehaviour
     /// <summary>
     /// 行動選択のメソッド
     /// </summary>
+    //private void SelectAction()
+    //{
+    //    // enemyDataチェック
+    //    if (enemyData == null)
+    //    {
+    //        Debug.LogError("EnemyDataが設定されていません");
+    //        return;
+    //    }
+
+    //    // actionsチェック
+    //    if (enemyData.actions == null || enemyData.actions.Count == 0)
+    //    {
+    //        Debug.LogError("actionsが設定されていません");
+    //        return;
+    //    }
+
+    //    float bestScore = float.MinValue;
+    //    Enemy bestAction = null;
+
+    //    foreach (var action in enemyData.actions)
+    //    {
+    //        // nullチェック
+    //        if (action == null) continue;
+
+    //        float score = action.Evaluate(this);
+
+    //        if (score > bestScore)
+    //        {
+    //            bestScore = score;
+    //            bestAction = action;
+    //        }
+    //    }
+
+    //    // 何も選ばれなかった場合
+    //    if (bestAction == null)
+    //    {
+    //        return;
+    //    }
+
+    //    currentAction = bestAction;
+    //}
+
     private void SelectAction()
     {
-        // いずれかの行動を確定で選択するため、低い値を入れる
-        float bestScore = float.MinValue;
+        if (enemyData == null)
+        {
+            Debug.LogError("enemyDataがnull");
+            return;
+        }
 
-        // 最高のスコアを持つ行動を保存する変数
+        Debug.Log("actions数: " + enemyData.actions.Count);
+
+        float bestScore = float.MinValue;
         Enemy bestAction = null;
 
-        // 敵の行動リストをループさせて、各行動のスコアを評価する
-        foreach (var action in enemyStatus.actions)
+        foreach (var action in enemyData.actions)
         {
-            // スコア評価
-            float score = action.Evaluate(this);
+            Debug.Log("ループ入った");
 
-            // 現在の行動のスコアが最高のスコアよりも高い場合、最高のスコアと行動を更新する
+            if (action == null)
+            {
+                Debug.LogError("action null");
+                continue;
+            }
+
+            float score = action.Evaluate(this);
+            Debug.Log(action.name + " score = " + score);
+
             if (score > bestScore)
             {
                 bestScore = score;

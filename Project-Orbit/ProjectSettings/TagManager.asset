@@ -8,6 +8,7 @@ TagManager:
   - Core
   - Soul
   - Weapon
+  - EnemyWeapon
   layers:
   - Default
   - TransparentFX

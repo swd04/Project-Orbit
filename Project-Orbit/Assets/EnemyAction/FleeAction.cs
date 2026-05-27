@@ -3,7 +3,8 @@ using UnityEngine;
 /// <summary>
 /// プレイヤーから逃げるクラス
 /// </summary>
-public class FleeAction0 : Enemy
+[CreateAssetMenu(menuName = "AI/Action/Flee")]
+public class FleeAction : Enemy
 {
     [Header("現在の体力の割合")]
     [SerializeField] public float HpThreshold = 0.0f;
@@ -16,9 +17,9 @@ public class FleeAction0 : Enemy
 
     public override float Evaluate(EnemyAIController enemy)
     {
-        if(enemy.GetHpRatio() < HpThreshold)
+        if (enemy.GetHpRatio() < HpThreshold)
         {
-            return score + (1.0f - enemy.GetHpRatio()) * 100.0f;
+            return score;
         }
 
         return 0.0f;
@@ -26,10 +27,10 @@ public class FleeAction0 : Enemy
 
     public override void Execute(EnemyAIController enemy)
     {
-        Debug.Log("FleeAction");
         Vector3 direction = (enemy.transform.position - enemy.target.position).normalized;
         Vector3 position = enemy.transform.position + direction * fleeDistance;
 
+        enemy.agent.isStopped = false;
         enemy.agent.SetDestination(position);
     }
 }
