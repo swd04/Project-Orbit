@@ -2,8 +2,6 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
-
-
 public class PlayerStatus : UnitStatusBase
 {
     [SerializeField] public List<SoulCore> soulCoresList = new List<SoulCore>();
@@ -16,8 +14,6 @@ public class PlayerStatus : UnitStatusBase
 
     [Header("ダメージを受けた判定")]
     [SerializeField] public bool isDamage = false;
-
-
 
     private void Start()
     {
@@ -49,13 +45,12 @@ public class PlayerStatus : UnitStatusBase
 
         if (isDamage)
         {
-            int damage = DamageManager.Instance.PlayerDamageCalculation(unitLifePoint);
-            unitLifePoint = damage;
+            int damage = DamageManager.Instance.PlayerDamageCalculation();
+
+            unitLifePoint -= damage;
         }
 
     }
-
-
 
     public void EnchantStatus(int hp, int attack, int defence, float speed)
     {

@@ -26,7 +26,7 @@ public class EnemyAIController : MonoBehaviour
         enemyStatus = GetComponent<EnemyStatus>();
 
         // ★これ追加
-        currentHp = enemyStatus.maxHp;
+        currentHp = enemyStatus.MaxHp;
 
         //// 初期化メソッドを置く
         //Initialize();
@@ -169,7 +169,7 @@ public class EnemyAIController : MonoBehaviour
     /// </summary>
     public float GetHpRatio()
     {
-        return currentHp / enemyStatus.maxHp;
+        return currentHp / enemyStatus.MaxHp;
     }
 
     /// <summary>
