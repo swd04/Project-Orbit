@@ -39,24 +39,32 @@ public class DamageManager : SingletonBehaviour<DamageManager>
         enemyAttackPower = enemyPower;
     }
 
-    public int PlayerDamageCalculation(int playerHp)
+    //public int PlayerDamageCalculation(int playerHp)
+    //{
+    //    if (playerHp > 0)
+    //    {
+    //        playerHp = playerHp - enemyAttackPower;
+    //    }
+    //    return playerHp;
+    //}
+
+    //public int EnemyDamageCalculation(int enemyHp)
+    //{
+    //    if (enemyHp > 0)
+    //    {
+    //        enemyHp = enemyHp - playerAttackPower;
+    //    }
+
+    //    return enemyHp;
+    //}
+
+    public int EnemyDamageCalculation()
     {
-        if (playerHp > 0)
-        {
-            playerHp = playerHp - enemyAttackPower;
-        }
-        return playerHp;
+        return playerAttackPower;
     }
 
-    public int EnemyDamageCalculation(int enemyHp)
+    public int PlayerDamageCalculation()
     {
-        if (enemyHp > 0)
-        {
-            enemyHp = enemyHp - playerAttackPower;
-        }
-
-        return enemyHp;
+        return enemyAttackPower;
     }
-
-
 }

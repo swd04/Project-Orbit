@@ -1,6 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 using static PlayerChoseAttackMode;
+
 /// <summary>
 /// プレイヤーが攻撃をする処理を行うクラス
 /// </summary>
@@ -107,7 +108,6 @@ public class PlayerAttack : MonoBehaviour
             isAttack = false;
 
             // コライダーを無効
-
             if (weaponCollider != null)
             {
                 weaponCollider.enabled = false;
@@ -119,14 +119,31 @@ public class PlayerAttack : MonoBehaviour
         attackCommandCount++;
     }
 
-
-
+    /// <summary>
+    /// 当たり判定
+    /// </summary>
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        //攻撃中じゃなければ無視
+        if (!isAttack)
         {
-            // 敵にダメージを与える処理をここに追加
-            Debug.Log("敵に攻撃が当たった！");
+            return;
+        }
+
+        //Enemyタグなら
+        if (other.CompareTag("Enemy"))
+        {
+            //EnemyStatus取得
+            EnemyStatus enemy = other.GetComponent<EnemyStatus>();
+
+            //EnemyStatusが存在する場合
+            if (enemy != null)
+            {
+                //ダメージ処理
+                enemy.Damage();
+
+                Debug.Log("敵に攻撃が当たった！");
+            }
         }
     }
 }

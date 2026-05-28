@@ -4511,7 +4511,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   modeModel: {fileID: 244896707}
-  modeText: {fileID: 183775228}
+  predationImage: {fileID: 0}
+  soulReinforceImage: {fileID: 0}
 --- !u!1 &1712522673
 GameObject:
   m_ObjectHideFlags: 0
