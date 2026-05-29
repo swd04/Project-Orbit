@@ -80,36 +80,28 @@ public class PlayerStatus : UnitStatusBase
 
         if (other.CompareTag("Soul"))
         {
-            int soulNotGetCount = 0;
-            var getSoul = other.gameObject.GetComponent<SoulCore>();
-            if (soulCoresList != null)
-            {
-                if (soulCoresList[0] != null)
-                {
-                    for (int i = 0; i < soulCoresList.Count; i++)
-                    {
-                        if (getSoul.actionType == soulCoresList[i].actionType)
-                        {
-                            soulCoresList[i].SoulLevelUp();
-                            getSoul.gameObject.SetActive(false);
-                        }
-                        else
-                        {
-                            soulNotGetCount++;
-                        }
-                    }
+            SoulCore getSoul = other.GetComponent<SoulCore>();
 
-                    if (soulNotGetCount >= soulCoresList.Count)
-                    {
-                        soulCoresList.Add(getSoul);
-                    }
-                }
-                else
+            if (getSoul == null)
+            {
+                return;
+            }
+
+            for (int i = 0; i < soulCoresList.Count; i++)
+            {
+                if (getSoul.actionType == soulCoresList[i].actionType)
                 {
-                    soulCoresList[0] = getSoul;
+                    soulCoresList[i].SoulLevelUp();
+
                     getSoul.gameObject.SetActive(false);
+
+                    return;
                 }
             }
+
+            soulCoresList.Add(getSoul);
+
+            getSoul.gameObject.SetActive(false);
         }
     }
 
