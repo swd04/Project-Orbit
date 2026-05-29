@@ -4,6 +4,8 @@ using System.Runtime.CompilerServices;
 
 public class PlayerStatus : UnitStatusBase
 {
+    [SerializeField] private PlayerChoseAttackMode playerChoseAttackMode = null;
+
     [SerializeField] public List<SoulCore> soulCoresList = new List<SoulCore>();
 
     [SerializeField] private List<int> soulLevel = new List<int>();
@@ -49,6 +51,8 @@ public class PlayerStatus : UnitStatusBase
 
             unitLifePoint -= damage;
         }
+
+
 
     }
 

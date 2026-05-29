@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class DamageManager : SingletonBehaviour<DamageManager>
@@ -45,7 +46,7 @@ public class DamageManager : SingletonBehaviour<DamageManager>
     {
         enemyAttackPower = enemyPower;
     }
-
+      
     /// <summary>
     /// プレイヤーが受けるダメージを計算するメソッド
     /// </summary>
