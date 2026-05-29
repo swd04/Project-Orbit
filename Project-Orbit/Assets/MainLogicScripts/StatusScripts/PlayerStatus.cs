@@ -45,7 +45,7 @@ public class PlayerStatus : UnitStatusBase
 
         if (isDamage)
         {
-            int damage = DamageManager.Instance.PlayerDamageCalculation();
+            int damage = DamageManager.Instance.PlayerDamageCalculation(unitLifePoint);
 
             unitLifePoint -= damage;
         }
