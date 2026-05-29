@@ -62,6 +62,7 @@ public class PhaseController : MonoBehaviour
         PhaseEnemySpwan();
         isPhaseStartFlag = true;
     }
+
     /// <summary>
     /// 更新
     /// </summary>

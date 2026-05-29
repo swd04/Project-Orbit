@@ -25,8 +25,8 @@ public class EnemyAIController : MonoBehaviour
     {
         enemyStatus = GetComponent<EnemyStatus>();
 
-        // ★これ追加
-        currentHp = enemyStatus.MaxHp;
+
+        currentHp = enemyStatus.maxHp;
 
         //// 初期化メソッドを置く
         //Initialize();
@@ -50,12 +50,12 @@ public class EnemyAIController : MonoBehaviour
 
         if (currentAction == null)
         {
-            //Debug.Log("currentActionがnull");
+
             return;
         }
 
         currentAction.Execute(this);
-        //Debug.Log("target: " + target);
+
     }
 
     /// <summary>
@@ -76,50 +76,8 @@ public class EnemyAIController : MonoBehaviour
     }
 
     /// <summary>
-    /// 行動選択のメソッド
+    /// 
     /// </summary>
-    //private void SelectAction()
-    //{
-    //    // enemyDataチェック
-    //    if (enemyData == null)
-    //    {
-    //        Debug.LogError("EnemyDataが設定されていません");
-    //        return;
-    //    }
-
-    //    // actionsチェック
-    //    if (enemyData.actions == null || enemyData.actions.Count == 0)
-    //    {
-    //        Debug.LogError("actionsが設定されていません");
-    //        return;
-    //    }
-
-    //    float bestScore = float.MinValue;
-    //    Enemy bestAction = null;
-
-    //    foreach (var action in enemyData.actions)
-    //    {
-    //        // nullチェック
-    //        if (action == null) continue;
-
-    //        float score = action.Evaluate(this);
-
-    //        if (score > bestScore)
-    //        {
-    //            bestScore = score;
-    //            bestAction = action;
-    //        }
-    //    }
-
-    //    // 何も選ばれなかった場合
-    //    if (bestAction == null)
-    //    {
-    //        return;
-    //    }
-
-    //    currentAction = bestAction;
-    //}
-
     private void SelectAction()
     {
         if (enemyData == null)
@@ -128,14 +86,13 @@ public class EnemyAIController : MonoBehaviour
             return;
         }
 
-        Debug.Log("actions数: " + enemyData.actions.Count);
+
 
         float bestScore = float.MinValue;
         Enemy bestAction = null;
 
         foreach (var action in enemyData.actions)
         {
-            Debug.Log("ループ入った");
 
             if (action == null)
             {
@@ -144,7 +101,7 @@ public class EnemyAIController : MonoBehaviour
             }
 
             float score = action.Evaluate(this);
-            Debug.Log(action.name + " score = " + score);
+
 
             if (score > bestScore)
             {
@@ -169,7 +126,7 @@ public class EnemyAIController : MonoBehaviour
     /// </summary>
     public float GetHpRatio()
     {
-        return currentHp / enemyStatus.MaxHp;
+        return currentHp / enemyStatus.maxHp;
     }
 
     /// <summary>
