@@ -64,6 +64,7 @@ public class EnemyStatus : UnitStatusBase
 
         DamageManager.Instance.GetEnemyPower(unitAttackPoint);
 
+
         //// ダメージを受ける処理
         //if (isDamaged)
         //{
@@ -106,11 +107,12 @@ public class EnemyStatus : UnitStatusBase
             //フェーズから削除
             phase.PhaseEnemyRemove(this);
 
-            //ソウル生成
-            Instantiate(
-                soulCore,
-                transform.position,
-                transform.rotation);
+            // 魂化で攻撃されたときはソウルを生成
+            if (PlayerChoseAttackMode.Instance.currentAttackMode == PlayerChoseAttackMode.AttackMode.SOULREINFORCE)
+            {
+                //ソウル生成
+                Instantiate(soulCore, transform.position, transform.rotation);
+            }
 
             //敵削除
             Destroy(gameObject);
