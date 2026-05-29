@@ -25,6 +25,9 @@ public class FleeAction : Enemy
         return 0.0f;
     }
 
+    /// <summary>
+    /// 敵がプレイヤーから逃げる処理を実行するメソッド
+    /// </summary>
     public override void Execute(EnemyAIController enemy)
     {
         Vector3 direction = (enemy.transform.position - enemy.target.position).normalized;

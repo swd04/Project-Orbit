@@ -15,6 +15,7 @@ public class DamageManager : SingletonBehaviour<DamageManager>
 
     private void Update()
     {
+        // 
         enemyObject = GameObject.FindGameObjectWithTag(TagStock.Instance.ENEMY_TAG);
 
         if (enemyObject != null)
@@ -29,42 +30,46 @@ public class DamageManager : SingletonBehaviour<DamageManager>
         }
     }
 
+    /// <summary>
+    /// プレイヤーの攻撃力を取得するメソッド
+    /// </summary>
     public void GetPlayerPower(int playerpower)
     {
         playerAttackPower = playerpower;
     }
 
+    /// <summary>
+    /// 敵の攻撃力を取得するメソッド
+    /// </summary>
     public void GetEnemyPower(int enemyPower)
     {
         enemyAttackPower = enemyPower;
     }
 
-    //public int PlayerDamageCalculation(int playerHp)
-    //{
-    //    if (playerHp > 0)
-    //    {
-    //        playerHp = playerHp - enemyAttackPower;
-    //    }
-    //    return playerHp;
-    //}
-
-    //public int EnemyDamageCalculation(int enemyHp)
-    //{
-    //    if (enemyHp > 0)
-    //    {
-    //        enemyHp = enemyHp - playerAttackPower;
-    //    }
-
-    //    return enemyHp;
-    //}
-
-    public int EnemyDamageCalculation()
+    /// <summary>
+    /// プレイヤーが受けるダメージを計算するメソッド
+    /// </summary>
+    public int PlayerDamageCalculation(int playerHp)
     {
-        return playerAttackPower;
+        if (playerHp > 0)
+        {
+            playerHp = playerHp - enemyAttackPower;
+        }
+        return playerHp;
     }
 
-    public int PlayerDamageCalculation()
+    /// <summary>
+    /// 敵が受けるダメージを計算するメソッド
+    /// </summary>
+    public int EnemyDamageCalculation(int enemyHp)
     {
-        return enemyAttackPower;
+        if (enemyHp > 0)
+        {
+            enemyHp = enemyHp - playerAttackPower;
+        }
+
+        return enemyHp;
     }
+
+
 }
