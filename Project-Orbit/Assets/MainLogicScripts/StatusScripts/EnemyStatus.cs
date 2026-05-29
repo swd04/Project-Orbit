@@ -27,6 +27,12 @@ public class EnemyStatus : UnitStatusBase
     [Header("敵用HPバークラス")]
     [SerializeField] private EnemyHPBarUI enemyHpBar = null;
 
+    [Header("捕食された際の強化するステータスの種類")]
+    [SerializeField] private PlayerEatStatus eatStatus = PlayerEatStatus.None;
+
+    [Header("捕食された際の強化値")]
+    [SerializeField] private int statusuUpPoint = 0;
+
     [Header("最大HP")]
     public int maxHp = 0;
 
@@ -113,6 +119,17 @@ public class EnemyStatus : UnitStatusBase
                 //ソウル生成
                 Instantiate(soulCore, transform.position, transform.rotation);
             }
+            else
+            {
+                switch (eatStatus) 
+                {
+                    case PlayerEatStatus.None:break;
+                    case PlayerEatStatus.LifePoint:phase.playerStatus.EnchantStatus(statusuUpPoint,0,0,0.0f); break;
+                    case PlayerEatStatus.AttackPoint:phase.playerStatus.EnchantStatus(0, statusuUpPoint, 0,0.0f); break;
+                    case PlayerEatStatus.DefencePoint:phase.playerStatus.EnchantStatus(0,0, statusuUpPoint, 0.0f); break;
+                }
+
+            }
 
             //敵削除
             Destroy(gameObject);
@@ -172,4 +189,12 @@ public enum EnemyType : int
     EnemyType1 = 0,
     EnemyType2 = 1,
     EnemyType3 = 2,
+}
+
+public enum PlayerEatStatus:int
+{
+    None = -1,
+    LifePoint = 0,
+    AttackPoint = 1,
+    DefencePoint = 2,
 }
