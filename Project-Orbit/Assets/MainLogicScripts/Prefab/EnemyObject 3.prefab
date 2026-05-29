@@ -447,6 +447,8 @@ MonoBehaviour:
   statusBounus: {fileID: 11400000, guid: 24a72328994c06140ab96b4f265a6ee0, type: 2}
   soulCore: {fileID: 6796319796385555961, guid: 2a622d318a3338e4ea43d4d0315e5621, type: 3}
   enemyHpBar: {fileID: 7928396030518651219}
+  eatStatus: 1
+  statusuUpPoint: 20
   maxHp: 0
 --- !u!114 &6076223789879727265
 MonoBehaviour:

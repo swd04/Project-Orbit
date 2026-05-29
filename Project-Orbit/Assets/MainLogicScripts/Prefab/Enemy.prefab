@@ -110,12 +110,15 @@ MonoBehaviour:
   moveSpeed: 0
   unitTypes: 1
   enemyType: 0
-  actions: []
   detectionRange: 0
-  enemyAIController: {fileID: 1493443387402912321}
   phase: {fileID: 0}
+  damageManager: {fileID: 0}
   statusBounus: {fileID: 11400000, guid: 24a72328994c06140ab96b4f265a6ee0, type: 2}
   soulCore: {fileID: 0}
+  enemyHpBar: {fileID: 0}
+  eatStatus: 1
+  statusuUpPoint: 10
+  maxHp: 0
 --- !u!114 &1493443387402912321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,6 +135,7 @@ MonoBehaviour:
   target: {fileID: 0}
   enemyStatus: {fileID: 7118466737852131970}
   currentHp: 0
+  enemyData: {fileID: 0}
   currentAction: {fileID: 0}
 --- !u!114 &744552851071261997
 MonoBehaviour:

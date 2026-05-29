@@ -54,6 +54,9 @@ public class PhaseController : MonoBehaviour
     [Header("勢力ゲージのImage")]
     [SerializeField] private Image gauge = null;
 
+    [Header("プレイヤーのステータス")]
+    [SerializeField] public PlayerStatus playerStatus = null;
+
     /// <summary>
     /// 初期化
     /// </summary>
