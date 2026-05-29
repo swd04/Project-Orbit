@@ -28,12 +28,12 @@ public class EnemyStatus : UnitStatusBase
     [SerializeField] private EnemyHPBarUI enemyHpBar = null;
 
     [Header("最大HP")]
-    [SerializeField] private int maxHp = 0;
+    public int maxHp = 0;
 
     /// <summary>
     /// 最大HP取得
     /// </summary>
-    public int MaxHp => maxHp;
+    //public int MaxHp => maxHp;
 
     // 最大体力
     //public int maxHp => unitLifePoint;
@@ -82,7 +82,7 @@ public class EnemyStatus : UnitStatusBase
     public void Damage()
     {
         //プレイヤー攻撃力を取得
-        int damage = DamageManager.Instance.EnemyDamageCalculation();
+        int damage = DamageManager.Instance.EnemyDamageCalculation(unitLifePoint);
 
         Debug.Log("敵が受けるダメージ : " + damage);
 
