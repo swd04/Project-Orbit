@@ -24,7 +24,7 @@ public class EnemyStatus : UnitStatusBase
     [Header("コアのプレハブ")]
     [SerializeField] private SoulCore soulCore = null;
 
-    [Header("敵HPバー")]
+    [Header("敵用HPバークラス")]
     [SerializeField] private EnemyHPBarUI enemyHpBar = null;
 
     [Header("最大HP")]
