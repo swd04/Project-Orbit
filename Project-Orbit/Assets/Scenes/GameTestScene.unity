@@ -1189,7 +1189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b6856a163df1d241a8f672515417bcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitLifePoint: 10
+  unitLifePoint: 100
   unitAttackPoint: 10
   unitDefencePoint: 5
   moveSpeed: 5
@@ -1201,6 +1201,8 @@ MonoBehaviour:
   statusBounus: {fileID: 11400000, guid: 24a72328994c06140ab96b4f265a6ee0, type: 2}
   soulCore: {fileID: 0}
   enemyHpBar: {fileID: 112690068}
+  eatStatus: -1
+  statusuUpPoint: 0
   maxHp: 0
 --- !u!1 &167812285
 GameObject:

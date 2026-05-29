@@ -94,7 +94,7 @@ public class EnemyStatus : UnitStatusBase
         Debug.Log("敵が受けるダメージ : " + damage);
 
         //HP減少
-        unitLifePoint -= damage;
+        unitLifePoint = damage;
 
         Debug.Log("敵の現在HP : " + unitLifePoint);
 
