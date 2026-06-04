@@ -13,6 +13,9 @@ public class AttackAction : Enemy
     [Header("“G‚ÌUŒ‚ƒXƒRƒA")]
     [SerializeField] public float score = 0f;
 
+    [Header("UŒ‚‚Å‚«‚é‚©‚Ç‚¤‚©‚Ì”»’è")]
+    [SerializeField] public bool canAttack = false;
+
     public override float Evaluate(EnemyAIController enemy)
     {
         if (enemy.DistanceToTarget() <= attackRange)
@@ -31,10 +34,12 @@ public class AttackAction : Enemy
 
         if (distance > attackRange)
         {
+            canAttack = false;
             enemy.agent.isStopped = false;
             return;
         }
 
+        canAttack = true;
         enemy.agent.isStopped = true;
         Debug.Log("UŒ‚");
     }
