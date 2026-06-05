@@ -4872,6 +4872,14 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: 0eaada61a0ff83646a0c18493475d3da, type: 2}
+    - target: {fileID: 92266694940495117, guid: d2affdd3c7335a546bc52532c85f13d1, type: 3}
+      propertyPath: rotationVecter.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 92266694940495117, guid: d2affdd3c7335a546bc52532c85f13d1, type: 3}
+      propertyPath: rotationVecter.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 383756705849799573, guid: d2affdd3c7335a546bc52532c85f13d1, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
