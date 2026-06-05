@@ -88,6 +88,9 @@ public class EnemyStatus : UnitStatusBase
     /// </summary>
     public void Damage()
     {
+        //ダメージ前HP保存
+        int beforeHp = unitLifePoint;
+
         //プレイヤー攻撃力を取得
         int damage = DamageManager.Instance.EnemyDamageCalculation(unitLifePoint);
 
@@ -100,6 +103,30 @@ public class EnemyStatus : UnitStatusBase
 
         //HPが0未満にならないよう制限
         unitLifePoint = Mathf.Max(unitLifePoint, 0);
+
+        //実際に受けたダメージ量
+        int damageAmount = beforeHp - unitLifePoint;
+
+        //Collider取得
+        Collider col = GetComponent<Collider>();
+
+        ////Colliderが取得できなかった場合の予備位置
+        Vector3 damagePos = transform.position + Vector3.up * 2f;
+
+        //Colliderが存在する場合
+        if (col != null)
+        {
+            //Colliderの上端付近を表示位置に設定
+            damagePos =
+                col.bounds.center +
+                Vector3.up * col.bounds.extents.y;
+        }
+
+        //ダメージ数値表示
+        DamageTextManager.Instance.ShowDamage(
+            damageAmount,
+            damagePos
+        );
 
         // HPバー更新
         if (enemyHpBar != null)
@@ -121,12 +148,12 @@ public class EnemyStatus : UnitStatusBase
             }
             else
             {
-                switch (eatStatus) 
+                switch (eatStatus)
                 {
-                    case PlayerEatStatus.None:break;
-                    case PlayerEatStatus.LifePoint:phase.playerStatus.EnchantStatus(statusuUpPoint,0,0,0.0f); break;
-                    case PlayerEatStatus.AttackPoint:phase.playerStatus.EnchantStatus(0, statusuUpPoint, 0,0.0f); break;
-                    case PlayerEatStatus.DefencePoint:phase.playerStatus.EnchantStatus(0,0, statusuUpPoint, 0.0f); break;
+                    case PlayerEatStatus.None: break;
+                    case PlayerEatStatus.LifePoint: phase.playerStatus.EnchantStatus(statusuUpPoint, 0, 0, 0.0f); break;
+                    case PlayerEatStatus.AttackPoint: phase.playerStatus.EnchantStatus(0, statusuUpPoint, 0, 0.0f); break;
+                    case PlayerEatStatus.DefencePoint: phase.playerStatus.EnchantStatus(0, 0, statusuUpPoint, 0.0f); break;
                 }
 
             }
@@ -191,7 +218,7 @@ public enum EnemyType : int
     EnemyType3 = 2,
 }
 
-public enum PlayerEatStatus:int
+public enum PlayerEatStatus : int
 {
     None = -1,
     LifePoint = 0,
