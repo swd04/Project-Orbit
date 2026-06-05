@@ -7,4 +7,6 @@ public abstract class Enemy : ScriptableObject
 
     // é¿ç€ÇÃçsìÆ
     public abstract void Execute(EnemyAIController enemy);
+
+   
 }

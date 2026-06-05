@@ -121,6 +121,7 @@ GameObject:
   - component: {fileID: 8367702142725326814}
   - component: {fileID: -8665739983074022530}
   - component: {fileID: 408891315037831956}
+  - component: {fileID: 3974445201911938328}
   - component: {fileID: -6825909272333961180}
   - component: {fileID: 4620370559415813243}
   - component: {fileID: -3270927495638831206}
@@ -192,6 +193,22 @@ MonoBehaviour:
   eatStatus: 0
   statusuUpPoint: 100
   maxHp: 0
+--- !u!114 &3974445201911938328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8815404796577700937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6472f7ab17cbf442b6dee942a06b945, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chargeTime: 4
+  enemyRigidbody: {fileID: -6825909272333961180}
+  clashSpeedMultiplier: 2
+  attackAction: {fileID: 11400000, guid: 678c8f53c725ef549acfb376b645c3d2, type: 2}
 --- !u!54 &-6825909272333961180
 Rigidbody:
   m_ObjectHideFlags: 0

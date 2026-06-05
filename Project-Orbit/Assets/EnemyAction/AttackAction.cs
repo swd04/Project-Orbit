@@ -43,4 +43,7 @@ public class AttackAction : Enemy
         enemy.agent.isStopped = true;
         Debug.Log("UŒ‚");
     }
+
+    
+    
 }
