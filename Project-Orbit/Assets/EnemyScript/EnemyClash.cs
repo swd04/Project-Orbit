@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class EnemyClash : EnemyStatus
 {
-
-
     [Header("ƒ`ƒƒ[ƒWŠÔ")]
     [SerializeField] private float chargeTime = 0f;
 
