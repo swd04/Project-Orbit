@@ -15,7 +15,7 @@ public class BossHPBarUI : DelaySliderHPBarBase
     /// <summary>
     /// 初期化処理
     /// </summary>
-    private void Start()
+    private void Awake()
     {
         HideBoss();
     }
@@ -57,6 +57,8 @@ public class BossHPBarUI : DelaySliderHPBarBase
 
         //ボス名クリア
         bossNameText.text = "";
+
+        gameObject.SetActive(false);
     }
 
     /// <summary>
