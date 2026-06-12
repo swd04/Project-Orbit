@@ -26,13 +26,13 @@ public class EnemyAIController : MonoBehaviour
         enemyStatus = GetComponent<EnemyStatus>();
 
 
-        currentHp = enemyStatus.maxHp;
+        
+
 
         //// 初期化メソッドを置く
         //Initialize();
 
-        // EnemyStatusの取得
-        enemyStatus = GetComponent<EnemyStatus>();
+
         //currentAction = GetComponent<Enemy>();
 
         target = GameObject.FindGameObjectWithTag(TagStock.Instance.PLAYER_TAG).transform;
@@ -41,6 +41,8 @@ public class EnemyAIController : MonoBehaviour
 
     private void Update()
     {
+        currentHp = enemyStatus.currentHp;
+
         // 行動選択メソッド
         SelectAction();
 
@@ -66,14 +68,7 @@ public class EnemyAIController : MonoBehaviour
         this.target = target;
     }
 
-    /// <summary>
-    /// 敵のステータスを初期化するメソッド
-    /// </summary>
-    public void GetEnemyInitialStatus(int maxLifePoint, int attackPoint, int defencePoint, float moveSpeed)
-    {
-        currentHp = maxLifePoint;
-        agent.speed = moveSpeed;
-    }
+
 
     /// <summary>
     /// 

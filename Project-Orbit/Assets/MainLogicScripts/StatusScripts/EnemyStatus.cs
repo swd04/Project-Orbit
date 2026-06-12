@@ -11,6 +11,9 @@ public class EnemyStatus : UnitStatusBase
     [Header("敵がプレイヤーを感知する距離")]
     [SerializeField] public float detectionRange = 0f;
 
+    [Header("現在の体力")]
+    [SerializeField] public int currentHp = 0;
+
     //[Header("ダメージを受けた判定")]
     //[SerializeField] private bool isDamaged = false;
 
@@ -49,8 +52,11 @@ public class EnemyStatus : UnitStatusBase
     /// </summary>
     private void Start()
     {
+       
+
         //現在HPを最大HPとして保存
         maxHp = unitLifePoint;
+       
 
         //HPバー初期化
         if (enemyHpBar != null)
@@ -70,7 +76,7 @@ public class EnemyStatus : UnitStatusBase
 
         DamageManager.Instance.GetEnemyPower(unitAttackPoint);
 
-
+        currentHp = unitLifePoint;
         //// ダメージを受ける処理
         //if (isDamaged)
         //{
@@ -195,6 +201,8 @@ public class EnemyStatus : UnitStatusBase
     public void PlayerEnemyEating()
     {
     }
+
+   
 
     //public void OnTriggerEnter(Collider other)
     //{

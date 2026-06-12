@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a89899c76c89124b9bbe2c68493f4da, type: 3}
   m_Name: FleeAction1
   m_EditorClassIdentifier: 
-  HpThreshold: 0.2
-  score: 40
+  HpThreshold: 0.9
+  score: 20
   fleeDistance: 5

@@ -185,6 +185,7 @@ MonoBehaviour:
   unitTypes: 1
   enemyType: 0
   detectionRange: 0
+  currentHp: 0
   phase: {fileID: 0}
   damageManager: {fileID: 0}
   statusBounus: {fileID: 11400000, guid: 24a72328994c06140ab96b4f265a6ee0, type: 2}
@@ -205,9 +206,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6472f7ab17cbf442b6dee942a06b945, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chargeTime: 4
+  chargeTime: 1
   enemyRigidbody: {fileID: -6825909272333961180}
-  clashSpeedMultiplier: 2
+  clashSpeedMultiplier: 0.1
   attackAction: {fileID: 11400000, guid: 678c8f53c725ef549acfb376b645c3d2, type: 2}
 --- !u!54 &-6825909272333961180
 Rigidbody:
