@@ -8,6 +8,8 @@ using System.Collections.Generic;
 /// </summary>
 public class GameLogUI : MonoBehaviour
 {
+    public static GameLogUI Instance { get; private set; }
+
     [Header("ログ親")]
     [SerializeField] private Transform contentParent = null;
 
@@ -22,6 +24,21 @@ public class GameLogUI : MonoBehaviour
 
     //生成中のログ一覧
     private readonly List<GameLogItem> logs = new();
+
+    /// <summary>
+    /// 初期化処理
+    /// </summary>
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+    }
+
 
     /// <summary>
     /// ログ追加

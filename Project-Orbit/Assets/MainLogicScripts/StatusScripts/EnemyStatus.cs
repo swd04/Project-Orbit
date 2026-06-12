@@ -137,6 +137,12 @@ public class EnemyStatus : UnitStatusBase
         //HP0以下で死亡
         if (unitLifePoint <= 0)
         {
+            //ログ表示
+            if (GameLogUI.Instance != null)
+            {
+                GameLogUI.Instance.AddLog($"{gameObject.name} をDestroy！");
+            }
+
             //フェーズから削除
             phase.PhaseEnemyRemove(this);
 
