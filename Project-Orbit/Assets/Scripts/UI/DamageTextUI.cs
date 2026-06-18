@@ -15,6 +15,12 @@ public class DamageTextUI : MonoBehaviour
     [Header("表示時間")]
     [SerializeField] private float lifeTime = 1f;
 
+    [Header("拡大演出時間")]
+    [SerializeField] private float popDuration = 0.5f;
+
+    [Header("開始サイズ")]
+    [SerializeField] private Vector3 startScale = Vector3.one * 10.0f;
+
     /// <summary>
     /// フェードアウト制御用
     /// </summary>
@@ -26,12 +32,20 @@ public class DamageTextUI : MonoBehaviour
     private float timer = 0f;
 
     /// <summary>
+    /// 終了サイズ
+    /// </summary>
+    private readonly Vector3 endScale = Vector3.one;
+
+    /// <summary>
     /// 初期化処理
     /// </summary>
     private void Awake()
     {
         //CanvasGroup取得
         canvasGroup = GetComponent<CanvasGroup>();
+
+        //最初は大きめ
+        transform.localScale = startScale;
     }
 
     /// <summary>
@@ -44,6 +58,22 @@ public class DamageTextUI : MonoBehaviour
 
         //経過時間加算
         timer += Time.deltaTime;
+
+        //最初だけ縮小演出
+        if (timer < popDuration)
+        {
+            float t = timer / popDuration;
+
+            transform.localScale =
+                Vector3.Lerp(
+                    startScale,
+                    endScale,
+                    t);
+        }
+        else
+        {
+            transform.localScale = endScale;
+        }
 
         //徐々に透明化
         if (canvasGroup != null)
