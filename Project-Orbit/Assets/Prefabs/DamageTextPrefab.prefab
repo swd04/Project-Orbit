@@ -153,6 +153,8 @@ MonoBehaviour:
   damageText: {fileID: 1271010486344040618}
   moveSpeed: 150
   lifeTime: 1
+  popDuration: 0.5
+  startScale: {x: 10, y: 10, z: 10}
 --- !u!225 &5662476526194483470
 CanvasGroup:
   m_ObjectHideFlags: 0
