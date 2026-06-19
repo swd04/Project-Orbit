@@ -192,7 +192,7 @@ MonoBehaviour:
   soulCore: {fileID: 6796319796385555961, guid: 2a622d318a3338e4ea43d4d0315e5621, type: 3}
   enemyHpBar: {fileID: 0}
   eatStatus: 0
-  statusuUpPoint: 100
+  statusuUpPoint: 0
   maxHp: 0
 --- !u!114 &3974445201911938328
 MonoBehaviour:
@@ -208,7 +208,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chargeTime: 1
   enemyRigidbody: {fileID: -6825909272333961180}
-  clashSpeedMultiplier: 0.1
+  clashSpeedMultiplier: 20
   attackAction: {fileID: 11400000, guid: 678c8f53c725ef549acfb376b645c3d2, type: 2}
 --- !u!54 &-6825909272333961180
 Rigidbody:
