@@ -25,9 +25,7 @@ public class EnemyAIController : MonoBehaviour
     {
         enemyStatus = GetComponent<EnemyStatus>();
 
-
-        
-
+        Debug.Log(agent.speed + "ここはEnemyAIControllerクラス");
 
         //// 初期化メソッドを置く
         //Initialize();
@@ -46,9 +44,8 @@ public class EnemyAIController : MonoBehaviour
         // 行動選択メソッド
         SelectAction();
 
-        Debug.Log(agent.speed);
-        Debug.Log(agent.hasPath);
-        agent.SetDestination(target.position);
+ 
+        //agent.SetDestination(target.position);
 
         if (currentAction == null)
         {
@@ -131,4 +128,6 @@ public class EnemyAIController : MonoBehaviour
     {
         return enemyStatus.detectionRange;
     }
+
+
 }

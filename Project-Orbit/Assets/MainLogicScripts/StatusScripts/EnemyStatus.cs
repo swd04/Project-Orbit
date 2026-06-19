@@ -21,6 +21,8 @@ public class EnemyStatus : UnitStatusBase
 
     [SerializeField] private DamageManager damageManager = null;
 
+    [SerializeField] private EnemyAIController enemyAIController = null;
+
     [Header("ステータスの強化値のデータ")]
     [SerializeField] private EnemyStatusBounus statusBounus = null;
 
@@ -52,11 +54,12 @@ public class EnemyStatus : UnitStatusBase
     /// </summary>
     private void Start()
     {
-       
+        enemyAIController = GetComponent<EnemyAIController>();
 
         //現在HPを最大HPとして保存
         maxHp = unitLifePoint;
-       
+
+        enemyAIController.agent.speed = moveSpeed;
 
         //HPバー初期化
         if (enemyHpBar != null)
@@ -202,7 +205,7 @@ public class EnemyStatus : UnitStatusBase
     {
     }
 
-   
+
 
     //public void OnTriggerEnter(Collider other)
     //{

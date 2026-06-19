@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 /// <summary>
 /// UŒ‚ƒNƒ‰ƒX
@@ -16,15 +17,17 @@ public class AttackAction : Enemy
     [Header("UŒ‚‚Å‚«‚é‚©‚Ç‚¤‚©‚Ì”»’è")]
     [SerializeField] public bool isCanAttack = false;
 
+    [Header("“G‚ğæ“¾")]
+    [SerializeField] public NavMeshAgent agent = null;
+
+    [SerializeField] public float agentSpeed = 0.0f;
+
     public override float Evaluate(EnemyAIController enemy)
     {
-
-
         if (enemy.DistanceToTarget() <= attackRange)
         {
-            // UŒ‚”ÍˆÍ“à‚É‚¢‚éê‡AƒXƒRƒA‚ğŒvZ‚µ‚Ä•Ô‚·
-            // ”š‚Í‰¼
-            return score + (10.0f - enemy.DistanceToTarget());
+
+            return score;
         }
 
         return 0.0f;
@@ -34,17 +37,20 @@ public class AttackAction : Enemy
     {
         float distance = enemy.DistanceToTarget();
 
+        agentSpeed = enemy.agent.speed;
+
         if (distance > attackRange)
         {
-            isCanAttack = false;
+
             enemy.agent.isStopped = false;
+            
 
             Debug.Log("UŒ‚”ÍˆÍŠO");
             return;
         }
 
         isCanAttack = true;
-        enemy.agent.isStopped = true;
+
         Debug.Log("UŒ‚");
     }
 
