@@ -5132,7 +5132,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1883833183}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 1000
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -5367,7 +5367,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 0eaada61a0ff83646a0c18493475d3da, type: 2}
     - target: {fileID: 92266694940495117, guid: d2affdd3c7335a546bc52532c85f13d1, type: 3}
       propertyPath: rotationVecter.y
-      value: 180
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 92266694940495117, guid: d2affdd3c7335a546bc52532c85f13d1, type: 3}
       propertyPath: rotationVecter.z

@@ -17,6 +17,26 @@ public class PlayerStatus : UnitStatusBase
     [Header("ダメージを受けた判定")]
     [SerializeField] public bool isDamage = false;
 
+    /// <summary>
+    /// 現在HP
+    /// </summary>
+    public int Life => unitLifePoint;
+
+    /// <summary>
+    /// 最大HP
+    /// </summary>
+    public int MaxHP => maxHp;
+
+    /// <summary>
+    /// 攻撃力
+    /// </summary>
+    public int Attack => unitAttackPoint;
+
+    /// <summary>
+    /// 防御力
+    /// </summary>
+    public int Defence => unitDefencePoint;
+
     private void Start()
     {
         maxHp = unitLifePoint;
