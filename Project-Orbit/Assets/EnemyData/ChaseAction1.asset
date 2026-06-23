@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 163227cd8b77e514b9569d51807d5635, type: 3}
   m_Name: ChaseAction1
   m_EditorClassIdentifier: 
-  score: 80
+  score: 100

@@ -15,13 +15,16 @@ public class ChaseAction : Enemy
     public override float Evaluate(EnemyAIController enemy)
     {
         float distance = enemy.DistanceToTarget();
+        float range = enemy.GetDetectionRange();
 
-        if (distance < enemy.GetDetectionRange())
+        if (distance > range)
         {
-            return score + (enemy.GetDetectionRange() - distance);
+            // ”ÍˆÍŠO‚È‚çÅ—Dæ‚Å’Ç‚¤
+            return 100f;
         }
 
-        return 0.0f;
+        // ”ÍˆÍ“à‚È‚ç‹——£‚É‰‚¶‚Ä
+        return distance;
     }
 
     public override void Execute(EnemyAIController enemy)

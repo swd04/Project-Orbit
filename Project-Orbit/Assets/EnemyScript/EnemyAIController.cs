@@ -21,18 +21,19 @@ public class EnemyAIController : MonoBehaviour
     [Header("Enemyスクリプトの取得")]
     [SerializeField] private Enemy currentAction = null;
 
+    [Header("攻撃フラグ")]
+    [SerializeField] public bool isAttack = false;
+
     private void Start()
     {
         enemyStatus = GetComponent<EnemyStatus>();
 
-
-        currentHp = enemyStatus.maxHp;
+        Debug.Log(agent.speed + "ここはEnemyAIControllerクラス");
 
         //// 初期化メソッドを置く
         //Initialize();
 
-        // EnemyStatusの取得
-        enemyStatus = GetComponent<EnemyStatus>();
+
         //currentAction = GetComponent<Enemy>();
 
         target = GameObject.FindGameObjectWithTag(TagStock.Instance.PLAYER_TAG).transform;
@@ -41,12 +42,13 @@ public class EnemyAIController : MonoBehaviour
 
     private void Update()
     {
+        currentHp = enemyStatus.currentHp;
+
         // 行動選択メソッド
         SelectAction();
 
-        Debug.Log(agent.speed);
-        Debug.Log(agent.hasPath);
-        agent.SetDestination(target.position);
+
+        //agent.SetDestination(target.position);
 
         if (currentAction == null)
         {
@@ -66,17 +68,11 @@ public class EnemyAIController : MonoBehaviour
         this.target = target;
     }
 
-    /// <summary>
-    /// 敵のステータスを初期化するメソッド
-    /// </summary>
-    public void GetEnemyInitialStatus(int maxLifePoint, int attackPoint, int defencePoint, float moveSpeed)
-    {
-        currentHp = maxLifePoint;
-        agent.speed = moveSpeed;
-    }
+
 
     /// <summary>
-    /// 
+    /// 条件によって、優先される行動が変わる
+    /// その行動を選ぶ処理
     /// </summary>
     private void SelectAction()
     {
@@ -87,29 +83,37 @@ public class EnemyAIController : MonoBehaviour
         }
 
 
-
+        // 最少の数を入れる
         float bestScore = float.MinValue;
+
+        // 行動をリセット
         Enemy bestAction = null;
 
+        // エネミーデータ内の行動をループして優先度の高いものを選ぶ
         foreach (var action in enemyData.actions)
         {
-
+            
             if (action == null)
             {
                 Debug.LogError("action null");
                 continue;
             }
 
+            // 優先度を入れる
             float score = action.Evaluate(this);
 
-
+            // 入れた優先度を比較して、高かったら入れる
             if (score > bestScore)
             {
+                // 優先度を更新
                 bestScore = score;
+
+                // 行動を更新
                 bestAction = action;
             }
         }
 
+        // 現在の行動として保持
         currentAction = bestAction;
     }
 
@@ -136,4 +140,6 @@ public class EnemyAIController : MonoBehaviour
     {
         return enemyStatus.detectionRange;
     }
+
+
 }

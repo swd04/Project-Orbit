@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9655bcc0a9ba2b4080fb4219034278e, type: 3}
   m_Name: AttackAction1
   m_EditorClassIdentifier: 
-  attackRange: 2
-  score: 30
+  attackRange: 5
+  score: 50
+  isCanAttack: 1
+  agent: {fileID: 0}
+  agentSpeed: 3

@@ -11,12 +11,17 @@ public class EnemyStatus : UnitStatusBase
     [Header("敵がプレイヤーを感知する距離")]
     [SerializeField] public float detectionRange = 0f;
 
+    [Header("現在の体力")]
+    [SerializeField] public int currentHp = 0;
+
     //[Header("ダメージを受けた判定")]
     //[SerializeField] private bool isDamaged = false;
 
     [SerializeField] private PhaseController phase = null;
 
     [SerializeField] private DamageManager damageManager = null;
+
+    [SerializeField] private EnemyAIController enemyAIController = null;
 
     [Header("ステータスの強化値のデータ")]
     [SerializeField] private EnemyStatusBounus statusBounus = null;
@@ -49,8 +54,12 @@ public class EnemyStatus : UnitStatusBase
     /// </summary>
     private void Start()
     {
+        enemyAIController = GetComponent<EnemyAIController>();
+
         //現在HPを最大HPとして保存
         maxHp = unitLifePoint;
+
+        enemyAIController.agent.speed = moveSpeed;
 
         //HPバー初期化
         if (enemyHpBar != null)
@@ -70,7 +79,7 @@ public class EnemyStatus : UnitStatusBase
 
         DamageManager.Instance.GetEnemyPower(unitAttackPoint);
 
-
+        currentHp = unitLifePoint;
         //// ダメージを受ける処理
         //if (isDamaged)
         //{
@@ -195,6 +204,8 @@ public class EnemyStatus : UnitStatusBase
     public void PlayerEnemyEating()
     {
     }
+
+
 
     //public void OnTriggerEnter(Collider other)
     //{

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 /// <summary>
 /// UŒ‚ƒNƒ‰ƒX
@@ -8,18 +9,21 @@ using UnityEngine;
 public class AttackAction : Enemy
 {
     [Header("“G‚ÌUŒ‚ƒAƒNƒVƒ‡ƒ“‚ª‹N‚«‚é”ÍˆÍ")]
-    [SerializeField] public float attackRange = 0f;
+    [SerializeField] public float attackRange = 0.0f;
 
     [Header("“G‚ÌUŒ‚ƒXƒRƒA")]
-    [SerializeField] public float score = 0f;
+    [SerializeField] public float score = 0.0f;
+
+
+
+    [SerializeField] public float agentSpeed = 0.0f;
 
     public override float Evaluate(EnemyAIController enemy)
     {
         if (enemy.DistanceToTarget() <= attackRange)
         {
-            // UŒ‚”ÍˆÍ“à‚É‚¢‚éê‡AƒXƒRƒA‚ğŒvZ‚µ‚Ä•Ô‚·
-            // ”š‚Í‰¼
-            return score + (10.0f - enemy.DistanceToTarget());
+
+            return score;
         }
 
         return 0.0f;
@@ -32,10 +36,17 @@ public class AttackAction : Enemy
         if (distance > attackRange)
         {
             enemy.agent.isStopped = false;
+            enemy.isAttack = false;
+
+            Debug.Log("UŒ‚”ÍˆÍŠO");
             return;
         }
 
-        enemy.agent.isStopped = true;
+        enemy.isAttack = true;
+
         Debug.Log("UŒ‚");
     }
+
+
+
 }
