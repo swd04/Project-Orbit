@@ -21,6 +21,9 @@ public class EnemyAIController : MonoBehaviour
     [Header("Enemyスクリプトの取得")]
     [SerializeField] private Enemy currentAction = null;
 
+    [Header("攻撃フラグ")]
+    [SerializeField] public bool isAttack = false;
+
     private void Start()
     {
         enemyStatus = GetComponent<EnemyStatus>();
@@ -44,7 +47,7 @@ public class EnemyAIController : MonoBehaviour
         // 行動選択メソッド
         SelectAction();
 
- 
+
         //agent.SetDestination(target.position);
 
         if (currentAction == null)
@@ -68,7 +71,8 @@ public class EnemyAIController : MonoBehaviour
 
 
     /// <summary>
-    /// 
+    /// 条件によって、優先される行動が変わる
+    /// その行動を選ぶ処理
     /// </summary>
     private void SelectAction()
     {
@@ -79,29 +83,37 @@ public class EnemyAIController : MonoBehaviour
         }
 
 
-
+        // 最少の数を入れる
         float bestScore = float.MinValue;
+
+        // 行動をリセット
         Enemy bestAction = null;
 
+        // エネミーデータ内の行動をループして優先度の高いものを選ぶ
         foreach (var action in enemyData.actions)
         {
-
+            
             if (action == null)
             {
                 Debug.LogError("action null");
                 continue;
             }
 
+            // 優先度を入れる
             float score = action.Evaluate(this);
 
-
+            // 入れた優先度を比較して、高かったら入れる
             if (score > bestScore)
             {
+                // 優先度を更新
                 bestScore = score;
+
+                // 行動を更新
                 bestAction = action;
             }
         }
 
+        // 現在の行動として保持
         currentAction = bestAction;
     }
 

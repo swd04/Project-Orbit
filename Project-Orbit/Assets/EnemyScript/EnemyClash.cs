@@ -13,21 +13,36 @@ public class EnemyClash : MonoBehaviour
     [Header("突進時間")]
     [SerializeField] private float clashDuration = 1f;
 
-    [SerializeField] private AttackAction attackAction = null;
+    [Header("EnemyAIControllerを取得")]
+    [SerializeField] private EnemyAIController enemyAIController = null;
 
-    private NavMeshAgent agent;
-    private bool isAttacking = false;
-    private float defaultSpeed;
+    [Header("Agentを取得")]
+    [SerializeField] private NavMeshAgent agent = null;
+
+    [Header("デフォルトの速さ")]
+    [SerializeField] private float defaultSpeed = 0.0f;
+
+    [Header("Update内で何回もコルーチンが怒らないようにするための攻撃フラグ")]
+    [SerializeField] private bool isCharging = false;
 
     private void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
+        if (agent == null)
+        {
+            agent = GetComponent<NavMeshAgent>();
+        }
+
+        if (enemyAIController == null)
+        {
+            enemyAIController = GetComponent<EnemyAIController>();
+        }
+
         defaultSpeed = agent.speed;
     }
 
     private void Update()
     {
-        if (attackAction.isCanAttack && !isAttacking)
+        if (enemyAIController.isAttack && !isCharging)
         {
             StartCoroutine(ChargeCoroutine());
         }
@@ -39,34 +54,38 @@ public class EnemyClash : MonoBehaviour
     /// <returns></returns>
     public IEnumerator ChargeCoroutine()
     {
-        isAttacking = true;
+        isCharging = true;
 
         // 溜め
         agent.isStopped = true;
         yield return new WaitForSeconds(chargeTime);
 
-        // 前方向を固定
+        // 前方向
         Vector3 forward = transform.forward;
+
+        // 突進先を計算
+        Vector3 targetPos = transform.position + forward * clashSpeed * clashDuration;
+
+        // NavMesh上に補正
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(targetPos, out hit, 1.0f, NavMesh.AllAreas))
+        {
+            targetPos = hit.position;
+        }
 
         // 突進開始
         agent.isStopped = false;
         agent.speed = clashSpeed;
+        agent.SetDestination(targetPos);
 
-        float timer = 0f;
-
-        while (timer < clashDuration)
-        {
-            // 向いている方向に進む
-            agent.Move(forward * agent.speed * Time.deltaTime);
-
-            // 突進時間までタイムを回す
-            timer += Time.deltaTime;
-            yield return null;
-        }
+        // 突進時間待つ
+        yield return new WaitForSeconds(clashDuration);
 
         // 元に戻す
         agent.speed = defaultSpeed;
-        isAttacking = false;
-        attackAction.isCanAttack = false;
+        enemyAIController.isAttack = false;
+
+        isCharging = false;
+
     }
 }

@@ -14,11 +14,7 @@ public class AttackAction : Enemy
     [Header("“G‚ÌUŒ‚ƒXƒRƒA")]
     [SerializeField] public float score = 0.0f;
 
-    [Header("UŒ‚‚Å‚«‚é‚©‚Ç‚¤‚©‚Ì”»’è")]
-    [SerializeField] public bool isCanAttack = false;
 
-    [Header("“G‚ğæ“¾")]
-    [SerializeField] public NavMeshAgent agent = null;
 
     [SerializeField] public float agentSpeed = 0.0f;
 
@@ -37,19 +33,16 @@ public class AttackAction : Enemy
     {
         float distance = enemy.DistanceToTarget();
 
-        agentSpeed = enemy.agent.speed;
-
         if (distance > attackRange)
         {
-
             enemy.agent.isStopped = false;
-            
+            enemy.isAttack = false;
 
             Debug.Log("UŒ‚”ÍˆÍŠO");
             return;
         }
 
-        isCanAttack = true;
+        enemy.isAttack = true;
 
         Debug.Log("UŒ‚");
     }

@@ -166,6 +166,7 @@ MonoBehaviour:
   currentHp: 0
   enemyData: {fileID: 11400000, guid: f0f67d85a4b08b54c9a6dd8409f17c56, type: 2}
   currentAction: {fileID: 0}
+  isAttack: 0
 --- !u!114 &408891315037831956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,9 +209,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chargeTime: 3
-  clashSpeed: 10
+  clashSpeed: 50
   clashDuration: 1
-  attackAction: {fileID: 11400000, guid: 678c8f53c725ef549acfb376b645c3d2, type: 2}
+  enemyAIController: {fileID: 0}
+  agent: {fileID: 0}
+  defaultSpeed: 0
+  isCharging: 0
 --- !u!54 &-6825909272333961180
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -219,7 +223,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8815404796577700937}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 20
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
