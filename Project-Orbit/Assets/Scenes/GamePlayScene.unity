@@ -4735,8 +4735,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fa38c1f9e6894f845b9ef31308aaae62, type: 2}
+  m_sharedMaterial: {fileID: -1662290382235380556, guid: fa38c1f9e6894f845b9ef31308aaae62, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4871,8 +4871,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fa38c1f9e6894f845b9ef31308aaae62, type: 2}
+  m_sharedMaterial: {fileID: -1662290382235380556, guid: fa38c1f9e6894f845b9ef31308aaae62, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6762,8 +6762,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fa38c1f9e6894f845b9ef31308aaae62, type: 2}
+  m_sharedMaterial: {fileID: -1662290382235380556, guid: fa38c1f9e6894f845b9ef31308aaae62, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -7698,6 +7698,9 @@ SceneRoots:
   - {fileID: 979490108}
   - {fileID: 358401187}
   - {fileID: 448146587}
+  - {fileID: 1939331692}
+  - {fileID: 707918626}
+  - {fileID: 1539729236}
   - {fileID: 1188651164}
   - {fileID: 1286044714}
   - {fileID: 1656675500}
@@ -7709,6 +7712,3 @@ SceneRoots:
   - {fileID: 1942868212}
   - {fileID: 783471001}
   - {fileID: 1097536707}
-  - {fileID: 1939331692}
-  - {fileID: 707918626}
-  - {fileID: 1539729236}
