@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 
 public class PlayerStatus : UnitStatusBase
 {
@@ -82,6 +81,22 @@ public class PlayerStatus : UnitStatusBase
         unitAttackPoint += attack;
         unitDefencePoint += defence;
         moveSpeed = speed;
+
+        //ログ表示
+        if (hp > 0)
+        {
+            GameLogUI.Instance.AddLog($"HPが{hp}上昇した");
+        }
+
+        if (attack > 0)
+        {
+            GameLogUI.Instance.AddLog($"攻撃力が{attack}上昇した");
+        }
+
+        if (defence > 0)
+        {
+            GameLogUI.Instance.AddLog($"防御力が{defence}上昇した");
+        }
     }
 
     private void OnTriggerEnter(Collider other)
