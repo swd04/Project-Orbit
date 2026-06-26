@@ -122,6 +122,7 @@ GameObject:
   - component: {fileID: -8665739983074022530}
   - component: {fileID: 408891315037831956}
   - component: {fileID: 3974445201911938328}
+  - component: {fileID: -8385311423293779515}
   - component: {fileID: -6825909272333961180}
   - component: {fileID: 4620370559415813243}
   - component: {fileID: -3270927495638831206}
@@ -203,7 +204,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8815404796577700937}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6472f7ab17cbf442b6dee942a06b945, type: 3}
   m_Name: 
@@ -215,6 +216,26 @@ MonoBehaviour:
   agent: {fileID: 0}
   defaultSpeed: 0
   isCharging: 0
+--- !u!114 &-8385311423293779515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8815404796577700937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a11cf4e31df70b14c99eb9d205e7cf2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyAIController: {fileID: -8665739983074022530}
+  bulletList: []
+  weaponObject: {fileID: 4778937502266962275, guid: b3725043f4dcea14a9a4b022c3054d73, type: 3}
+  rigidbody: {fileID: -265895581917774506, guid: b3725043f4dcea14a9a4b022c3054d73, type: 3}
+  isAttacking: 0
+  initialSize: 1
+  enemyPrefabTransform: {fileID: 8367702142725326814}
+  enemyGunData: {fileID: 11400000, guid: 21e182e24b4a24c4f8f60606d79fa7c8, type: 2}
 --- !u!54 &-6825909272333961180
 Rigidbody:
   m_ObjectHideFlags: 0
