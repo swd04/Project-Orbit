@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 
 /// <summary>
 /// 遠距離攻撃型の敵が
@@ -10,9 +11,15 @@ public class EnemyFixedGun : MonoBehaviour
     [Header("EnemyAIControllerの取得")]
     [SerializeField] private EnemyAIController enemyAIController = null;
 
+    private EnemyGunObjectPool<EnemyGunBullet> bulletPool = null;
+
+    [SerializeField] private List<EnemyGunBullet> bulletList = new List<EnemyGunBullet>();
 
     [Header("弾のプレハブ")]
     [SerializeField] private GameObject weaponObject = null;
+
+    [Header("弾のrigidbody")]
+    [SerializeField] private Rigidbody rigidbody = null;
 
     [Header("攻撃動作を開始しているかの判定")]
     [SerializeField] private bool isAttacking = false;
@@ -22,6 +29,9 @@ public class EnemyFixedGun : MonoBehaviour
 
     [Header("これを攻撃として使用する敵のプレハブ")]
     [SerializeField] private Transform enemyPrefabTransform = null;
+
+    [Header("EnemyGunSDataを取得")]
+    [SerializeField] private EnemyGunSData enemyGunData = null;
 
     private void Start()
     {
@@ -35,6 +45,7 @@ public class EnemyFixedGun : MonoBehaviour
             Debug.LogError(weaponObject + "がnullです。");
         }
 
+        bulletPool = new EnemyGunObjectPool<EnemyGunBullet>(weaponObject.GetComponent<EnemyGunBullet>(), initialSize);
 
     }
 
@@ -42,6 +53,7 @@ public class EnemyFixedGun : MonoBehaviour
 
     private void Update()
     {
+
         if (enemyAIController.isAttack && !isAttacking)
         {
             StartCoroutine(EnemyGun());
@@ -50,8 +62,32 @@ public class EnemyFixedGun : MonoBehaviour
 
     private IEnumerator EnemyGun()
     {
+        enemyAIController.agent.isStopped = true;
+        isAttacking = true;
+
+        EnemyGunBullet obj = bulletPool.Get();
+        // 位置と回転を敵と同じにする
+        obj.transform.SetPositionAndRotation(
+            transform.position,
+            transform.rotation);
+
+        bulletList.Add(obj);
+
+        rigidbody.AddForce(transform.forward * enemyGunData.bulletPower, ForceMode.Impulse);
 
 
+
+        yield return new WaitForSeconds(1.0f);
+
+        Debug.Log("うおおおおおおお");
+
+
+        Debug.Log("どわーーーーーーーーーｗｗｗｗ");
+
+        isAttacking = false;
+
+        bulletPool.Release(bulletList[0]);
+        bulletList.RemoveAt(0);
 
         yield return null;
     }

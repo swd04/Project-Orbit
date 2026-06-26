@@ -14,12 +14,11 @@ public class EnemyGunObjectPool<T> where T : Component
 
 
 
-    public EnemyGunObjectPool(T prefab, int initialSize, Transform parent = null)
+    public EnemyGunObjectPool(T prefab, int initialSize)
     {
         // プレハブと親を設定
         this.prefab = prefab;
-        this.parent = parent;
-
+       
         // 初期生成
         for (int i = 0; i < initialSize; i++)
         {
