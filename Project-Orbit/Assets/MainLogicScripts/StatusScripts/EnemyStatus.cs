@@ -41,6 +41,9 @@ public class EnemyStatus : UnitStatusBase
     [Header("最大HP")]
     public int maxHp = 0;
 
+    //死亡済みか
+    private bool isDead = false;
+
     /// <summary>
     /// 最大HP取得
     /// </summary>
@@ -97,6 +100,12 @@ public class EnemyStatus : UnitStatusBase
     /// </summary>
     public void Damage()
     {
+        //既に死亡済みなら処理しない
+        if (isDead)
+        {
+            return;
+        }
+
         //ダメージ前HP保存
         int beforeHp = unitLifePoint;
 
@@ -146,6 +155,8 @@ public class EnemyStatus : UnitStatusBase
         //HP0以下で死亡
         if (unitLifePoint <= 0)
         {
+            isDead = true;
+
             //フェーズから削除
             phase.PhaseEnemyRemove(this);
 

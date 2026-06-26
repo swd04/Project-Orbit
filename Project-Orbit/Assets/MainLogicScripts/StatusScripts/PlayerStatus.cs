@@ -99,49 +99,76 @@ public class PlayerStatus : UnitStatusBase
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other != null)
+    //    {
+    //        // UnitManager.Instance.PhaseStart();
+    //    }
+
+    //    //if (other.CompareTag("EnemyWeapon") || Input.GetKeyDown(KeyCode.T))
+    //    //{
+    //    //    int damage = DamageManager.Instance.PlayerDamageCalculation(unitLifePoint);
+    //    //    unitLifePoint -= damage;
+    //    //}
+
+    //    //if (other.CompareTag(TagStock.Instance.ENEMY_WEAPON_TAG))
+    //    //{
+    //    //    isDamage = true;
+    //    //}
+
+    //    //if (other.CompareTag("Soul"))
+    //    //{
+    //    //    SoulCore getSoul = other.GetComponent<SoulCore>();
+
+    //    //    if (getSoul == null)
+    //    //    {
+    //    //        return;
+    //    //    }
+
+    //    //    for (int i = 0; i < soulCoresList.Count; i++)
+    //    //    {
+    //    //        if (getSoul.actionType == soulCoresList[i].actionType)
+    //    //        {
+    //    //            soulCoresList[i].SoulLevelUp();
+
+    //    //            getSoul.gameObject.SetActive(false);
+
+    //    //            return;
+    //    //        }
+    //    //    }
+
+    //    //    soulCoresList.Add(getSoul);
+
+    //    //    getSoul.gameObject.SetActive(false);
+    //    //}
+    //}
+
+    /// <summary>
+    /// ソウルコアを登録する処理
+    /// </summary>
+    public void AddSoulCore(SoulCore soulCore)
     {
-        if (other != null)
+        //同じ種類のコアを所持しているか確認
+        foreach (SoulCore core in soulCoresList)
         {
-            // UnitManager.Instance.PhaseStart();
-        }
-
-        //if (other.CompareTag("EnemyWeapon") || Input.GetKeyDown(KeyCode.T))
-        //{
-        //    int damage = DamageManager.Instance.PlayerDamageCalculation(unitLifePoint);
-        //    unitLifePoint -= damage;
-        //}
-
-        if (other.CompareTag(TagStock.Instance.ENEMY_WEAPON_TAG))
-        {
-            isDamage = true;
-        }
-
-        if (other.CompareTag("Soul"))
-        {
-            SoulCore getSoul = other.GetComponent<SoulCore>();
-
-            if (getSoul == null)
+            //同じ種類ならレベルアップして回収
+            if (core.actionType == soulCore.actionType)
             {
+                core.SoulLevelUp();
+
+                //回収したコアを非表示
+                soulCore.gameObject.SetActive(false);
+
                 return;
             }
-
-            for (int i = 0; i < soulCoresList.Count; i++)
-            {
-                if (getSoul.actionType == soulCoresList[i].actionType)
-                {
-                    soulCoresList[i].SoulLevelUp();
-
-                    getSoul.gameObject.SetActive(false);
-
-                    return;
-                }
-            }
-
-            soulCoresList.Add(getSoul);
-
-            getSoul.gameObject.SetActive(false);
         }
+
+        //初めて取得した種類なので登録
+        soulCoresList.Add(soulCore);
+
+        //回収したコアを非表示
+        soulCore.gameObject.SetActive(false);
     }
 
     public void OnTriggerExit(Collider other)
