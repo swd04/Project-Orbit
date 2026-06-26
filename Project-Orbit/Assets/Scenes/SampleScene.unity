@@ -837,6 +837,7 @@ GameObject:
   - component: {fileID: 244896713}
   - component: {fileID: 244896712}
   - component: {fileID: 244896711}
+  - component: {fileID: 244896716}
   - component: {fileID: 244896715}
   - component: {fileID: 244896710}
   - component: {fileID: 244896709}
@@ -911,6 +912,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c666dbe8ddd2d740bdbd8365e6c07b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerStatus: {fileID: 0}
   coreCount: 0
   playerChoseAttackMode: {fileID: 244896707}
 --- !u!114 &244896707
@@ -960,6 +962,8 @@ MonoBehaviour:
   modeChangeCoolTime: 0
   rotateSpeed: 0.05
   rotateAngle: {x: 0, y: -540, z: 0}
+  isEnchantAttackCoreSet: 0
+  enchantAttackRatio: 0
 --- !u!114 &244896710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1094,6 +1098,26 @@ MonoBehaviour:
   controlPlayer: {fileID: 244896710}
   maxHp: 0
   isDamage: 0
+  isRegenerationTrigger: 0
+  regenerationTime: 10
+  regenerationDelta: 0
+  regenerationTriggerRatio: 0.33
+  lifePointRatio: 0
+--- !u!114 &244896716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244896703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e36d526ec1e2f7047a0f39357f4c6d35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equipmentCore: []
+  playerStatus: {fileID: 244896715}
+  playerAttack: {fileID: 244896709}
 --- !u!1001 &252379341
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2403,6 +2427,11 @@ MonoBehaviour:
   controlPlayer: {fileID: 0}
   maxHp: 0
   isDamage: 0
+  isRegenerationTrigger: 0
+  regenerationTime: 0
+  regenerationDelta: 0
+  regenerationTriggerRatio: 0
+  lifePointRatio: 0
 --- !u!4 &646382246
 Transform:
   m_ObjectHideFlags: 0

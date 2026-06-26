@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 public class PlayerStatus : UnitStatusBase
 {
@@ -15,6 +16,23 @@ public class PlayerStatus : UnitStatusBase
 
     [Header("ダメージを受けた判定")]
     [SerializeField] public bool isDamage = false;
+
+    [Header("自動回復が有効かどうか")]
+    [SerializeField] public bool isRegenerationTrigger = false;
+
+    [Header("自動回復の間隔")]
+    [SerializeField] private float regenerationTime = 0.0f;
+
+    [Header("自動回復の経過時間")]
+    [SerializeField] private float regenerationDelta = 0.0f;
+
+    [Header("児童会h区が有効な体力のパーセント")]
+    [SerializeField] private float regenerationTriggerRatio = 0.0f;
+
+    [Header("現在の体力のパーセント")]
+    [SerializeField] private float lifePointRatio = 0.0f;
+
+  
 
     /// <summary>
     /// 現在HP
@@ -71,7 +89,7 @@ public class PlayerStatus : UnitStatusBase
             unitLifePoint -= damage;
         }
 
-
+        RegenerationLifePoint();
 
     }
 
@@ -96,6 +114,36 @@ public class PlayerStatus : UnitStatusBase
         if (defence > 0)
         {
             GameLogUI.Instance.AddLog($"防御力が{defence}上昇した");
+        }
+    }
+
+    /// <summary>
+    /// 自動回復メソッド
+    /// </summary>
+    public void RegenerationLifePoint()
+    {
+        //現在の残存体力の比率を計算
+        lifePointRatio = (float)unitLifePoint / (float)maxHp;
+        
+        if (isRegenerationTrigger)
+        {
+            if(lifePointRatio <= regenerationTriggerRatio)
+            {
+                regenerationDelta += Time.deltaTime;
+                if(regenerationDelta > regenerationTime)
+                {
+                    unitLifePoint += maxHp / 100;
+                    regenerationDelta = 0;
+                }
+            }
+            else
+            {
+                return;
+            }
+        }
+        else
+        {
+            return;
         }
     }
 
@@ -178,4 +226,6 @@ public class PlayerStatus : UnitStatusBase
             isDamage = false;
         }
     }
+
+    
 }

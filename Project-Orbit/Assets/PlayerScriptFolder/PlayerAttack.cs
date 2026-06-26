@@ -35,6 +35,12 @@ public class PlayerAttack : MonoBehaviour
     [Header("武器の回転角度")]
     [SerializeField] private Vector3 rotateAngle = Vector3.zero;
 
+    [Header("攻撃強化コアがsぷびされたどうかの判定")]
+    [SerializeField] public bool isEnchantAttackCoreSet = false;
+
+    [Header("攻撃が強化される確率")]
+    [SerializeField] private float enchantAttackRatio = 0.0f;
+
     //この攻撃で既にダメージを与えた敵
     private HashSet<EnemyStatus> hitEnemies = new();
 
@@ -160,6 +166,20 @@ public class PlayerAttack : MonoBehaviour
 
             //ダメージ処理
             enemy.Damage();
+
+            //確率でダメージを三倍
+            if (isEnchantAttackCoreSet)
+            {
+                float ratio = Random.Range(0, 101);
+                if (enchantAttackRatio > ratio)
+                {
+                    for (int i = 0; i < 2; i++)
+                    {
+                        enemy.Damage();
+                    }
+                }
+            }
+            
         }
     }
 }
