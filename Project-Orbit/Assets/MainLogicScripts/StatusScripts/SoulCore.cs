@@ -18,9 +18,28 @@ public class SoulCore : MonoBehaviour
 
     [SerializeField] public int soulLevel = 0;
 
+    [SerializeField] public CoreType coreType = CoreType.None;
+
+    [SerializeField] public CoreID coreId = CoreID.None;
+
     public void SoulLevelUp()
     {
         soulLevel++;
     }
 
+}
+
+public enum CoreType
+{
+    None,
+    [Tooltip("パッシブタイプのコア")]Passive,
+    [Tooltip("攻撃モーション追加のコア")]AttackMotion
+}
+
+public enum CoreID
+{
+    None,
+    [Tooltip("自動回復コア")]RegenerationCore,
+    [Tooltip("確率攻撃強化コア")]EncahntAttackCore,
+    [Tooltip("移動速度強化コア")]EnchantMoveSpeedCore
 }
