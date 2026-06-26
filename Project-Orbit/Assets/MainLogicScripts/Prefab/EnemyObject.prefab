@@ -231,9 +231,11 @@ MonoBehaviour:
   enemyAIController: {fileID: -8665739983074022530}
   bulletList: []
   weaponObject: {fileID: 4778937502266962275, guid: b3725043f4dcea14a9a4b022c3054d73, type: 3}
+  rigidbody: {fileID: -265895581917774506, guid: b3725043f4dcea14a9a4b022c3054d73, type: 3}
   isAttacking: 0
   initialSize: 1
   enemyPrefabTransform: {fileID: 8367702142725326814}
+  enemyGunData: {fileID: 11400000, guid: 21e182e24b4a24c4f8f60606d79fa7c8, type: 2}
 --- !u!54 &-6825909272333961180
 Rigidbody:
   m_ObjectHideFlags: 0

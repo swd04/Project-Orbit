@@ -66,23 +66,24 @@ public class EnemyFixedGun : MonoBehaviour
         isAttacking = true;
 
         EnemyGunBullet obj = bulletPool.Get();
-        // 位置と回転を敵と同じにする
-        obj.transform.SetPositionAndRotation(
-            transform.position,
-            transform.rotation);
+
+        obj.transform.SetPositionAndRotation( transform.position, transform.rotation);
+
+        Rigidbody rb = obj.GetComponent<Rigidbody>();
+
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+
+        rb.AddForce(obj.transform.forward * enemyGunData.bulletPower, ForceMode.Impulse);
 
         bulletList.Add(obj);
 
-        rigidbody.AddForce(transform.forward * enemyGunData.bulletPower, ForceMode.Impulse);
 
 
 
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(2.0f);
 
-        Debug.Log("うおおおおおおお");
-
-
-        Debug.Log("どわーーーーーーーーーｗｗｗｗ");
+       
 
         isAttacking = false;
 
