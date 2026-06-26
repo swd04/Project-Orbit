@@ -6101,6 +6101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c666dbe8ddd2d740bdbd8365e6c07b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerStatus: {fileID: 1883833195}
   coreCount: 0
   playerChoseAttackMode: {fileID: 1883833184}
 --- !u!114 &1883833188
@@ -7451,7 +7452,7 @@ MonoBehaviour:
   contentParent: {fileID: 538402819}
   logPrefab: {fileID: 8128108806327222240, guid: a746dbe52792ce8459df4c38451f4516, type: 3}
   maxLogCount: 20
-  displayTime: 1
+  displayTime: 0.8
 --- !u!1 &2050419770
 GameObject:
   m_ObjectHideFlags: 0

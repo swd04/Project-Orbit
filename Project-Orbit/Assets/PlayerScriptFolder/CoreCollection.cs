@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class CoreCollection : MonoBehaviour
 {
+    [Header("プレイヤーステータス")]
+    [SerializeField] private PlayerStatus playerStatus = null;
+
     [Header("コアの総数")]
     [SerializeField] public int coreCount = 0;
 
@@ -68,6 +71,12 @@ public class CoreCollection : MonoBehaviour
 
         //種類別取得数を増加
         coreDictionary[soulCore.actionType]++;
+
+        //PlayerStatusへ登録
+        playerStatus.AddSoulCore(soulCore);
+
+        //回収したコアを消す
+        other.gameObject.SetActive(false);
 
         //ログ表示
         GameLogUI.Instance.AddLog($"{soulCore.actionType}を取得");

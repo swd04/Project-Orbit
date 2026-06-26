@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System.Collections.Generic;
 using UnityEngine;
 using static PlayerChoseAttackMode;
 
@@ -33,6 +34,9 @@ public class PlayerAttack : MonoBehaviour
 
     [Header("武器の回転角度")]
     [SerializeField] private Vector3 rotateAngle = Vector3.zero;
+
+    //この攻撃で既にダメージを与えた敵
+    private HashSet<EnemyStatus> hitEnemies = new();
 
     /// <summary>
     /// 初期化を行うメソッド
@@ -101,6 +105,9 @@ public class PlayerAttack : MonoBehaviour
     /// </summary>
     private void Attack()
     {
+        //攻撃ごとのヒット判定をリセット
+        hitEnemies.Clear();
+
         weaponObject.transform.DOLocalRotate(new Vector3(rotateAngle.x, rotateAngle.y, rotateAngle.z), rotateSpeed).SetEase(Ease.Linear).OnComplete(() =>
         {
             weaponObject.transform.DOLocalRotate(Vector3.zero, rotateSpeed).SetEase(Ease.Linear);
@@ -136,14 +143,23 @@ public class PlayerAttack : MonoBehaviour
             //EnemyStatus取得
             EnemyStatus enemy = other.GetComponent<EnemyStatus>();
 
-            //EnemyStatusが存在する場合
-            if (enemy != null)
+            //EnemyStatusが付いていない場合は終了
+            if (enemy == null)
             {
-                //ダメージ処理
-                enemy.Damage();
-
-                Debug.Log("敵に攻撃が当たった！");
+                return;
             }
+
+            //この攻撃で既にダメージを与えた敵なら処理しない
+            if (hitEnemies.Contains(enemy))
+            {
+                return;
+            }
+
+            //ダメージを与えた敵として登録
+            hitEnemies.Add(enemy);
+
+            //ダメージ処理
+            enemy.Damage();
         }
     }
 }
