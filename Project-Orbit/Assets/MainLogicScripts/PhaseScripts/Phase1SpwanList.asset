@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Phase1SpwanList
   m_EditorClassIdentifier: 
   spwanEnemyTypes: 00000000
-  spwanEnemyCount: 03000000
+  spwanEnemyCount: 05000000
   spwanEnemyStatusBounus: 00
