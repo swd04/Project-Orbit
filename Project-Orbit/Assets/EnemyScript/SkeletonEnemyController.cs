@@ -8,11 +8,6 @@ public class SkeletonEnemyController : MonoBehaviour
 {
     // Aiの行動パターン選択と同期させる
 
-
-    // アニメーションイベントで武器のコライダーを動かす
-    [Header("武器を取得")]
-    [SerializeField] private GameObject swordWeapon = null;
-
     [Header("攻撃の回転の速さ")]
     [SerializeField] private float rotateSpeed = 0.0f;
 
@@ -28,13 +23,33 @@ public class SkeletonEnemyController : MonoBehaviour
     [Header("攻撃判定")]
     [SerializeField] private bool isAttack = false;
 
+    [Header("EnemyAIControllerの取得")]
+    [SerializeField] private EnemyAIController enemyAIController = null;
+
+    private void Start()
+    {
+        if (weaponObject == null)
+        {
+            Debug.LogError(weaponObject + "がnullです。");
+        }
+        if (weaponCollider == null)
+        {
+            Debug.LogError(weaponCollider + "がnullです。");
+        }
+        if (enemyAIController == null)
+        {
+            enemyAIController = GetComponent<EnemyAIController>();
+        }
+    }
+
+
     void Update()
     {
         // テスト用
         if (Input.GetMouseButtonDown(0))
         {
             SwordAttack();
-            isAttack = true;
+
         }
 
         // 攻撃コマンドの入力回数をカウントする処理
@@ -49,20 +64,25 @@ public class SkeletonEnemyController : MonoBehaviour
     /// </summary>
     private void SwordAttack()
     {
-        weaponObject.transform.DOLocalRotate(new Vector3(rotateAngle.x, rotateAngle.y, rotateAngle.z), rotateSpeed).SetEase(Ease.Linear).OnComplete(() =>
-        {
-            weaponObject.transform.DOLocalRotate(Vector3.zero, rotateSpeed).SetEase(Ease.Linear);
+        isAttack = true;
+        weaponCollider.enabled = true;
+        enemyAIController.agent.isStopped = true;
 
+        Vector3 defaultAngle = new Vector3(rotateAngle.x, rotateAngle.y, rotateAngle.z);
+
+
+        // Tween使います
+        Sequence sequence = DOTween.Sequence();
+
+        Debug.Log("攻撃開始");
+        
+
+
+
+            weaponCollider.enabled = false;
             isAttack = false;
-
-            // コライダーを無効
-
-            if (weaponCollider != null)
-            {
-                weaponCollider.enabled = false;
-            }
-
-        });
+            enemyAIController.agent.isStopped = false;
+        
     }
 
 }
