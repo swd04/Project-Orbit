@@ -10,6 +10,11 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject menuPanel = null;
 
     /// <summary>
+    /// ƒƒjƒ…[‚ªŠJ‚¢‚Ä‚¢‚é‚©
+    /// </summary>
+    public bool IsMenuOpen => menuPanel.activeSelf;
+
+    /// <summary>
     /// ‰Šú‰»ˆ—
     /// </summary>
     private void Start()

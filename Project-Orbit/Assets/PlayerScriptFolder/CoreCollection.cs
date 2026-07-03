@@ -80,13 +80,13 @@ public class CoreCollection : MonoBehaviour
         //回収したコアを消す
         other.gameObject.SetActive(false);
 
-        //
+        //ログ用にPrefab名取得
         string coreName = soulCore.gameObject.name.Replace("(Clone)", "");
 
         //ログ表示
-        GameLogUI.Instance.AddLog($"{soulCore.gameObject.name}を取得");
+        GameLogUI.Instance.AddLog($"{coreName}を取得");
 
-        Debug.Log($"{soulCore.gameObject.name}を取得" + $"現在所持数:{coreDictionary[soulCore.actionType]}");
+        Debug.Log($"{coreName}を取得" + $"現在所持数:{coreDictionary[soulCore.actionType]}");
 
         //if (playerChoseAttackMode.currentAttackMode == AttackMode.SOULREINFORCE)
         //{
@@ -127,14 +127,14 @@ public class CoreCollection : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// 指定した種類のコアを取得する処理
     /// </summary>
     public SoulCore GetSoulCore(SoulCore.ActionType type)
     {
-        //
+        //所持コアを検索
         foreach (SoulCore core in soulCoresList)
         {
-            //
+            //一致したら返す
             if (core.actionType == type)
             {
                 return core;
