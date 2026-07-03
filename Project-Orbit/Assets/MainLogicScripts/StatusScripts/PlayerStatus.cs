@@ -6,9 +6,7 @@ public class PlayerStatus : UnitStatusBase
 {
     [SerializeField] private PlayerChoseAttackMode playerChoseAttackMode = null;
 
-    [SerializeField] public List<SoulCore> soulCoresList = new List<SoulCore>();
-
-    [SerializeField] private List<int> soulLevel = new List<int>();
+    //[SerializeField] private List<int> soulLevel = new List<int>();
 
     [SerializeField] private ControlPlayer controlPlayer = null;
 
@@ -64,19 +62,19 @@ public class PlayerStatus : UnitStatusBase
     /// </summary>
     private void Update()
     {
-        if (soulLevel.Count < soulCoresList.Count)
-        {
-            soulLevel.Add(0);
-        }
+        //if (soulLevel.Count < soulCoresList.Count)
+        //{
+        //    soulLevel.Add(0);
+        //}
 
-        for (int i = 0; i < soulLevel.Count; i++)
-        {
-            if (soulCoresList[i] != null)
-            {
-                soulLevel[i] = soulCoresList[i].soulLevel;
-            }
+        //for (int i = 0; i < soulLevel.Count; i++)
+        //{
+        //    if (soulCoresList[i] != null)
+        //    {
+        //        soulLevel[i] = soulCoresList[i].soulLevel;
+        //    }
 
-        }
+        //}
 
         DamageManager.Instance.GetPlayerPower(unitAttackPoint);
 
@@ -192,33 +190,6 @@ public class PlayerStatus : UnitStatusBase
     //    //}
     //}
 
-    /// <summary>
-    /// ソウルコアを登録する処理
-    /// </summary>
-    public void AddSoulCore(SoulCore soulCore)
-    {
-        //同じ種類のコアを所持しているか確認
-        foreach (SoulCore core in soulCoresList)
-        {
-            //同じ種類ならレベルアップして回収
-            if (core.actionType == soulCore.actionType)
-            {
-                core.SoulLevelUp();
-
-                //回収したコアを非表示
-                soulCore.gameObject.SetActive(false);
-
-                return;
-            }
-        }
-
-        //初めて取得した種類なので登録
-        soulCoresList.Add(soulCore);
-
-        //回収したコアを非表示
-        soulCore.gameObject.SetActive(false);
-    }
-
     public void OnTriggerExit(Collider other)
     {
         if (other.CompareTag(TagStock.Instance.ENEMY_WEAPON_TAG))
@@ -226,6 +197,4 @@ public class PlayerStatus : UnitStatusBase
             isDamage = false;
         }
     }
-
-    
 }

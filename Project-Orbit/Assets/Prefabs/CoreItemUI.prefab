@@ -228,8 +228,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -325,6 +325,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coreNameText: {fileID: 5922647924526084827}
   countText: {fileID: 1604235763581300541}
+  rectTransform: {fileID: 0}
+  canvasGroup: {fileID: 0}
 --- !u!1 &7988330282294595806
 GameObject:
   m_ObjectHideFlags: 0

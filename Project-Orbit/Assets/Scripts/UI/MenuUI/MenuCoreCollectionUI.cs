@@ -54,8 +54,11 @@ public class MenuCoreCollectionUI : MonoBehaviour
             //ˆê——€–Ú¶¬
             CoreItemUI item = Instantiate(itemPrefab, content);
 
+            //
+            SoulCore core = coreCollection.GetSoulCore(type);
+
             //•\¦“à—eİ’è
-            item.SetData(type.ToString(), count);
+            item.SetData(core, count);
         }
     }
 }
