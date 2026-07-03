@@ -228,8 +228,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -282,6 +282,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1323169731554825340}
   - component: {fileID: 2398444369043835803}
+  - component: {fileID: 3567120359595450348}
   m_Layer: 5
   m_Name: CoreItemUI
   m_TagString: Untagged
@@ -325,6 +326,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coreNameText: {fileID: 5922647924526084827}
   countText: {fileID: 1604235763581300541}
+  rectTransform: {fileID: 1323169731554825340}
+  canvasGroup: {fileID: 3567120359595450348}
+--- !u!225 &3567120359595450348
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7282563048319830216}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &7988330282294595806
 GameObject:
   m_ObjectHideFlags: 0

@@ -41,6 +41,9 @@ public class PlayerAttack : MonoBehaviour
     [Header("攻撃が強化される確率")]
     [SerializeField] private float enchantAttackRatio = 0.0f;
 
+    [Header("メニュー管理")]
+    [SerializeField] private MenuManager menuManager = null;
+
     //この攻撃で既にダメージを与えた敵
     private HashSet<EnemyStatus> hitEnemies = new();
 
@@ -74,6 +77,12 @@ public class PlayerAttack : MonoBehaviour
     /// </summary>
     private void InputKey()
     {
+        //メニュー中は操作されない
+        if (menuManager.IsMenuOpen)
+        {
+            return;
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             // 左クリックで攻撃を行う処理

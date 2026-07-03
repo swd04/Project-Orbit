@@ -13,6 +13,10 @@ public class SwordRotate : MonoBehaviour
     [SerializeField] private ParticleSystem[] flame = null;
 
     [SerializeField] private float particleSpeed = 0.0f;
+
+    [Header("メニュー管理")]
+    [SerializeField] private MenuManager menuManager = null;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,6 +26,12 @@ public class SwordRotate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //メニュー中は操作されない
+        if (menuManager.IsMenuOpen)
+        {
+            return;
+        }
+
         if (Input.GetMouseButtonDown(1) && !isMoving || Input.GetMouseButtonDown(0))
         {
             StartCoroutine(SwordAttack());

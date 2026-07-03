@@ -54,8 +54,11 @@ public class MenuCoreCollectionUI : MonoBehaviour
             //一覧項目生成
             CoreItemUI item = Instantiate(itemPrefab, content);
 
+            //種類に対応するコアを取得
+            SoulCore core = coreCollection.GetSoulCore(type);
+
             //表示内容設定
-            item.SetData(type.ToString(), count);
+            item.SetData(core, count);
         }
     }
 }
