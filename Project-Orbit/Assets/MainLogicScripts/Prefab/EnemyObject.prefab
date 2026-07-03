@@ -467,11 +467,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e45dc326d7670c548852c572cbb48dfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialAngle: 0
   rotateSpeed: 5
-  rotateAngle: {x: 10, y: 0, z: 0}
+  rotateAngle: 90
   weaponObject: {fileID: 7164028725037488360}
   weaponCollider: {fileID: 5731240114181951024}
   isAttack: 0
+  enemyAIController: {fileID: 0}
+  stoppingDistance: 1.5
 --- !u!54 &-6825909272333961180
 Rigidbody:
   m_ObjectHideFlags: 0
