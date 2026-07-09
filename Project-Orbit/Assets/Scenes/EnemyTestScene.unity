@@ -374,7 +374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aff048f620e8804bad1ee90380ec415, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy1Object: {fileID: 8815404796577700937, guid: 8b0673a57ea60f942a04cc8fbedaec88, type: 3}
+  enemy1Object: {fileID: 8815404796577700937, guid: e51b4932973af1a47ac4ad9318225e78, type: 3}
   enemy2Object: {fileID: 8815404796577700937, guid: 0aa3f8bcfef12c14d85828655416e1c8, type: 3}
   enemy3Object: {fileID: 8815404796577700937, guid: e51b4932973af1a47ac4ad9318225e78, type: 3}
 --- !u!4 &567684787
