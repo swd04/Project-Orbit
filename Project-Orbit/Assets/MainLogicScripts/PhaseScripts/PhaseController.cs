@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.UI;
 using DG.Tweening;
+using System.ComponentModel.Design;
 
 /// <summary>
 /// フェーズ管理クラス
@@ -57,13 +58,31 @@ public class PhaseController : MonoBehaviour
     [Header("プレイヤーのステータス")]
     [SerializeField] public PlayerStatus playerStatus = null;
 
+    [Header("タイムアタックモードであるか否か")]
+    [SerializeField] public bool isTimeAttackMode = false;
+
+    [Header("何体以下になったら敵を補充するかの数")]
+    [SerializeField] private int addEnemyCount = 0;
+
+    [Header("タイムアタックモードで出現させる敵の種類を指定")]
+    [SerializeField] private TimeAttackSpwanEnemyTypes timeAttackEnemyTypes = null;
+
+    [Header("タイムアタックモードのボス出現")]
+    [SerializeField] private TimeAttackBossSpwaner bossSpwaner = null;
+
+    [Header("敵補充のスパン")]
+    [SerializeField] private float addEnemyTime = 0.0f;
     /// <summary>
     /// 初期化
     /// </summary>
     private void Start()
     {
-        PhaseEnemySpwan();
-        isPhaseStartFlag = true;
+        if (!isTimeAttackMode)
+        {
+            PhaseEnemySpwan();
+            isPhaseStartFlag = true;
+        }
+        
     }
 
     /// <summary>
@@ -71,15 +90,22 @@ public class PhaseController : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        gaugeCount = (float)nowPhaseEnemyObjects.Count / (float)phaseEnemyMaxCount;
-        gauge.DOFillAmount(gaugeCount, 1.0f);
-        if (isPhaseStartFlag)
+        if (!isTimeAttackMode)
         {
-
-            if (nowPhaseEnemyObjects.Count <= 0 && !isPhaseChanging && phaseCount <= maxPhaseCount)
+            gaugeCount = (float)nowPhaseEnemyObjects.Count / (float)phaseEnemyMaxCount;
+            gauge.DOFillAmount(gaugeCount, 1.0f);
+            if (isPhaseStartFlag)
             {
-                StartCoroutine(PhaseChange());
+
+                if (nowPhaseEnemyObjects.Count <= 0 && !isPhaseChanging && phaseCount <= maxPhaseCount)
+                {
+                    StartCoroutine(PhaseChange());
+                }
             }
+        }
+        else
+        {
+            TimeAttackEnemySpwan();
         }
     }
 
@@ -114,14 +140,43 @@ public class PhaseController : MonoBehaviour
         }
     }
 
-    /// <summary>
+    public void TimeAttackEnemySpwan()
+    {
+        if(nowPhaseEnemyObjects.Count < addEnemyCount)
+        {
+            StartCoroutine(TimeAttackEnemyAdd());
+        }
+    }
+
+    private IEnumerator TimeAttackEnemyAdd()
+    {
+        yield return new WaitForSeconds(addEnemyTime);
+        for (int i = 0; i < timeAttackEnemyTypes.enemyTypes.Count; i++)
+        {
+            var enemy = factory.CreateEnemyObject(timeAttackEnemyTypes.enemyTypes[i]).GetComponent<EnemyStatus>();
+
+            enemy.PhaseControllerSet(this);
+            enemy.transform.parent = transform;
+            enemy.transform.localPosition = transform.position;
+            nowPhaseEnemyObjects.Add(enemy);
+        }
+
+    }
+      /// <summary>
     /// 倒された敵が自身をリストから削除するメソッド
     /// </summary>
     /// <param name="enemy"></param>
     public void PhaseEnemyRemove(EnemyStatus enemy)
     {
         nowPhaseEnemyObjects.Remove(enemy);
+
+        if (isTimeAttackMode　&& bossSpwaner != null)
+        {
+            bossSpwaner.deathEnemyCount++;
+        }
     }
+
+    
 
     /// <summary>
     /// フェーズ開始メソッド
@@ -153,4 +208,9 @@ public class PhaseController : MonoBehaviour
 
         isPhaseChanging = false;
     }
+}
+
+public enum GameMode
+{
+    None = -1,
 }
