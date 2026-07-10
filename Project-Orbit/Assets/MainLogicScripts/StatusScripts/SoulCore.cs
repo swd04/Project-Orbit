@@ -22,6 +22,14 @@ public class SoulCore : MonoBehaviour
 
     [SerializeField] public CoreID coreId = CoreID.None;
 
+    [Header("このコアのスキル")]
+    [SerializeField] private SkillDate skill = null;
+
+    /// <summary>
+    /// このコアが持つスキル
+    /// </summary>
+    public SkillDate Skill => skill;
+
     public void SoulLevelUp()
     {
         soulLevel++;
