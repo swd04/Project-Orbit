@@ -75,21 +75,41 @@ public class SkillActivation : MonoBehaviour
     /// </summary>
     public bool EquipSkill(SkillDate skill)
     {
-        //装備数制限チェック
-        if (equippedSkills.Count >= 3) return false;
+        Debug.Log("現在の装備数：" + equippedSkills.Count);
 
-        //未装備リストから削除できた場合のみ装備
-        if (unequippedSkills.Remove(skill))
+        Debug.Log("① EquipSkill開始");
+
+        if (skill == null)
         {
-            equippedSkills.Add(skill);
-
-            //UIを再初期化
-            skillWheelUI.Initialize(equippedSkills, 0);
-
-            return true;
+            Debug.Log("② skillがnull");
+            return false;
         }
 
-        return false;
+        if (equippedSkills.Contains(skill))
+        {
+            Debug.Log("③ 既に装備済み");
+            return false;
+        }
+
+        if (equippedSkills.Count >= 3)
+        {
+            Debug.Log("④ 装備上限");
+            return false;
+        }
+
+        Debug.Log("⑤ Add前 " + equippedSkills.Count);
+
+        unequippedSkills.Remove(skill);
+
+        equippedSkills.Add(skill);
+
+        Debug.Log("⑥ Add後 " + equippedSkills.Count);
+
+        skillWheelUI.Initialize(equippedSkills, 0);
+
+        Debug.Log("⑦ UI更新");
+
+        return true;
     }
 
     /// <summary>

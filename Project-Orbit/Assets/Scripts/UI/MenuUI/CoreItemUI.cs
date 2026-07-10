@@ -48,14 +48,14 @@ public class CoreItemUI : MonoBehaviour,
     /// </summary>
     public void SetData(SoulCore core, int count)
     {
-        //
+        //コア情報保存
         soulCore = core;
 
         //コア名表示
         coreNameText.text = core.name;
 
         //所持数表示
-        countText.text = $"×{count}";
+        countText.text = $"Lv.{core.soulLevel}";
     }
 
     /// <summary>

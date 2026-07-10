@@ -21,6 +21,22 @@ public class SkillSlotUI : MonoBehaviour
     /// </summary>
     public void Set(SkillDate skill, bool isSelected)
     {
+        //
+        if (skill == null)
+        {
+            icon.sprite = null;
+            icon.enabled = false;
+            skillName.text = "";
+
+            canvasGroup.alpha = 0.3f;
+            transform.localScale = Vector3.one;
+
+            return;
+        }
+
+        //
+        icon.enabled = true;
+
         //スキルアイコンを設定
         icon.sprite = skill.icon;
 

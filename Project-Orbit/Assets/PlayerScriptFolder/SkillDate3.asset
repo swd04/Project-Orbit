@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: SkillDate3
   m_EditorClassIdentifier: 
   skillName: Thunder
-  icon: {fileID: 0}
+  icon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   skillCoolTime: 0
   skillPower: 0
