@@ -72,6 +72,8 @@ public class PhaseController : MonoBehaviour
 
     [Header("敵補充のスパン")]
     [SerializeField] private float addEnemyTime = 0.0f;
+
+    [SerializeField] private bool isEnemyAddTime = false;
     /// <summary>
     /// 初期化
     /// </summary>
@@ -82,7 +84,13 @@ public class PhaseController : MonoBehaviour
             PhaseEnemySpwan();
             isPhaseStartFlag = true;
         }
-        
+        else
+        {
+            for(int i = 0; i < 20; i++)
+            {
+                StartCoroutine(TimeAttackEnemyAdd());
+            }
+        }
     }
 
     /// <summary>
@@ -144,12 +152,17 @@ public class PhaseController : MonoBehaviour
     {
         if(nowPhaseEnemyObjects.Count < addEnemyCount)
         {
-            StartCoroutine(TimeAttackEnemyAdd());
+            if (!isEnemyAddTime)
+            {
+                StartCoroutine(TimeAttackEnemyAdd());
+            }
+            
         }
     }
 
     private IEnumerator TimeAttackEnemyAdd()
     {
+        isEnemyAddTime = true;
         yield return new WaitForSeconds(addEnemyTime);
         for (int i = 0; i < timeAttackEnemyTypes.enemyTypes.Count; i++)
         {
@@ -160,7 +173,7 @@ public class PhaseController : MonoBehaviour
             enemy.transform.localPosition = transform.position;
             nowPhaseEnemyObjects.Add(enemy);
         }
-
+        isEnemyAddTime=false;
     }
       /// <summary>
     /// 倒された敵が自身をリストから削除するメソッド
