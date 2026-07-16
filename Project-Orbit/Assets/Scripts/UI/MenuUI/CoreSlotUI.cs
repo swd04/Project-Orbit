@@ -1,4 +1,3 @@
-using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -6,19 +5,19 @@ using UnityEngine.UI;
 /// <summary>
 /// コアをセットするスロットUIクラス
 /// </summary>
-public class CoreSlotUI : MonoBehaviour,IDropHandler, IPointerClickHandler
+public class CoreSlotUI : MonoBehaviour, IPointerClickHandler
 {
-    [Header("")]
+    [Header("スキルスロット")]
     [SerializeField] private Image slotImage = null;
 
-    [Header("")]
+    [Header("未セット時の色")]
     [SerializeField] private Color normalColor = Color.white;
 
-    [Header("")]
+    [Header("セット時の色")]
     [SerializeField] private Color equippedColor = Color.red;
 
-    [Header("スキル管理")]
-    [SerializeField] private SkillActivation skillActivation = null;
+    [Header("スロット管理")]
+    [SerializeField] private CoreSlotManager slotManager = null;
 
     /// <summary>
     /// 現在セットされているコア
@@ -26,59 +25,54 @@ public class CoreSlotUI : MonoBehaviour,IDropHandler, IPointerClickHandler
     private SoulCore currentCore = null;
 
     /// <summary>
+    /// スロットが空いているか
+    /// </summary>
+    public bool IsEmpty => currentCore == null;
+
+    /// <summary>
+    /// 現在セットされているコア
+    /// </summary>
+    public SoulCore CurrentCore => currentCore;
+
+    /// <summary>
     /// 初期化処理
     /// </summary>
     private void Start()
     {
+        //スロットを未セット状態の色にする
         slotImage.color = normalColor;
     }
 
     /// <summary>
-    /// コアをドロップした時の処理
+    /// コアをスロットへセットする処理
     /// </summary>
-    public void OnDrop(PointerEventData eventData)
+    public bool SetCore(SoulCore core)
     {
-        Debug.Log("OnDrop");
-
-        //既にセット済みなら置けない
-        if (currentCore != null)
+        //コアが存在しない場合
+        if (core == null)
         {
-            Debug.Log("このスロットには既にコアがセットされています");
-            return;
+            return false;
         }
 
-        //ドラッグ中のコアUI取得
-        CoreItemUI item = eventData.pointerDrag.GetComponent<CoreItemUI>();
-
-        //取得できなければ終了
-        if (item == null)
+        //既にコアがセットされている場合
+        if (currentCore != null)
         {
-            return;
+            return false;
         }
 
         //コアをセット
-        currentCore = item.GetSoulCore();
+        currentCore = core;
 
-        Debug.Log(currentCore);
-        Debug.Log(currentCore.coreType);
-        Debug.Log(currentCore.Skill);
-        Debug.Log(skillActivation);
-
-        //
-        if (currentCore.coreType ==CoreType.AttackMotion)
-        {
-            //
-            skillActivation.EquipSkill(currentCore.Skill);
-        }
-
-        //色を赤に
+        //スロット色をセット状態に変更
         slotImage.color = equippedColor;
 
         Debug.Log(currentCore.name + " をセット");
+
+        return true;
     }
 
     /// <summary>
-    /// 
+    /// スロット右クリック時の処理
     /// </summary>
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -94,18 +88,24 @@ public class CoreSlotUI : MonoBehaviour,IDropHandler, IPointerClickHandler
             return;
         }
 
-        //攻撃モーションコアならスキル解除
-        if (currentCore.coreType == CoreType.AttackMotion)
-        {
-            skillActivation.UnequipSkill(currentCore.Skill);
-        }
-
         Debug.Log(currentCore.name + " を外しました");
 
-        //コアを外す
+        //スロットを空にする
+        Clear();
+
+        //スロットを前詰めする
+        slotManager.SortSlots();
+    }
+
+    /// <summary>
+    /// スロットを空にする
+    /// </summary>
+    public void Clear()
+    {
+        //セット中のコアを削除
         currentCore = null;
 
-        //スロット色を戻す
+        //未装備状態の色へ戻す
         slotImage.color = normalColor;
     }
 }

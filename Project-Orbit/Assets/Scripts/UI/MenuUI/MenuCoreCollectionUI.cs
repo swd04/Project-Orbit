@@ -14,6 +14,12 @@ public class MenuCoreCollectionUI : MonoBehaviour
     [Header("一覧生成先")]
     [SerializeField] private Transform content = null;
 
+    [Header("コアスロット管理")]
+    [SerializeField] private CoreSlotManager slotManager = null;
+
+    [Header("管理するコア種類")]
+    [SerializeField] private CoreType coreType = CoreType.None;
+
     /// <summary>
     /// UI有効化時処理
     /// </summary>
@@ -51,14 +57,32 @@ public class MenuCoreCollectionUI : MonoBehaviour
                 continue;
             }
 
-            //一覧項目生成
-            CoreItemUI item = Instantiate(itemPrefab, content);
-
-            //種類に対応するコアを取得
+            //対応するコアを取得
             SoulCore core = coreCollection.GetSoulCore(type);
 
-            //表示内容設定
-            item.SetData(core, count);
+            //管理対象の種類だけ表示
+            if (core.coreType != coreType)
+            {
+                continue;
+            }
+
+            //コア一覧UI生成
+            CoreItemUI item = Instantiate(itemPrefab, content);
+
+            //一覧UIを初期化
+            item.Initialize(this);
+
+            //コア情報を表示
+            item.SetData(core);
         }
+    }
+
+    /// <summary>
+    /// コア一覧がクリックされた時の処理
+    /// </summary>
+    public void OnClickItem(SoulCore core)
+    {
+        //空いているスロットへコアを追加
+        slotManager.AddCore(core);
     }
 }
