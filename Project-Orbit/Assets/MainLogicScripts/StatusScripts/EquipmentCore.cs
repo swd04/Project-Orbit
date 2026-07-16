@@ -51,4 +51,71 @@ public class EquipmentCore : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// パッシブコアを装備する処理
+    /// </summary>
+    public void Equip(SoulCore core)
+    {
+        //コアが存在しない、または既に装備済みなら終了
+        if (core == null || equipmentCore.Contains(core))
+        {
+            return;
+        }
+
+        //装備中リストへ追加
+        equipmentCore.Add(core);
+
+        //パッシブ効果を更新
+        RefreshPassive();
+    }
+
+    /// <summary>
+    /// パッシブコアを解除する処理
+    /// </summary>
+    public void Unequip(SoulCore core)
+    {
+        //コアが存在しない場合は終了
+        if (core == null)
+        {
+            return;
+        }
+
+        //装備中リストから削除
+        equipmentCore.Remove(core);
+
+        //パッシブ効果を更新
+        RefreshPassive();
+    }
+
+    /// <summary>
+    /// 現在装備中のパッシブ効果を更新する処理
+    /// </summary>
+    private void RefreshPassive()
+    {
+        //一度すべてのパッシブ効果を解除
+        playerStatus.isRegenerationTrigger = false;
+        playerAttack.isEnchantAttackCoreSet = false;
+
+        //装備中のコアを確認してパッシブ効果を反映
+        foreach (SoulCore core in equipmentCore)
+        {
+            switch (core.coreId)
+            {
+                //自動回復コア
+                case CoreID.RegenerationCore:
+                    playerStatus.isRegenerationTrigger = true;
+                    break;
+
+                //攻撃強化コア
+                case CoreID.EncahntAttackCore:
+                    playerAttack.isEnchantAttackCoreSet = true;
+                    break;
+
+                //移動速度強化コア
+                case CoreID.EnchantMoveSpeedCore:
+                    break;
+            }
+        }
+    }
 }

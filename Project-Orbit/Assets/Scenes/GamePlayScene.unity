@@ -1008,6 +1008,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuPanel: {fileID: 1245320150}
+  menuPanels: []
 --- !u!1 &301327510
 GameObject:
   m_ObjectHideFlags: 0
@@ -4735,8 +4736,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: fa38c1f9e6894f845b9ef31308aaae62, type: 2}
-  m_sharedMaterial: {fileID: -1662290382235380556, guid: fa38c1f9e6894f845b9ef31308aaae62, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4871,8 +4872,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: fa38c1f9e6894f845b9ef31308aaae62, type: 2}
-  m_sharedMaterial: {fileID: -1662290382235380556, guid: fa38c1f9e6894f845b9ef31308aaae62, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5148,8 +5149,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: fa38c1f9e6894f845b9ef31308aaae62, type: 2}
-  m_sharedMaterial: {fileID: -1662290382235380556, guid: fa38c1f9e6894f845b9ef31308aaae62, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6101,9 +6102,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c666dbe8ddd2d740bdbd8365e6c07b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerStatus: {fileID: 1883833195}
   coreCount: 0
   playerChoseAttackMode: {fileID: 1883833184}
+  soulCoresList: []
 --- !u!114 &1883833188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6138,6 +6139,9 @@ MonoBehaviour:
   modeChangeCoolTime: 0
   rotateSpeed: 0.05
   rotateAngle: {x: 0, y: -540, z: 0}
+  isEnchantAttackCoreSet: 0
+  enchantAttackRatio: 0
+  menuManager: {fileID: 296292722}
 --- !u!114 &1883833190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6267,11 +6271,14 @@ MonoBehaviour:
   moveSpeed: 10
   unitTypes: 0
   playerChoseAttackMode: {fileID: 1883833184}
-  soulCoresList: []
-  soulLevel: 
   controlPlayer: {fileID: 1883833190}
   maxHp: 0
   isDamage: 0
+  isRegenerationTrigger: 0
+  regenerationTime: 0
+  regenerationDelta: 0
+  regenerationTriggerRatio: 0
+  lifePointRatio: 0
 --- !u!1001 &1896722041
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6284,6 +6291,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: 0eaada61a0ff83646a0c18493475d3da, type: 2}
+    - target: {fileID: 92266694940495117, guid: d2affdd3c7335a546bc52532c85f13d1, type: 3}
+      propertyPath: menuManager
+      value: 
+      objectReference: {fileID: 296292722}
     - target: {fileID: 92266694940495117, guid: d2affdd3c7335a546bc52532c85f13d1, type: 3}
       propertyPath: rotationVecter.y
       value: 360
@@ -6763,8 +6774,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: fa38c1f9e6894f845b9ef31308aaae62, type: 2}
-  m_sharedMaterial: {fileID: -1662290382235380556, guid: fa38c1f9e6894f845b9ef31308aaae62, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -7663,6 +7674,12 @@ MonoBehaviour:
   gaugeCount: 0
   gauge: {fileID: 0}
   playerStatus: {fileID: 1883833195}
+  isTimeAttackMode: 0
+  addEnemyCount: 0
+  timeAttackEnemyTypes: {fileID: 0}
+  bossSpwaner: {fileID: 0}
+  addEnemyTime: 0
+  isEnemyAddTime: 0
 --- !u!4 &2141004224
 Transform:
   m_ObjectHideFlags: 0
