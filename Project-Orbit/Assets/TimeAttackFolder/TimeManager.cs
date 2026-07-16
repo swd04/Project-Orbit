@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TimeManager : MonoBehaviour
+public class TimeManager : SingletonBehaviour<TimeManager>
 {
     [Header("タイマー")]
     [SerializeField] private float timer = 0f;
@@ -9,16 +9,11 @@ public class TimeManager : MonoBehaviour
     [Header("何秒からカウントダウンするかを設定")]
     [SerializeField] private int countdownTime = 0;
 
-    private void Start()
-    {
-        
-    }
-
     private void Update()
     {
         countdownTime--;
-        
-        if(countdownTime <= 0)
+
+        if (countdownTime <= 0)
         {
             timer += Time.deltaTime;
         }
