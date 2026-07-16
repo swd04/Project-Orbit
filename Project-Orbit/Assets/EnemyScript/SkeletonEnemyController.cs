@@ -116,7 +116,9 @@ public class SkeletonEnemyController : MonoBehaviour
     public void SwordAttack()
     {
         if (isRotating || isReturning)
+        {
             return;
+        }
 
         isAttack = true;
 
