@@ -438,7 +438,7 @@ MonoBehaviour:
   unitLifePoint: 100
   unitAttackPoint: 10
   unitDefencePoint: 12
-  moveSpeed: 10
+  moveSpeed: 5
   unitTypes: 1
   enemyType: 0
   detectionRange: 0

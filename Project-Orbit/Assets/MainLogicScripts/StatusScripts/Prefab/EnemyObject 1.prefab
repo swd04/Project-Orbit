@@ -184,7 +184,7 @@ MonoBehaviour:
   unitDefencePoint: 12
   moveSpeed: 0
   unitTypes: 1
-  enemyType: 1
+  enemyType: -1
   detectionRange: 0
   currentHp: 0
   phase: {fileID: 0}
