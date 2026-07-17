@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class NameInputController : SingletonBehaviour<NameInputController>
 {
@@ -23,9 +24,11 @@ public class NameInputController : SingletonBehaviour<NameInputController>
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.Return))
         {
             GetPlayerName();
+
+            SceneManager.LoadScene("TimeAttackMainScene");
         }
     }
 
