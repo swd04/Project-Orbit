@@ -303,9 +303,44 @@ MonoBehaviour:
   isDamage: 0
   isRegenerationTrigger: 0
   regenerationTime: 0
+  levelRegenerationTime:
+  - 10
+  - 9
+  - 8
+  - 7
+  - 6
+  - 5
+  - 4
+  - 3
+  - 2
+  - 1
   regenerationDelta: 0
   regenerationTriggerRatio: 0
+  levelRegenerationTriggerRatioList:
+  - 30
+  - 30
+  - 30
+  - 30
+  - 30
+  - 50
+  - 50
+  - 50
+  - 50
+  - 50
   lifePointRatio: 0
+  regenePoint: 0
+  regenePointParsentList:
+  - 0.01
+  - 0.01
+  - 0.01
+  - 0.01
+  - 0.01
+  - 0.02
+  - 0.03
+  - 0.04
+  - 0.05
+  - 0.05
+  regeneCoreLevel: 0
 --- !u!114 &36153778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3063,11 +3098,15 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: ce96198d9ac81554994e70378e6d8ae8, type: 2}
     - target: {fileID: 2115471744710464433, guid: f45a8bb923a63d544a03112586c96ea0, type: 3}
       propertyPath: coreId
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2115471744710464433, guid: f45a8bb923a63d544a03112586c96ea0, type: 3}
+      propertyPath: coreName
+      value: "\u30EA\u30B8\u30A7\u30CD\u30B3\u30A2"
       objectReference: {fileID: 0}
     - target: {fileID: 2115471744710464433, guid: f45a8bb923a63d544a03112586c96ea0, type: 3}
       propertyPath: coreType
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2115471744710464433, guid: f45a8bb923a63d544a03112586c96ea0, type: 3}
       propertyPath: skillDate

@@ -34,7 +34,8 @@ public class EquipmentCore : MonoBehaviour
                     switch (equipmentCore[i].coreId)
                     {
                         case CoreID.None:break;
-                        case CoreID.RegenerationCore:playerStatus.isRegenerationTrigger = true; break;
+                        case CoreID.RegenerationCore:playerStatus.isRegenerationTrigger = true;
+                             playerStatus.regeneCoreLevel = equipmentCore[i].soulLevel; break;
                         case CoreID.EncahntAttackCore:playerAttack.isEnchantAttackCoreSet = true; break;
                         case CoreID.EnchantMoveSpeedCore:break;
                     }

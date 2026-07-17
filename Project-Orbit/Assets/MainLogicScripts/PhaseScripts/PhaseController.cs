@@ -74,6 +74,8 @@ public class PhaseController : MonoBehaviour
     [SerializeField] private float addEnemyTime = 0.0f;
 
     [SerializeField] private bool isEnemyAddTime = false;
+
+    
     /// <summary>
     /// 初期化
     /// </summary>

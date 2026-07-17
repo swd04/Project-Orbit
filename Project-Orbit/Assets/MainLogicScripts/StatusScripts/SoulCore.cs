@@ -25,6 +25,9 @@ public class SoulCore : MonoBehaviour
     [Header("このコアのスキル")]
     [SerializeField] private SkillDate skill = null;
 
+    [Header("コアの名前")]
+    [SerializeField] public string coreName = "";
+
     /// <summary>
     /// このコアが持つスキル
     /// </summary>

@@ -21,16 +21,29 @@ public class PlayerStatus : UnitStatusBase
     [Header("自動回復の間隔")]
     [SerializeField] private float regenerationTime = 0.0f;
 
+    [Header("回復間隔のリスト")]
+    [SerializeField] private List<float> levelRegenerationTime = new List<float>();
+
     [Header("自動回復の経過時間")]
     [SerializeField] private float regenerationDelta = 0.0f;
 
-    [Header("児童会h区が有効な体力のパーセント")]
+    [Header("オート回復が有効な体力のパーセント")]
     [SerializeField] private float regenerationTriggerRatio = 0.0f;
+
+    [Header("レベル別オート回復有効なパーセント")]
+    [SerializeField] private List<float> levelRegenerationTriggerRatioList = new List<float>();
 
     [Header("現在の体力のパーセント")]
     [SerializeField] private float lifePointRatio = 0.0f;
 
-  
+    [Header("回復する値")]
+    [SerializeField] private int regenePoint = 0;
+
+    [Header("回復する割合リスト(計算式　Max体力*％)")]
+    [SerializeField] private List<float> regenePointParsentList = new List<float>();
+
+    [Header("リジェネコアのレベル")]
+    [SerializeField] public int regeneCoreLevel = 0;
 
     /// <summary>
     /// 現在HP
@@ -89,6 +102,11 @@ public class PlayerStatus : UnitStatusBase
 
         RegenerationLifePoint();
 
+        //テスト用
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            unitLifePoint -= 10;
+        }
     }
 
     public void EnchantStatus(int hp, int attack, int defence, float speed)
@@ -125,12 +143,20 @@ public class PlayerStatus : UnitStatusBase
         
         if (isRegenerationTrigger)
         {
-            if(lifePointRatio <= regenerationTriggerRatio)
+            regenerationTime = levelRegenerationTime[regeneCoreLevel];
+
+            regenerationTriggerRatio = levelRegenerationTriggerRatioList[regeneCoreLevel];
+
+            float regenePower = maxHp * regenePointParsentList[regeneCoreLevel];
+            regenePoint = (int)regenePower;
+
+
+            if (lifePointRatio <= regenerationTriggerRatio)
             {
                 regenerationDelta += Time.deltaTime;
                 if(regenerationDelta > regenerationTime)
                 {
-                    unitLifePoint += maxHp / 100;
+                    unitLifePoint += regenePoint;
                     regenerationDelta = 0;
                 }
             }
