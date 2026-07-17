@@ -3,9 +3,6 @@ using UnityEngine;
 
 public class CoreCollection : MonoBehaviour
 {
-    //[Header("プレイヤーステータス")]
-    //[SerializeField] private PlayerStatus playerStatus = null;
-
     [Header("コアの総数")]
     [SerializeField] public int coreCount = 0;
 
@@ -21,12 +18,6 @@ public class CoreCollection : MonoBehaviour
     /// コア総数
     /// </summary>
     public int CoreCount => coreCount;
-
-    //private void Start()
-    //{
-    //    // コア取得数の初期化
-    //    coreCount = 0;
-    //}
 
     /// <summary>
     /// 指定種類の所持数取得処理
@@ -87,16 +78,6 @@ public class CoreCollection : MonoBehaviour
         GameLogUI.Instance.AddLog($"{coreName}を取得");
 
         Debug.Log($"{coreName}を取得" + $"現在所持数:{coreDictionary[soulCore.actionType]}");
-
-        //if (playerChoseAttackMode.currentAttackMode == AttackMode.SOULREINFORCE)
-        //{
-        //    // コアに触れたとき、コア取得数を増やす
-        //    if (other.gameObject.CompareTag("Core"))
-        //    {
-        //        coreCount++;
-        //        Debug.Log("コアを取得しました 現在のコア数: " + coreCount);
-        //    }
-        //}
     }
 
     /// <summary>

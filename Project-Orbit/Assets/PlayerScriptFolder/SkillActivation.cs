@@ -77,37 +77,26 @@ public class SkillActivation : MonoBehaviour
     {
         Debug.Log("Œ»İ‚Ì‘•”õ”F" + equippedSkills.Count);
 
-        Debug.Log("‡@ EquipSkillŠJn");
-
         if (skill == null)
         {
-            Debug.Log("‡A skill‚ªnull");
             return false;
         }
 
         if (equippedSkills.Contains(skill))
         {
-            Debug.Log("‡B Šù‚É‘•”õÏ‚İ");
             return false;
         }
 
         if (equippedSkills.Count >= 3)
         {
-            Debug.Log("‡C ‘•”õãŒÀ");
             return false;
         }
-
-        Debug.Log("‡D Add‘O " + equippedSkills.Count);
 
         unequippedSkills.Remove(skill);
 
         equippedSkills.Add(skill);
 
-        Debug.Log("‡E AddŒã " + equippedSkills.Count);
-
         skillWheelUI.Initialize(equippedSkills, 0);
-
-        Debug.Log("‡F UIXV");
 
         return true;
     }

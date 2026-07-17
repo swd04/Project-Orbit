@@ -440,13 +440,22 @@ MonoBehaviour:
   isDamage: 0
   isRegenerationTrigger: 0
   regenerationTime: 0
-  levelRegenerationTime: []
+  levelRegenerationTime:
+  - 1
+  - 2
+  - 3
   regenerationDelta: 0
   regenerationTriggerRatio: 0
-  levelRegenerationTrggerRatioList: []
+  levelRegenerationTrggerRatioList:
+  - 1
+  - 2
+  - 3
   lifePointRatio: 0
   regenePoint: 0
-  regenePointParsentList: []
+  regenePointParsentList:
+  - 1
+  - 2
+  - 3
   regeneCoreLevel: 0
 --- !u!114 &36153778
 MonoBehaviour:
@@ -5527,7 +5536,6 @@ GameObject:
   - component: {fileID: 948053663}
   - component: {fileID: 948053666}
   - component: {fileID: 948053665}
-  - component: {fileID: 948053664}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -5550,27 +5558,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 36153786}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &948053664
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 948053662}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &948053665
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7348,6 +7335,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8439155276020717342, guid: 52e83b18e3948734b905c6b2f27f9da7, type: 3}
       propertyPath: soulLevel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439155276020717342, guid: 52e83b18e3948734b905c6b2f27f9da7, type: 3}
+      propertyPath: actionType
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
