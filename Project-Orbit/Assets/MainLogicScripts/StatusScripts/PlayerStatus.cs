@@ -21,14 +21,29 @@ public class PlayerStatus : UnitStatusBase
     [Header("自動回復の間隔")]
     [SerializeField] private float regenerationTime = 0.0f;
 
+    [Header("")]
+    [SerializeField] private List<float> levelRegenerationTime = new List<float>();
+
     [Header("自動回復の経過時間")]
     [SerializeField] private float regenerationDelta = 0.0f;
 
-    [Header("児童会h区が有効な体力のパーセント")]
+    [Header("オート回復が有効な体力のパーセント")]
     [SerializeField] private float regenerationTriggerRatio = 0.0f;
+
+    [Header("")]
+    [SerializeField] private List<float> levelRegenerationTrggerRatioList = new List<float>();
 
     [Header("現在の体力のパーセント")]
     [SerializeField] private float lifePointRatio = 0.0f;
+
+    [Header("")]
+    [SerializeField] private int regenePoint = 0;
+
+    [Header("")]
+    [SerializeField] private List<float> regenePointParsentList = new List<float>();
+
+    [Header("")]
+    [SerializeField] public int regeneCoreLevel = 0;
 
     /// <summary>
     /// 現在HP
@@ -95,6 +110,10 @@ public class PlayerStatus : UnitStatusBase
 
         RegenerationLifePoint();
 
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            unitLifePoint -= 10;
+        }
     }
 
     public void EnchantStatus(int hp, int attack, int defence, float speed)
@@ -131,12 +150,20 @@ public class PlayerStatus : UnitStatusBase
 
         if (isRegenerationTrigger)
         {
+            regenerationTime = levelRegenerationTime[regeneCoreLevel];
+
+            regenerationTriggerRatio = levelRegenerationTrggerRatioList[regeneCoreLevel];
+
+            float regenePower = maxHp * regenePointParsentList[regeneCoreLevel];
+            regenePoint = (int)regenePower;
+
             if (lifePointRatio <= regenerationTriggerRatio)
             {
                 regenerationDelta += Time.deltaTime;
                 if (regenerationDelta > regenerationTime)
                 {
                     unitLifePoint += maxHp / 100;
+                    unitLifePoint += regenePoint;
                     regenerationDelta = 0;
 
                     //HP変更通知
