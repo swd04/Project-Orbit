@@ -21,29 +21,14 @@ public class PlayerStatus : UnitStatusBase
     [Header("自動回復の間隔")]
     [SerializeField] private float regenerationTime = 0.0f;
 
-    [Header("回復間隔のリスト")]
-    [SerializeField] private List<float> levelRegenerationTime = new List<float>();
-
     [Header("自動回復の経過時間")]
     [SerializeField] private float regenerationDelta = 0.0f;
 
-    [Header("オート回復が有効な体力のパーセント")]
+    [Header("児童会h区が有効な体力のパーセント")]
     [SerializeField] private float regenerationTriggerRatio = 0.0f;
-
-    [Header("レベル別オート回復有効なパーセント")]
-    [SerializeField] private List<float> levelRegenerationTriggerRatioList = new List<float>();
 
     [Header("現在の体力のパーセント")]
     [SerializeField] private float lifePointRatio = 0.0f;
-
-    [Header("回復する値")]
-    [SerializeField] private int regenePoint = 0;
-
-    [Header("回復する割合リスト(計算式　Max体力*％)")]
-    [SerializeField] private List<float> regenePointParsentList = new List<float>();
-
-    [Header("リジェネコアのレベル")]
-    [SerializeField] public int regeneCoreLevel = 0;
 
     /// <summary>
     /// 現在HP
@@ -64,6 +49,11 @@ public class PlayerStatus : UnitStatusBase
     /// 防御力
     /// </summary>
     public int Defence => unitDefencePoint;
+
+    /// <summary>
+    /// HP変更通知イベント
+    /// </summary>
+    public event System.Action<int, int> OnHPChanged;
 
     private void Start()
     {
@@ -98,15 +88,13 @@ public class PlayerStatus : UnitStatusBase
             int damage = DamageManager.Instance.PlayerDamageCalculation(unitLifePoint);
 
             unitLifePoint -= damage;
+
+            //HP変更通知
+            OnHPChanged?.Invoke(unitLifePoint, maxHp);
         }
 
         RegenerationLifePoint();
 
-        //テスト用
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            unitLifePoint -= 10;
-        }
     }
 
     public void EnchantStatus(int hp, int attack, int defence, float speed)
@@ -140,24 +128,19 @@ public class PlayerStatus : UnitStatusBase
     {
         //現在の残存体力の比率を計算
         lifePointRatio = (float)unitLifePoint / (float)maxHp;
-        
+
         if (isRegenerationTrigger)
         {
-            regenerationTime = levelRegenerationTime[regeneCoreLevel];
-
-            regenerationTriggerRatio = levelRegenerationTriggerRatioList[regeneCoreLevel];
-
-            float regenePower = maxHp * regenePointParsentList[regeneCoreLevel];
-            regenePoint = (int)regenePower;
-
-
             if (lifePointRatio <= regenerationTriggerRatio)
             {
                 regenerationDelta += Time.deltaTime;
-                if(regenerationDelta > regenerationTime)
+                if (regenerationDelta > regenerationTime)
                 {
-                    unitLifePoint += regenePoint;
+                    unitLifePoint += maxHp / 100;
                     regenerationDelta = 0;
+
+                    //HP変更通知
+                    OnHPChanged?.Invoke(unitLifePoint, maxHp);
                 }
             }
             else

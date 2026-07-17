@@ -30,6 +30,9 @@ public class PlayerHPBarUI : DelayImageHPBarBase
     //低HPへ切り替わる割合
     [SerializeField] private float lowHPThreshold = 0.25f;
 
+    [Header("プレイヤーステータス")]
+    [SerializeField] private PlayerStatus playerStatus = null;
+
     /// <summary>
     /// 初期化処理
     /// </summary>
@@ -43,6 +46,32 @@ public class PlayerHPBarUI : DelayImageHPBarBase
         {
             delayImage.color = delayBarColor;
         }
+    }
+
+    /// <summary>
+    /// 初期化処理
+    /// </summary>
+    private void Start()
+    {
+        //HP変更通知を登録
+        playerStatus.OnHPChanged += UpdateHPBar;
+
+
+        //初期表示
+        UpdateHPBar(
+            playerStatus.Life,
+            playerStatus.MaxHP
+        );
+    }
+
+    /// <summary>
+    /// HPバー更新処理
+    /// </summary>
+    private void UpdateHPBar(int hp, int maxHp)
+    {
+        float ratio = (float)hp / maxHp;
+
+        UpdateHP(hp, maxHp);
     }
 
     /// <summary>
@@ -77,5 +106,13 @@ public class PlayerHPBarUI : DelayImageHPBarBase
     {
         //HPはMAXでも少し欠ける
         return ratio * 0.8f;
+    }
+
+    private void OnDestroy()
+    {
+        if (playerStatus != null)
+        {
+            playerStatus.OnHPChanged -= UpdateHPBar;
+        }
     }
 }
