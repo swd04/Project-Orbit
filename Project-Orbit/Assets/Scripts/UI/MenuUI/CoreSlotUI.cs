@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -10,11 +11,8 @@ public class CoreSlotUI : MonoBehaviour, IPointerClickHandler
     [Header("スキルスロット")]
     [SerializeField] private Image slotImage = null;
 
-    [Header("未セット時の色")]
-    [SerializeField] private Color normalColor = Color.white;
-
-    [Header("セット時の色")]
-    [SerializeField] private Color equippedColor = Color.red;
+    [Header("コア情報表示")]
+    [SerializeField] private TMP_Text coreNameText = null;
 
     [Header("スロット管理")]
     [SerializeField] private CoreSlotManager slotManager = null;
@@ -39,8 +37,8 @@ public class CoreSlotUI : MonoBehaviour, IPointerClickHandler
     /// </summary>
     private void Start()
     {
-        //スロットを未セット状態の色にする
-        slotImage.color = normalColor;
+        //初期状態では非表示
+        coreNameText.text = "";
     }
 
     /// <summary>
@@ -63,8 +61,8 @@ public class CoreSlotUI : MonoBehaviour, IPointerClickHandler
         //コアをセット
         currentCore = core;
 
-        //スロット色をセット状態に変更
-        slotImage.color = equippedColor;
+        //表示更新
+        coreNameText.text = currentCore.coreName;
 
         Debug.Log(currentCore.name + " をセット");
 
@@ -72,12 +70,12 @@ public class CoreSlotUI : MonoBehaviour, IPointerClickHandler
     }
 
     /// <summary>
-    /// スロット右クリック時の処理
+    /// スロットクリック時の処理
     /// </summary>
     public void OnPointerClick(PointerEventData eventData)
     {
-        //右クリック以外は無視
-        if (eventData.button != PointerEventData.InputButton.Right)
+        //左クリック以外は無視
+        if (eventData.button != PointerEventData.InputButton.Left)
         {
             return;
         }
@@ -105,7 +103,7 @@ public class CoreSlotUI : MonoBehaviour, IPointerClickHandler
         //セット中のコアを削除
         currentCore = null;
 
-        //未装備状態の色へ戻す
-        slotImage.color = normalColor;
+        //表示を消す
+        coreNameText.text = "";
     }
 }
