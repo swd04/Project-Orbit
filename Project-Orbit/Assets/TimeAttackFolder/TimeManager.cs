@@ -35,6 +35,10 @@ public class TimeManager : SingletonBehaviour<TimeManager>
     [Header("UserDataHolder")]
     [SerializeField] private UserDataHolder userDataHolder = null;
 
+    [SerializeField] private GameObject gameMainObject = null;
+
+    [SerializeField] private GameObject countDownCamera = null;
+
     /// <summary>
     /// カウントダウンを最初に表する
     /// </summary>
@@ -66,6 +70,8 @@ public class TimeManager : SingletonBehaviour<TimeManager>
         {
             countdownDisplay.SetActive(false);
             timerDisplay.SetActive(true);
+            countDownCamera.SetActive(false);
+            gameMainObject.SetActive(true);
 
             if (timer < startTextDisplayTime)
             {
