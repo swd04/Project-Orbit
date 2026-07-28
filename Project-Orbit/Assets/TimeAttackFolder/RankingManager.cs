@@ -1,12 +1,17 @@
-using NUnit.Framework;
 using System.IO;
 using UnityEngine;
 using System.Collections.Generic;
 
+/// <summary>
+/// ランキングデータを管理するクラス
+/// </summary>
 public class RankingManager : SingletonMonoBehaviour<RankingManager>
 {
     [Header("ランキングデータの取得")]
     [SerializeField] private RankingData rankingData = new RankingData();
+
+    [Header("ランキングの最大人数")] // 現状だと10人を設定
+    [SerializeField] private int maxRankingCount = 0;
 
     /// <summary>
     /// セーブする際のパスを取得するプロパティ
@@ -22,6 +27,7 @@ public class RankingManager : SingletonMonoBehaviour<RankingManager>
     private void Awake()
     {
         Load();
+        DontDestroyOnLoad(gameObject);
     }
 
     /// <summary>
@@ -34,12 +40,16 @@ public class RankingManager : SingletonMonoBehaviour<RankingManager>
         player.playerNameData = name;
         player.clearTimeData = clearTime;
 
-        GameClear.Instance.GetUserData(name, clearTime);
-
         rankingData.Players.Add(player);
 
         // クリアタイムの昇順でソートする
         rankingData.Players.Sort((a, b) => a.clearTimeData.CompareTo(b.clearTimeData));
+
+        // ランキングの最大人数を超えたら削除
+        if (rankingData.Players.Count > maxRankingCount)
+        {
+            rankingData.Players.RemoveRange(maxRankingCount, rankingData.Players.Count - maxRankingCount);
+        }
 
         Save();
     }
@@ -66,13 +76,29 @@ public class RankingManager : SingletonMonoBehaviour<RankingManager>
     /// </summary>
     public void Load()
     {
+        // ファイルが存在しない場合は新しいランキングデータを作成
         if (!File.Exists(SavePath))
         {
             rankingData = new RankingData();
             return;
         }
 
+        // ファイルが存在する場合は読み込む
         string json = File.ReadAllText(SavePath);
+
+        // JSONをRankingDataに変換
         rankingData = JsonUtility.FromJson<RankingData>(json);
+
+        // 読み込み失敗時
+        if (rankingData == null)
+        {
+            rankingData = new RankingData();
+        }
+
+        // Playersがnullの場合
+        if (rankingData.Players == null)
+        {
+            rankingData.Players = new List<PlayerData>();
+        }
     }
 }

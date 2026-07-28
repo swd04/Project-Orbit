@@ -6,10 +6,10 @@ using UnityEngine;
 public class UserDataHolder : MonoBehaviour
 {
     [Header("プレイヤー名")]
-    public string userName = "";
+    [SerializeField] public string userName = "";
 
     [Header("クリアタイム")]
-    public float clearTime = 0.0f;
+    [SerializeField] public float clearTime = 0.0f;
 
     private void Awake()
     {

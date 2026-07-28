@@ -1,7 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
+/// <summary>
+/// タイムアタック内での時間を管理するクラス
+/// </summary>
 public class TimeManager : SingletonBehaviour<TimeManager>
 {
     [Header("タイマー")]
@@ -28,13 +32,27 @@ public class TimeManager : SingletonBehaviour<TimeManager>
     [Header("開始テキストを何秒間表示させるか")]
     [SerializeField] private float startTextDisplayTime = 0f;
 
+    [Header("UserDataHolder")]
+    [SerializeField] private UserDataHolder userDataHolder = null;
+
+    /// <summary>
+    /// カウントダウンを最初に表する
+    /// </summary>
     private void Start()
     {
         countdownDisplay.SetActive(true);
+
+        userDataHolder = FindAnyObjectByType<UserDataHolder>();
     }
 
+    /// <summary>
+    /// 表示の切り替えを毎フレーム更新
+    /// </summary>
     private void Update()
     {
+       
+
+
         TimerSceneDisplay();
 
         countdownTime -= Time.deltaTime;
@@ -59,8 +77,11 @@ public class TimeManager : SingletonBehaviour<TimeManager>
             }
         }
 
-
-
+        // 仮のゲームクリア処理
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            GameClear();
+        }
     }
 
     public void TimerSceneDisplay()
@@ -72,5 +93,19 @@ public class TimeManager : SingletonBehaviour<TimeManager>
     public float GetClearTime()
     {
         return timer;
+    }
+    /// <summary>
+    /// ゲームクリア時の処理
+    /// </summary>
+    public void GameClear()
+    {
+        // 今回のクリアタイムを保存
+        userDataHolder.clearTime = timer;
+
+        // ランキングへ登録
+        RankingManager.Instance.AddPlayer(userDataHolder. userName, userDataHolder.clearTime);
+
+        // ランキング画面へ遷移
+        SceneManager.LoadScene("RankingScene");
     }
 }
