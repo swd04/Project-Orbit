@@ -2844,6 +2844,8 @@ MonoBehaviour:
   coreCollection: {fileID: 1883833187}
   itemPrefab: {fileID: 2398444369043835803, guid: d0d0b59f4b9012749a554fe8cd56129b, type: 3}
   content: {fileID: 643844470}
+  slotManager: {fileID: 0}
+  coreType: 0
 --- !u!1 &672547221
 GameObject:
   m_ObjectHideFlags: 0
@@ -4328,6 +4330,7 @@ MonoBehaviour:
   delayBarColor: {r: 1, g: 0.5, b: 0, a: 1}
   midHPThreshold: 0.5
   lowHPThreshold: 0.25
+  playerStatus: {fileID: 1883833195}
 --- !u!1 &1245320150
 GameObject:
   m_ObjectHideFlags: 0
@@ -6276,9 +6279,14 @@ MonoBehaviour:
   isDamage: 0
   isRegenerationTrigger: 0
   regenerationTime: 0
+  levelRegenerationTime: []
   regenerationDelta: 0
   regenerationTriggerRatio: 0
+  levelRegenerationTrggerRatioList: []
   lifePointRatio: 0
+  regenePoint: 0
+  regenePointParsentList: []
+  regeneCoreLevel: 0
 --- !u!1001 &1896722041
 PrefabInstance:
   m_ObjectHideFlags: 0

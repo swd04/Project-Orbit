@@ -12,6 +12,11 @@ public class EquipmentCore : MonoBehaviour
     [Header("プレイヤーの攻撃クラス")]
     [SerializeField] private PlayerAttack playerAttack = null;
 
+    [SerializeField] private bool isSlashWave = false;
+
+    [SerializeField] private SlashWave wave = null;
+
+
     /// <summary>
     /// 初期化
     /// </summary>
@@ -50,6 +55,17 @@ public class EquipmentCore : MonoBehaviour
             {
                 return;
             }
+        }
+
+        if (isSlashWave)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                SlashWave slash = Instantiate(wave);
+                slash.transform.position = transform.position;
+                slash.transform.rotation = transform.rotation;
+            }
+            
         }
     }
 
