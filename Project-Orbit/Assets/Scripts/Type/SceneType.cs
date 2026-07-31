@@ -9,13 +9,13 @@ public enum SceneType
     /// </summary>
     GameTitleScene,
 
-    /// <summary>
-    /// ゲームプレイシーン
-    /// </summary>
-    GamePlayScene,
+    NameInputScene,
 
-    /// <summary>
-    /// ゲームエンドシーン
-    /// </summary>
+    TimeAttackMainScene,
+
+    TimeAttackBossTestSecene,
+
+    RankingScene,
+
     GameEndScene
 }
