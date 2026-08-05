@@ -16,22 +16,78 @@ public class TimeAttackBossSpwaner : MonoBehaviour
     [SerializeField] private GameObject bossObject = null;
 
     [SerializeField] private TextMeshProUGUI countText = null;
+
+    [Header("目標UI")]
+    [SerializeField] private ObjectiveUI objectiveUI = null;
+
+    [Header("ボス出現UI")]
+    [SerializeField] private BossAppearUI bossAppearUI = null;
+
+    /// <summary>
+    /// 初期化処理
+    /// </summary>
+    private void Start()
+    {
+        countText.text = $"{bossSpwanCount - deathEnemyCount}体";
+
+        UpdateObjective();
+    }
+
     private void Update()
     {
-        BossSpwan();
+        //BossSpwan();
 
+        //ountText.text = $"{bossSpwanCount - deathEnemyCount}体";
+    }
+
+    /// <summary>
+    /// 目標表示を更新処理
+    /// </summary>
+    private void UpdateObjective()
+    {
+        if (objectiveUI == null)
+        {
+            Debug.LogError("ObjectiveUI が設定されていません。");
+            return;
+        }
+
+        //
+        if (!isBossSpwan)
+        {
+            objectiveUI.SetObjective($"雑魚敵を倒せ！{deathEnemyCount}/{bossSpwanCount}");
+        }
+        else
+        {
+            objectiveUI.SetObjective("ボスを倒せ!");
+        }
+    }
+
+    /// <summary>
+    /// 敵撃破を加算
+    /// </summary>
+    public void AddDeathEnemyCount()
+    {
+        deathEnemyCount++;
 
         countText.text = $"{bossSpwanCount - deathEnemyCount}体";
+
+        UpdateObjective();
+
+        BossSpwan();
     }
 
     public void BossSpwan()
     {
         if (!isBossSpwan)
         {
-            if(bossSpwanCount <= deathEnemyCount)
+            if (bossSpwanCount <= deathEnemyCount)
             {
                 bossObject.SetActive(true);
                 isBossSpwan = true;
+
+                bossAppearUI.Show();
+
+                UpdateObjective();
             }
         }
     }
