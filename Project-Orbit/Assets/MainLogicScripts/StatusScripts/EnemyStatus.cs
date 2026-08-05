@@ -41,6 +41,8 @@ public class EnemyStatus : UnitStatusBase
     [Header("最大HP")]
     public int maxHp = 0;
 
+    [SerializeField] private bool isBossEnemy = false;
+
     //死亡済みか
     private bool isDead = false;
 
@@ -178,6 +180,10 @@ public class EnemyStatus : UnitStatusBase
 
             }
 
+            if (isBossEnemy)
+            {
+                SceneLoader.Instance.TitleLoad();
+            }
             //敵削除
             Destroy(gameObject);
         }
