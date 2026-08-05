@@ -31,6 +31,7 @@ public class TimeAttackBossSpwaner : MonoBehaviour
             if(bossSpwanCount <= deathEnemyCount)
             {
                 bossObject.SetActive(true);
+                isBossSpwan = true;
             }
         }
     }
