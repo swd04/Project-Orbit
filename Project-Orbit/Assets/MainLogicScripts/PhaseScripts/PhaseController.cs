@@ -187,7 +187,7 @@ public class PhaseController : MonoBehaviour
 
         if (isTimeAttackMode　&& bossSpwaner != null)
         {
-            bossSpwaner.deathEnemyCount++;
+            bossSpwaner.AddDeathEnemyCount();
         }
     }
 
