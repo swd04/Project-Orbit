@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 989bfb26e91471545a8a8e8240da2838, type: 3}
   m_Name: TimeAttackSpwanEnemyTypes
   m_EditorClassIdentifier: 
-  enemyTypes: 0000000001000000
+  enemyTypes: 000000000100000002000000

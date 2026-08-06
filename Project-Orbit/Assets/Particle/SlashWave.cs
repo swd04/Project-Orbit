@@ -30,4 +30,12 @@ public class SlashWave : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("MapObj"))
+        {
+            gameObject.SetActive(false);
+        }
+    }
 }

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: EnemyType3StatusBounus
   m_EditorClassIdentifier: 
   bounusLifePoint: 0
-  bounusAttackPoint: 0
+  bounusAttackPoint: 50
   bounusDefencePoint: 0
   bounusMoveSpeed: 0

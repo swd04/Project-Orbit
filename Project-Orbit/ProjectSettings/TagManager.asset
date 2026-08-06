@@ -9,6 +9,7 @@ TagManager:
   - Soul
   - Weapon
   - EnemyWeapon
+  - MapObj
   layers:
   - Default
   - TransparentFX
