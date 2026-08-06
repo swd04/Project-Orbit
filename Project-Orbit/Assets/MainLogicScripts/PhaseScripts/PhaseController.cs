@@ -172,7 +172,7 @@ public class PhaseController : MonoBehaviour
 
             enemy.PhaseControllerSet(this);
             enemy.transform.parent = transform;
-            enemy.transform.localPosition = transform.position;
+            enemy.transform.localPosition = transform.position+ new Vector3(Random.Range(-30.0f,30.0f),0.0f, Random.Range(-30.0f, 30.0f)) ;
             nowPhaseEnemyObjects.Add(enemy);
         }
         isEnemyAddTime=false;
