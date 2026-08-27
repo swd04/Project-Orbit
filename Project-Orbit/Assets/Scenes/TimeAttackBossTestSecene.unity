@@ -1582,6 +1582,7 @@ MonoBehaviour:
   bossObject: {fileID: 1061040797}
   countText: {fileID: 2113653031}
   objectiveUI: {fileID: 1059535624}
+  bossAppearUI: {fileID: 0}
 --- !u!4 &304375191
 Transform:
   m_ObjectHideFlags: 0
@@ -9935,7 +9936,7 @@ MonoBehaviour:
   delayBarColor: {r: 1, g: 0.5, b: 0, a: 1}
   midHPThreshold: 0.5
   lowHPThreshold: 0.25
-  playerStatus: {fileID: 0}
+  playerStatus: {fileID: 1127716685}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

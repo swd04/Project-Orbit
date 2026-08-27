@@ -377,7 +377,7 @@ GameObject:
   - component: {fileID: 8915286131044584920}
   m_Layer: 0
   m_Name: Sword
-  m_TagString: Untagged
+  m_TagString: EnemyWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -939,6 +939,7 @@ MonoBehaviour:
   eatStatus: 2
   statusuUpPoint: 20
   maxHp: 0
+  isBossEnemy: 0
 --- !u!54 &-6019446455484315759
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1022,7 +1023,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialAngle: 0
   rotateAngle: 90
-  attackFrames: 5
+  attackFrames: 30
   weaponObject: {fileID: 3590602293856413268}
   weaponCollider: {fileID: 8915286131044584920}
   enemyAIController: {fileID: 0}

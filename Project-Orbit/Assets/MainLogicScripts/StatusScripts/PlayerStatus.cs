@@ -94,19 +94,12 @@ public class PlayerStatus : UnitStatusBase
 
         //}
 
+        // プレイヤーの攻撃力を取得
         DamageManager.Instance.GetPlayerPower(unitAttackPoint);
 
         //Debug.LogFormat("プレイヤーのHP{0}です", unitLifePoint);
 
-        if (isDamage)
-        {
-            int damage = DamageManager.Instance.PlayerDamageCalculation(unitLifePoint);
-
-            unitLifePoint -= damage;
-
-            //HP変更通知
-            OnHPChanged?.Invoke(unitLifePoint, maxHp);
-        }
+        
 
         RegenerationLifePoint();
 
@@ -181,6 +174,21 @@ public class PlayerStatus : UnitStatusBase
         }
     }
 
+
+    private void PlayerTakeDamage()
+    {
+        if (isDamage)
+        {
+            int damage = DamageManager.Instance.PlayerDamageCalculation(unitLifePoint);
+
+            Debug.Log("プレイヤーが受けるダメージ : " + damage);
+            unitLifePoint = damage;
+
+            //HP変更通知
+            OnHPChanged?.Invoke(unitLifePoint, maxHp);
+        }
+    }
+
     //private void OnTriggerEnter(Collider other)
     //{
     //    if (other != null)
@@ -225,6 +233,22 @@ public class PlayerStatus : UnitStatusBase
     //    //    getSoul.gameObject.SetActive(false);
     //    //}
     //}
+
+public void OnTriggerEnter(Collider other)
+    {
+        if (isDamage)
+        {
+            isDamage = false;
+            return;
+        }
+
+        if (other.CompareTag(TagStock.Instance.ENEMY_WEAPON_TAG))
+        {
+            Debug.Log("プレイヤーが敵の攻撃を受けた");
+            isDamage = true;
+            PlayerTakeDamage();
+        }
+    }
 
     public void OnTriggerExit(Collider other)
     {
