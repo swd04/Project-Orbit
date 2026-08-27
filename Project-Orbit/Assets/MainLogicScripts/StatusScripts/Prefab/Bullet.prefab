@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -265895581917774506}
   m_Layer: 0
   m_Name: Bullet
-  m_TagString: Untagged
+  m_TagString: EnemyWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,9 +122,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe9a362e79a6df947ae3e5869e2fa642, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidbody: {fileID: -265895581917774506}
-  enemyGunData: {fileID: 11400000, guid: 21e182e24b4a24c4f8f60606d79fa7c8, type: 2}
-  enemyAIController: {fileID: -8665739983074022530, guid: 8b0673a57ea60f942a04cc8fbedaec88, type: 3}
 --- !u!54 &-265895581917774506
 Rigidbody:
   m_ObjectHideFlags: 0

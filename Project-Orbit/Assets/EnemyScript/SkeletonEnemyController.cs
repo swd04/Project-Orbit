@@ -68,12 +68,6 @@ public class SkeletonEnemyController : MonoBehaviour
 
     private void Update()
     {
-        //// テスト用
-        //if (Input.GetMouseButtonDown(0))
-        //{
-        //    SwordAttack();
-        //}
-
         if (enemyAIController.isAttack)
         {
             SwordAttack();
@@ -120,9 +114,14 @@ public class SkeletonEnemyController : MonoBehaviour
             return;
         }
 
-        isAttack = true;
+        //isAttack = true;
 
         weaponCollider.enabled = true;
+
+        if (weaponCollider.CompareTag("Player"))
+        {
+            weaponCollider.enabled = false;
+        }
 
         enemyAIController.agent.isStopped = true;
         enemyAIController.agent.stoppingDistance = stoppingDistance;

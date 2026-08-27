@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.AI;
 
+/// <summary>
+/// “G‚ÌAI‚ğ§Œä‚·‚éƒNƒ‰ƒX
+/// </summary>
 public class EnemyAIController : MonoBehaviour
 {
     [Header("NavMesh‚Ìæ“¾")]
