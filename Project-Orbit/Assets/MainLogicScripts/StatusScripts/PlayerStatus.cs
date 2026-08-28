@@ -123,6 +123,7 @@ public class PlayerStatus : UnitStatusBase
 
         RegenerationLifePoint();
 
+        // デバッグ用
         if (Input.GetKeyDown(KeyCode.Q))
         {
             unitLifePoint -= 10;

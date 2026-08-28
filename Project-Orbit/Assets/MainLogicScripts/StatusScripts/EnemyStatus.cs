@@ -75,26 +75,9 @@ public class EnemyStatus : UnitStatusBase
 
     private void Update()
     {
-        //if (unitLifePoint <= 0)
-        //{
-        //    phase.PhaseEnemyRemove(this);
-        //    SoulCore dropSoul = Instantiate(soulCore, transform.position, transform.rotation);
-        //    Destroy(gameObject);
-        //}
-
         DamageManager.Instance.GetEnemyPower(unitAttackPoint);
 
         currentHp = unitLifePoint;
-        //// ダメージを受ける処理
-        //if (isDamaged)
-        //{
-        //    int damage = DamageManager.Instance.EnemyDamageCalculation(unitLifePoint);
-        //    unitLifePoint = damage;
-        //}
-
-        //ここがちえぐ
-        //enemyAIController.GetEnemyInitialStatus(unitLifePoint, unitAttackPoint, unitDefencePoint, moveSpeed);
-
     }
 
     /// <summary>
@@ -214,25 +197,25 @@ public class EnemyStatus : UnitStatusBase
 
     public void PlayerEnemyEating()
     {
+
     }
 
 
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(TagStock.Instance.WEAPON_TAG))
+        {
+            Damage();
+        }
+    }
 
-    //public void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.CompareTag(TagStock.Instance.WEAPON_TAG))
-    //    {
-    //        isDamaged = true;
-    //    }
-    //}
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag(TagStock.Instance.WEAPON_TAG))
+        {
 
-    //public void OnTriggerExit(Collider other)
-    //{
-    //    if (other.CompareTag(TagStock.Instance.WEAPON_TAG))
-    //    {
-    //        isDamaged = false;
-    //    }
-    //}
+        }
+    }
 }
 
 /// <summary>

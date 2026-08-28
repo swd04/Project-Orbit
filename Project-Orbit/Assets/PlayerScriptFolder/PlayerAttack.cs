@@ -35,7 +35,7 @@ public class PlayerAttack : MonoBehaviour
     [Header("武器の回転角度")]
     [SerializeField] private Vector3 rotateAngle = Vector3.zero;
 
-    [Header("攻撃強化コアがsぷびされたどうかの判定")]
+    [Header("攻撃強化コアが装備されたどうかの判定")]
     [SerializeField] public bool isEnchantAttackCoreSet = false;
 
     [Header("攻撃が強化される確率")]
@@ -146,49 +146,49 @@ public class PlayerAttack : MonoBehaviour
     /// </summary>
     public void OnTriggerEnter(Collider other)
     {
-        //攻撃中じゃなければ無視
-        if (!isAttack)
-        {
-            return;
-        }
+        ////攻撃中じゃなければ無視
+        //if (!isAttack)
+        //{
+        //    return;
+        //}
 
-        //Enemyタグなら
-        if (other.CompareTag("Enemy"))
-        {
-            //EnemyStatus取得
-            EnemyStatus enemy = other.GetComponent<EnemyStatus>();
+        ////Enemyタグなら
+        //if (other.CompareTag("Enemy"))
+        //{
+        //    //EnemyStatus取得
+        //    EnemyStatus enemy = other.GetComponent<EnemyStatus>();
 
-            //EnemyStatusが付いていない場合は終了
-            if (enemy == null)
-            {
-                return;
-            }
+        //    //EnemyStatusが付いていない場合は終了
+        //    if (enemy == null)
+        //    {
+        //        return;
+        //    }
 
-            //この攻撃で既にダメージを与えた敵なら処理しない
-            if (hitEnemies.Contains(enemy))
-            {
-                return;
-            }
+        //    //この攻撃で既にダメージを与えた敵なら処理しない
+        //    if (hitEnemies.Contains(enemy))
+        //    {
+        //        return;
+        //    }
 
-            //ダメージを与えた敵として登録
-            hitEnemies.Add(enemy);
+        //    //ダメージを与えた敵として登録
+        //    hitEnemies.Add(enemy);
 
-            //ダメージ処理
-            enemy.Damage();
+        //    //ダメージ処理
+        //    enemy.Damage();
 
-            //確率でダメージを三倍
-            if (isEnchantAttackCoreSet)
-            {
-                float ratio = Random.Range(0, 101);
-                if (enchantAttackRatio > ratio)
-                {
-                    for (int i = 0; i < 2; i++)
-                    {
-                        enemy.Damage();
-                    }
-                }
-            }
+        //    //確率でダメージを三倍
+        //    if (isEnchantAttackCoreSet)
+        //    {
+        //        float ratio = Random.Range(0, 101);
+        //        if (enchantAttackRatio > ratio)
+        //        {
+        //            for (int i = 0; i < 2; i++)
+        //            {
+        //                enemy.Damage();
+        //            }
+        //        }
+        //    }
             
-        }
+        //}
     }
 }
