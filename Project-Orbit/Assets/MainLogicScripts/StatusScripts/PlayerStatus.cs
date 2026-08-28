@@ -45,6 +45,9 @@ public class PlayerStatus : UnitStatusBase
     [Header("")]
     [SerializeField] public int regeneCoreLevel = 0;
 
+    [Header("")]
+    [SerializeField] private PlayerUIController playerUIController = null;
+
     /// <summary>
     /// 現在HP
     /// </summary>
@@ -72,7 +75,26 @@ public class PlayerStatus : UnitStatusBase
 
     private void Start()
     {
+        //最大HPを初期HPに設定
         maxHp = unitLifePoint;
+
+        //初期HPをUIへ反映
+        UpdateHPUI();
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    private void UpdateHPUI()
+    {
+        //
+        if (playerUIController == null)
+        {
+            return;
+        }
+
+        //
+        playerUIController.UpdateHP(unitLifePoint, maxHp);
     }
 
     /// <summary>
@@ -98,8 +120,6 @@ public class PlayerStatus : UnitStatusBase
         DamageManager.Instance.GetPlayerPower(unitAttackPoint);
 
         //Debug.LogFormat("プレイヤーのHP{0}です", unitLifePoint);
-
-        
 
         RegenerationLifePoint();
 
@@ -155,7 +175,7 @@ public class PlayerStatus : UnitStatusBase
                 regenerationDelta += Time.deltaTime;
                 if (regenerationDelta > regenerationTime)
                 {
-                    unitLifePoint += maxHp / 100;
+                    unitLifePoint += unitLifePoint / maxHp;
                     unitLifePoint += regenePoint;
                     regenerationDelta = 0;
 
@@ -174,7 +194,6 @@ public class PlayerStatus : UnitStatusBase
         }
     }
 
-
     private void PlayerTakeDamage()
     {
         if (isDamage)
@@ -186,6 +205,12 @@ public class PlayerStatus : UnitStatusBase
 
             //HP変更通知
             OnHPChanged?.Invoke(unitLifePoint, maxHp);
+
+            //0未満にならないようにする
+            unitLifePoint = Mathf.Max(unitLifePoint, 0);
+
+            //HPをUIへ反映
+            UpdateHPUI();
         }
     }
 
