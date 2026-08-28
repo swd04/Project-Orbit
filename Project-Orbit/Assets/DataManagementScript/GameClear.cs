@@ -1,6 +1,5 @@
 using UnityEngine;
 using TMPro;
-using UnityEngine.SceneManagement;
 
 public class GameClear : SingletonMonoBehaviour<GameClear>
 {
@@ -20,6 +19,13 @@ public class GameClear : SingletonMonoBehaviour<GameClear>
     /// リザルト表示中かどうか
     /// </summary>
     private bool isResult = false;
+
+    private void Start()
+    {
+        nextText.text = "";
+
+        isResult = false;
+    }
 
     /// <summary>
     /// 更新処理
@@ -44,6 +50,10 @@ public class GameClear : SingletonMonoBehaviour<GameClear>
     // クリアデータを実際にデータ処理して確かめる
     public void GameClearResult()
     {
+        Debug.Log("GameClearResult() 呼ばれた");
+        //リザルト表示状態にする
+        isResult = true;
+
         //リザルトパネルを表示
         resultPanel.SetActive(true);
 
@@ -55,8 +65,6 @@ public class GameClear : SingletonMonoBehaviour<GameClear>
 
         //次の操作を表示
         nextText.text = "右クリックでタイトルへ戻る";
-
-        //リザルト表示状態にする
-        isResult = true;
+        Debug.Log("nextText : " + nextText.text);
     }
 }

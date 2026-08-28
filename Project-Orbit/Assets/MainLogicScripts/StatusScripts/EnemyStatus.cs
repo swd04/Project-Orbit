@@ -165,7 +165,10 @@ public class EnemyStatus : UnitStatusBase
 
             if (isBossEnemy)
             {
-                SceneLoader.Instance.TitleLoad();
+                //SceneLoader.Instance.TitleLoad();
+                SceneLoadManager.Instance.LoadScene(
+                    SceneType.RankingScene,
+                    FadeType.None);
             }
             //敵削除
             Destroy(gameObject);
