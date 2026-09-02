@@ -107,6 +107,7 @@ public class CoreSlotManager : MonoBehaviour
         if (core.coreType == CoreType.AttackMotion)
         {
             skillActivation.EquipSkill(core.Skill);
+            equipmentCore.Equip(core);
         }
         //パッシブコアならパッシブ効果を適用
         else if (core.coreType == CoreType.Passive)

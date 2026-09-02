@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class SlashWave : MonoBehaviour
 {
@@ -14,6 +15,11 @@ public class SlashWave : MonoBehaviour
     [Header("生成からの経過時間")]
     [SerializeField] private float spwanDelta = 0.0f;
 
+    [Header("レベル別有効時間")]
+    [SerializeField] private List<float> slashActiveLevel = new List<float>();
+
+    [SerializeField] public int slashLevel = 0;
+
     private void Update()
     {
         myRigidbody.linearVelocity = transform.rotation * moveVecter;
@@ -25,7 +31,9 @@ public class SlashWave : MonoBehaviour
     {
         spwanDelta += Time.deltaTime;
 
-        if(activeTime <= spwanDelta)
+        activeTime = slashActiveLevel[slashLevel];
+
+        if (activeTime <= spwanDelta)
         {
             gameObject.SetActive(false);
         }
