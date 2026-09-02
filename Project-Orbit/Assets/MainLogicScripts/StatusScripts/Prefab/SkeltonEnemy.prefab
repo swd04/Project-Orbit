@@ -887,7 +887,7 @@ GameObject:
   - component: {fileID: 7500310556173383531}
   - component: {fileID: 5901592718364826348}
   m_Layer: 0
-  m_Name: EnemyObject 2
+  m_Name: SkeltonEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

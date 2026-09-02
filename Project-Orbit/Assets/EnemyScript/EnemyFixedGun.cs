@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using UnityEngine.AI;
 
 /// <summary>
 /// ‰“‹——£UŒ‚Œ^‚Ì“G‚ª
@@ -14,6 +15,9 @@ public class EnemyFixedGun : MonoBehaviour
     private EnemyGunObjectPool<EnemyGunBullet> bulletPool = null;
 
     [SerializeField] private List<EnemyGunBullet> bulletList = new List<EnemyGunBullet>();
+
+    [Header("Agent‚Ìæ“¾")]
+    [SerializeField] private NavMeshAgent agent = null;
 
     [Header("’e‚ÌƒvƒŒƒnƒu")]
     [SerializeField] private GameObject weaponObject = null;
@@ -47,6 +51,7 @@ public class EnemyFixedGun : MonoBehaviour
 
         bulletPool = new EnemyGunObjectPool<EnemyGunBullet>(weaponObject.GetComponent<EnemyGunBullet>(), initialSize);
 
+        
     }
 
 
@@ -67,7 +72,7 @@ public class EnemyFixedGun : MonoBehaviour
 
         EnemyGunBullet obj = bulletPool.Get();
 
-        obj.transform.SetPositionAndRotation( transform.position, transform.rotation);
+        obj.transform.SetPositionAndRotation(transform.position, transform.rotation);
 
         Rigidbody rb = obj.GetComponent<Rigidbody>();
 
@@ -83,7 +88,7 @@ public class EnemyFixedGun : MonoBehaviour
 
         yield return new WaitForSeconds(2.0f);
 
-       
+
 
         isAttacking = false;
 
