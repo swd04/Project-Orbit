@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class SoulCore : MonoBehaviour
 {
@@ -28,6 +29,12 @@ public class SoulCore : MonoBehaviour
     [Header("コアの名前")]
     [SerializeField] public string coreName = "";
 
+    [Header("コアがレベルアップに必要な回収数のリスト")]
+    [SerializeField] private List<int> coreLevelUpCountList = new List<int>();
+
+    [Header("コアの取得数")]
+    [SerializeField] private int coreGetCount = 0;
+
     /// <summary>
     /// このコアが持つスキル
     /// </summary>
@@ -35,7 +42,12 @@ public class SoulCore : MonoBehaviour
 
     public void SoulLevelUp()
     {
-        soulLevel++;
+        coreGetCount++;
+        if (coreGetCount > coreLevelUpCountList[soulLevel])
+        {
+            soulLevel++;
+        }
+        
     }
 
 }
@@ -52,5 +64,7 @@ public enum CoreID
     None,
     [Tooltip("自動回復コア")]RegenerationCore,
     [Tooltip("確率攻撃強化コア")]EncahntAttackCore,
-    [Tooltip("移動速度強化コア")]EnchantMoveSpeedCore
+    [Tooltip("移動速度強化コア")]EnchantMoveSpeedCore,
+
+    [Tooltip("スラッシュウェーブコア")] SlashWaveCore
 }

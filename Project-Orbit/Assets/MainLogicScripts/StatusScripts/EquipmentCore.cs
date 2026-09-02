@@ -43,7 +43,17 @@ public class EquipmentCore : MonoBehaviour
                              playerStatus.regeneCoreLevel = equipmentCore[i].soulLevel; break;
                         case CoreID.EncahntAttackCore:playerAttack.isEnchantAttackCoreSet = true; break;
                         case CoreID.EnchantMoveSpeedCore:break;
+                        
                     }
+                }
+                else if (equipmentCore[i].coreType == CoreType.AttackMotion)
+                {
+                    switch (equipmentCore[i].coreId) 
+                    {
+                        case CoreID.None: break;
+                        case CoreID.SlashWaveCore: isSlashWave = true;wave.slashLevel = equipmentCore[i].soulLevel; break;
+                    }
+
                 }
                 else
                 {
@@ -59,6 +69,7 @@ public class EquipmentCore : MonoBehaviour
 
         if (isSlashWave)
         {
+            
             if (Input.GetMouseButtonDown(0))
             {
                 SlashWave slash = Instantiate(wave);

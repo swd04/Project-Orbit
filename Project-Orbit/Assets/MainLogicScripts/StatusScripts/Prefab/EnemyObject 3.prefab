@@ -902,7 +902,7 @@ Transform:
   m_GameObject: {fileID: 8815404796577700937}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.094, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -934,7 +934,7 @@ MonoBehaviour:
   damageManager: {fileID: 0}
   enemyAIController: {fileID: 0}
   statusBounus: {fileID: 11400000, guid: 8d842783926214e4bae51647c374cadb, type: 2}
-  soulCore: {fileID: 8439155276020717342, guid: 52e83b18e3948734b905c6b2f27f9da7, type: 3}
+  soulCore: {fileID: 2115471744710464433, guid: f45a8bb923a63d544a03112586c96ea0, type: 3}
   enemyHpBar: {fileID: 5901592718364826348}
   eatStatus: 2
   statusuUpPoint: 20

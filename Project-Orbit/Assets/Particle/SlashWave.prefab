@@ -4887,8 +4887,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myRigidbody: {fileID: 8069596017627595356}
   moveVecter: {x: 0, y: 0, z: 75}
-  activeTime: 3
+  activeTime: 0
   spwanDelta: 0
+  slashActiveLevel:
+  - 0.05
+  - 0.1
+  - 0.2
+  - 0.5
+  - 1
+  - 1.5
+  - 2
+  - 2.5
+  - 3
+  - 4
+  - 5
+  slashLevel: 3
 --- !u!54 &8069596017627595356
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -5981,7 +5981,7 @@ MonoBehaviour:
   equipmentCore: []
   playerStatus: {fileID: 716702454}
   playerAttack: {fileID: 716702452}
-  isSlashWave: 1
+  isSlashWave: 0
   wave: {fileID: 7378641510842143509, guid: 872c6a6ea5a8482489b61915a7614112, type: 3}
 --- !u!114 &716702448
 MonoBehaviour:
@@ -12998,7 +12998,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: ce96198d9ac81554994e70378e6d8ae8, type: 2}
     - target: {fileID: 2115471744710464433, guid: f45a8bb923a63d544a03112586c96ea0, type: 3}
       propertyPath: coreId
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2115471744710464433, guid: f45a8bb923a63d544a03112586c96ea0, type: 3}
       propertyPath: coreName
