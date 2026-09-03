@@ -9368,7 +9368,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contentParent: {fileID: 1642520922}
   logPrefab: {fileID: 8128108806327222240, guid: a746dbe52792ce8459df4c38451f4516, type: 3}
-  maxLogCount: 20
+  maxLogCount: 4
   displayTime: 0.8
 --- !u!1 &1223841810
 GameObject:

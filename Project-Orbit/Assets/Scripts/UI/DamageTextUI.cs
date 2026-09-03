@@ -78,7 +78,7 @@ public class DamageTextUI : MonoBehaviour
         //™X‚É“§–¾‰»
         if (canvasGroup != null)
         {
-            canvasGroup.alpha = 1f - (timer / lifeTime);
+            canvasGroup.alpha = Mathf.Clamp01(1f - (timer / lifeTime));
         }
 
         //•\¦ŠÔŒo‰ß‚Åíœ
