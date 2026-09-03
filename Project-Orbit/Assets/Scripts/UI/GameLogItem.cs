@@ -69,6 +69,11 @@ public class GameLogItem : MonoBehaviour
     /// </summary>
     public IEnumerator FadeOut(float duration)
     {
+        if (canvasGroup == null)
+        {
+            yield break;
+        }
+
         float timer = 0f;
 
         //開始スケール
@@ -80,6 +85,11 @@ public class GameLogItem : MonoBehaviour
         //徐々に透明化しながら縮小
         while (timer < duration)
         {
+            if (canvasGroup == null)
+            {
+                yield break;
+            }
+
             timer += Time.deltaTime;
 
             float t = timer / duration;
@@ -89,6 +99,11 @@ public class GameLogItem : MonoBehaviour
             transform.localScale = Vector3.Lerp(startScale, endScale, t);
 
             yield return null;
+        }
+
+        if (canvasGroup == null)
+        {
+            yield break;
         }
 
         //完全非表示

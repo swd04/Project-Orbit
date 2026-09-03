@@ -76,16 +76,21 @@ public class GameLogUI : MonoBehaviour
         //表示時間待機
         yield return new WaitForSeconds(displayTime);
 
-        //ログが存在する場合のみ削除
+        //すでに最大ログ数超過で削除されている場合
+        if (log == null || !logs.Contains(log))
+        {
+            yield break;
+        }
+
+        //フェードアウト
+        yield return StartCoroutine(log.FadeOut(0.3f));
+
+        //ログ一覧から削除
+        logs.Remove(log);
+
+        //ログオブジェクト削除
         if (log != null)
         {
-            //フェードアウト
-            yield return StartCoroutine(log.FadeOut(0.3f));
-
-            //ログ一覧から削除
-            logs.Remove(log);
-
-            //ログオブジェクト削除
             Destroy(log.gameObject);
         }
     }
