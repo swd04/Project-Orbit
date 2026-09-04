@@ -1459,7 +1459,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u30B2\u30FC\u30E0\u30BF\u30A4\u30C8\u30EB"
+  m_text: SoulStealer
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fa1e40b603b82b64fbac1734a0c84145, type: 2}
   m_sharedMaterial: {fileID: -3469867590192293422, guid: fa1e40b603b82b64fbac1734a0c84145, type: 2}

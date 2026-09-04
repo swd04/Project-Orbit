@@ -30,7 +30,7 @@ public class EnemyStatus : UnitStatusBase
     [SerializeField] private SoulCore soulCore = null;
 
     [Header("敵用HPバークラス")]
-    [SerializeField] private EnemyHPBarUI enemyHpBar = null;
+    //[SerializeField] private EnemyHPBarUI enemyHpBar = null;
 
     [Header("捕食された際の強化するステータスの種類")]
     [SerializeField] private PlayerEatStatus eatStatus = PlayerEatStatus.None;
@@ -66,11 +66,11 @@ public class EnemyStatus : UnitStatusBase
 
         enemyAIController.agent.speed = moveSpeed;
 
-        //HPバー初期化
-        if (enemyHpBar != null)
-        {
-            enemyHpBar.Initialize(maxHp);
-        }
+        ////HPバー初期化
+        //if (enemyHpBar != null)
+        //{
+        //    enemyHpBar.Initialize(maxHp);
+        //}
     }
 
     private void Update()
@@ -94,7 +94,7 @@ public class EnemyStatus : UnitStatusBase
         //ダメージ前HP保存
         int beforeHp = unitLifePoint;
 
-        //プレイヤー攻撃力を取得
+        //敵の最大体力を取得
         int damage = DamageManager.Instance.EnemyDamageCalculation(unitLifePoint);
 
         Debug.Log("敵が受けるダメージ : " + damage);
@@ -131,11 +131,11 @@ public class EnemyStatus : UnitStatusBase
             damagePos
         );
 
-        // HPバー更新
-        if (enemyHpBar != null)
-        {
-            enemyHpBar.UpdateHP(unitLifePoint);
-        }
+        //// HPバー更新
+        //if (enemyHpBar != null)
+        //{
+        //    enemyHpBar.UpdateHP(unitLifePoint);
+        //}
 
         //HP0以下で死亡
         if (unitLifePoint <= 0)
