@@ -71,6 +71,4 @@ public class DamageManager : SingletonBehaviour<DamageManager>
 
         return enemyHp;
     }
-
-
 }
