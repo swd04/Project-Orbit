@@ -30,7 +30,7 @@ public class ChaseAction : Enemy
     public override void Execute(EnemyAIController enemy)
     {
         enemy.agent.isStopped = false;
-        Debug.Log("今プレイヤーを追っています");
+        //Debug.Log("今プレイヤーを追っています");
         enemy.agent.SetDestination(enemy.target.position);
     }
 }

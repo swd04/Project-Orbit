@@ -31,7 +31,7 @@ public class EnemyAIController : MonoBehaviour
     {
         enemyStatus = GetComponent<EnemyStatus>();
 
-        Debug.Log(agent.speed + "ここはEnemyAIControllerクラス");
+        //Debug.Log(agent.speed + "ここはEnemyAIControllerクラス");
 
         //// 初期化メソッドを置く
         //Initialize();

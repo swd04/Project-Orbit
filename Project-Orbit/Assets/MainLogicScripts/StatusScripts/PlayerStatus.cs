@@ -201,7 +201,7 @@ public class PlayerStatus : UnitStatusBase
         {
             int damage = DamageManager.Instance.PlayerDamageCalculation(unitLifePoint);
 
-            Debug.Log("プレイヤーが受けるダメージ : " + damage);
+            //Debug.Log("プレイヤーが受けるダメージ : " + damage);
             unitLifePoint = damage;
 
             //HP変更通知
