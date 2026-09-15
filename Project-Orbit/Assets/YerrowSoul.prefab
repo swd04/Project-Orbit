@@ -125,8 +125,8 @@ MonoBehaviour:
   actionAttackPoint: 0
   soulLevel: 0
   coreType: 1
-  coreId: 1
-  skill: {fileID: 0}
-  coreName: 
+  coreId: 2
+  skill: {fileID: 11400000, guid: eb529c982f462a94b84b32ef4d6848b5, type: 2}
+  coreName: "\u30A4\u30A8\u30ED\u30FC\u30B3\u30A2"
   coreLevelUpCountList: 0100000004000000080000001000000020000000400000008000000000010000000200000004000000080000
   coreGetCount: 0
