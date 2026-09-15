@@ -410,7 +410,7 @@ MonoBehaviour:
   m_text: Setting
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f1309626229e0c042aca3d27ce965b65, type: 2}
-  m_sharedMaterial: {fileID: 126934840204730975, guid: f1309626229e0c042aca3d27ce965b65, type: 2}
+  m_sharedMaterial: {fileID: 6180119809183697465, guid: f1309626229e0c042aca3d27ce965b65, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -687,7 +687,7 @@ MonoBehaviour:
   m_text: "\u30BF\u30A4\u30E0\u30A2\u30BF\u30C3\u30AF\u30E2\u30FC\u30C9"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f1309626229e0c042aca3d27ce965b65, type: 2}
-  m_sharedMaterial: {fileID: 126934840204730975, guid: f1309626229e0c042aca3d27ce965b65, type: 2}
+  m_sharedMaterial: {fileID: 6180119809183697465, guid: f1309626229e0c042aca3d27ce965b65, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1461,7 +1461,7 @@ MonoBehaviour:
   m_text: SoulStealer
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f1309626229e0c042aca3d27ce965b65, type: 2}
-  m_sharedMaterial: {fileID: 126934840204730975, guid: f1309626229e0c042aca3d27ce965b65, type: 2}
+  m_sharedMaterial: {fileID: 6180119809183697465, guid: f1309626229e0c042aca3d27ce965b65, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
