@@ -16,6 +16,9 @@ public class NameInputController : SingletonBehaviour<NameInputController>
     [Header("UserDataHolder")]
     [SerializeField] private UserDataHolder userDataHolder = null;
 
+    [Header("名前入力メッセージUI")]
+    [SerializeField] private NameInputMessageUI messageUI = null;
+
 
     private void Start()
     {
@@ -47,6 +50,7 @@ public class NameInputController : SingletonBehaviour<NameInputController>
         if (string.IsNullOrWhiteSpace(nameInputField.text))
         {
             // 名前の入力がない場合UIで名前の入力を促す
+            messageUI.ShowEmptyMessage();
 
             Debug.Log("名前を入力して");
 
