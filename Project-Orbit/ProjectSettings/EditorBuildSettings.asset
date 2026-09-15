@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RankingScene.unity
     guid: 63484085758404446816f1371500971f
+  - enabled: 1
+    path: Assets/Scenes/GameOverScene.unity
+    guid: 6b74df11d57fe0d4989e0b3680612c86
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 289c1b55c9541489481df5cc06664110, type: 3}
   m_UseUCBPForAssetBundles: 0
