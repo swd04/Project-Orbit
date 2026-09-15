@@ -169,9 +169,13 @@ public class EnemyStatus : UnitStatusBase
                     SceneType.RankingScene,
                     FadeType.None);
             }
+            else
+            {
+                //敵削除
+                Destroy(gameObject);
+            }
 
-            //敵削除
-            Destroy(gameObject);
+            
         }
     }
 

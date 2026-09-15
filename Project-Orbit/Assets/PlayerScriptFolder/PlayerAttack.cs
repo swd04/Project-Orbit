@@ -83,7 +83,7 @@ public class PlayerAttack : MonoBehaviour
             return;
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
         {
             // 左クリックで攻撃を行う処理
 

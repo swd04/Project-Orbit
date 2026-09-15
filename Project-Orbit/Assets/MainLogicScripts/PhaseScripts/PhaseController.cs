@@ -126,7 +126,7 @@ public class PhaseController : MonoBehaviour
     {
         for (int i = 0; i < phaseSpwanEnemys[phaseCount].spwanEnemyTypes.Count; i++)
         {
-            for (int j = 0; j < phaseSpwanEnemys[phaseCount].spwanEnemyCount[i]; j++)
+            for (int j = 0; j < phaseSpwanEnemys[phaseCount].spwanEnemyCount[i]-1; j++)
             {
 
                 var enemy = factory.CreateEnemyObject(phaseSpwanEnemys[phaseCount].spwanEnemyTypes[i]).GetComponent<EnemyStatus>();
