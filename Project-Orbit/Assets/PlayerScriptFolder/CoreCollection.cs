@@ -72,7 +72,7 @@ public class CoreCollection : MonoBehaviour
         other.gameObject.SetActive(false);
 
         //ログ用にPrefab名取得
-        string coreName = soulCore.gameObject.name.Replace("(Clone)", "");
+        string coreName = soulCore.coreName;
 
         //ログ表示
         GameLogUI.Instance.AddLog($"{coreName}を取得");

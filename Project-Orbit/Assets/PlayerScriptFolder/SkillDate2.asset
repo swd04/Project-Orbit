@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: SkillDate2
   m_EditorClassIdentifier: 
   skillName: Water
-  icon: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  icon: {fileID: 21300000, guid: bf88c9ebe85d56646a56ec5e1b359c35, type: 3}
   skillCoolTime: 0
   skillPower: 0

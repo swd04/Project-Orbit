@@ -41,7 +41,7 @@ public class CoreItemUI : MonoBehaviour,
         soulCore = core;
 
         //コア名表示
-        coreNameText.text = core.name;
+        coreNameText.text = core.coreName;
 
         //所持数表示
         countText.text = $"Lv.{core.soulLevel}";
