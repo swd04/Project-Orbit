@@ -70,7 +70,7 @@ public class EquipmentCore : MonoBehaviour
         if (isSlashWave)
         {
             
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(1))
             {
                 SlashWave slash = Instantiate(wave);
                 slash.transform.position = transform.position;

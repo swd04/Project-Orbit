@@ -7247,6 +7247,7 @@ GameObject:
   m_Component:
   - component: {fileID: 935258239}
   - component: {fileID: 935258238}
+  - component: {fileID: 935258240}
   m_Layer: 0
   m_Name: SceneLoader
   m_TagString: Untagged
@@ -7282,6 +7283,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &935258240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935258237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e0931af4e8706f4281516eb0a3c4c29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeEffectDatabase: {fileID: 11400000, guid: 0ccce9a3941381e4a89e0545d3a87b5e, type: 2}
 --- !u!1 &950907837
 GameObject:
   m_ObjectHideFlags: 0
