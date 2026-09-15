@@ -19,6 +19,6 @@ public class HPValueTextUI : MonoBehaviour
         if (hpText == null) return;
 
         //åªç›HP/ç≈ëÂHPÇÃå`éÆÇ≈ï\é¶
-        hpText.text = $"{Mathf.CeilToInt(current)}/{Mathf.CeilToInt(max)}";
+        hpText.text = $"HP:{Mathf.CeilToInt(current)}/{Mathf.CeilToInt(max)}";
     }
 }

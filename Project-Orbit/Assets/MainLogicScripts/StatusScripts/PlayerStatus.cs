@@ -212,6 +212,9 @@ public class PlayerStatus : UnitStatusBase
 
             //HPをUIへ反映
             UpdateHPUI();
+
+            //HPが0になったらゲームオーバー
+
         }
     }
 
