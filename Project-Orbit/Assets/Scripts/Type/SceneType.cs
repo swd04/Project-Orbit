@@ -17,5 +17,5 @@ public enum SceneType
 
     RankingScene,
 
-    GameEndScene
+    GameOverScene
 }

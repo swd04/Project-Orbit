@@ -214,7 +214,10 @@ public class PlayerStatus : UnitStatusBase
             UpdateHPUI();
 
             //HPが0になったらゲームオーバー
-
+            if(unitLifePoint <= 0)
+            {
+                SceneLoadManager.Instance.LoadScene(SceneType.GameOverScene, FadeType.None);
+            }
         }
     }
 

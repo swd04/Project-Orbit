@@ -138,7 +138,7 @@ public class WaveManager : MonoBehaviour
         yield return new WaitForSeconds(3f);
 
         SceneLoadManager.Instance.LoadScene(
-            SceneType.GameEndScene,
+            SceneType.GameOverScene,
             FadeType.None);
     }
 }
