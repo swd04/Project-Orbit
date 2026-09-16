@@ -46,6 +46,7 @@ public class EnemyClash : MonoBehaviour
         {
             StartCoroutine(ChargeCoroutine());
         }
+        Debug.Log(agent.isStopped);
     }
 
     /// <summary>
@@ -55,6 +56,8 @@ public class EnemyClash : MonoBehaviour
     public IEnumerator ChargeCoroutine()
     {
         isCharging = true;
+
+        Debug.Log("チャージしてます");
 
         // 溜め
         agent.isStopped = true;
@@ -72,7 +75,9 @@ public class EnemyClash : MonoBehaviour
         {
             targetPos = hit.position;
         }
-
+        
+        Debug.Log("突進開始");
+    
         // 突進開始
         agent.isStopped = false;
         agent.speed = clashSpeed;

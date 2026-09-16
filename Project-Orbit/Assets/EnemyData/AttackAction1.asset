@@ -14,4 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackRange: 10
   score: 50
+  coolTime: 10
+  currentTime: 6.561737
+  attackCount: 3
   agentSpeed: 3

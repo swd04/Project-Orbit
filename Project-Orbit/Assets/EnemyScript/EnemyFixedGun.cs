@@ -16,9 +16,6 @@ public class EnemyFixedGun : MonoBehaviour
 
     [SerializeField] private List<EnemyGunBullet> bulletList = new List<EnemyGunBullet>();
 
-    [Header("Agentの取得")]
-    [SerializeField] private NavMeshAgent agent = null;
-
     [Header("弾のプレハブ")]
     [SerializeField] private GameObject weaponObject = null;
 
@@ -51,18 +48,18 @@ public class EnemyFixedGun : MonoBehaviour
 
         bulletPool = new EnemyGunObjectPool<EnemyGunBullet>(weaponObject.GetComponent<EnemyGunBullet>(), initialSize);
 
-        
     }
-
-
 
     private void Update()
     {
-
         if (enemyAIController.isAttack && !isAttacking)
         {
+            Debug.Log("攻撃開始");
             StartCoroutine(EnemyGun());
         }
+
+        
+
     }
 
     private IEnumerator EnemyGun()
@@ -83,12 +80,7 @@ public class EnemyFixedGun : MonoBehaviour
 
         bulletList.Add(obj);
 
-
-
-
         yield return new WaitForSeconds(2.0f);
-
-
 
         isAttacking = false;
 

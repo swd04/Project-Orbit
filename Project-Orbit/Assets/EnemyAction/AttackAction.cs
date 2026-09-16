@@ -14,8 +14,7 @@ public class AttackAction : Enemy
     [Header("敵の攻撃スコア")]
     [SerializeField] public float score = 0.0f;
 
-    [Header("クールタイム中かどうか")]
-    [SerializeField] public bool isCoolTime = false;
+
 
     [Header("敵のクールタイムが何秒か")]
     [SerializeField] public float coolTime = 0f;
@@ -25,9 +24,6 @@ public class AttackAction : Enemy
 
     [Header("何回攻撃したらクールタイムが発生するか")]
     [SerializeField] public int attackCount = 0;
-
-    [Header("攻撃回数")]
-    [SerializeField] public int currentAttackCount = 0;
 
     [SerializeField] public float agentSpeed = 0.0f;
 
@@ -46,52 +42,54 @@ public class AttackAction : Enemy
     {
         Debug.Log("攻撃アクション");
 
-        Debug.Log("攻撃回数" + currentAttackCount);
+        Debug.Log("攻撃回数" + enemy.currentAttackCount);
+
+        Debug.Log("クールタイム中かどうか" + enemy.isCoolTime);
+
+        float distance = enemy.DistanceToTarget();
 
         // 攻撃回数がクールタイム発生回数を超えた場合、クールタイムを開始する
-        if (attackCount <= currentAttackCount)
+        if (attackCount <= enemy.currentAttackCount)
         {
             // 時間計測
             currentTime += Time.deltaTime;
 
             // クールタイム中の判定をtrueにする
-            isCoolTime = true;
+            enemy.isCoolTime = true;
 
             Debug.Log("クールタイム中");
 
             // クールタイムが規定時間まで到達したら、攻撃回数と時間をリセットして、クールタイムの判定をfalseにする
             if (currentTime >= coolTime)
             {
-                currentAttackCount = 0;
+                enemy.currentAttackCount = 0;
                 currentTime = 0f;
-                isCoolTime = false;
+                enemy.isCoolTime = false;
 
                 Debug.Log("クールタイム終了");
             }
-
         }
 
-        if (!isCoolTime)
+
+
+        if (distance > attackRange)
         {
-            float distance = enemy.DistanceToTarget();
+            //enemy.agent.isStopped = false;
+            enemy.isAttack = false;
 
-            if (distance > attackRange)
-            {
-                enemy.agent.isStopped = false;
-                enemy.isAttack = false;
+            //Debug.Log("攻撃範囲外");
 
-                //Debug.Log("攻撃範囲外");
-                return;
-            }
-
-            enemy.isAttack = true;
-
-            currentAttackCount++;
-            Debug.Log("攻撃");
         }
         else
         {
-            return;
+            if (!enemy.isCoolTime)
+            {
+                //enemy.agent.isStopped = true;
+                enemy.isAttack = true;
+                //Debug.Log("攻撃範囲内");
+            }
         }
     }
+
 }
+

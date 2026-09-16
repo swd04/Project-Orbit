@@ -121,9 +121,9 @@ GameObject:
   - component: {fileID: 8367702142725326814}
   - component: {fileID: -11317105021909628}
   - component: {fileID: 408891315037831956}
+  - component: {fileID: -4292447542568867385}
   - component: {fileID: -74469619911934843}
   - component: {fileID: -2041929037405821066}
-  - component: {fileID: -4292447542568867385}
   - component: {fileID: -7887561016036486264}
   m_Layer: 0
   m_Name: CanonEnemy
@@ -167,6 +167,8 @@ MonoBehaviour:
   enemyData: {fileID: 11400000, guid: f0f67d85a4b08b54c9a6dd8409f17c56, type: 2}
   currentAction: {fileID: 0}
   isAttack: 0
+  isCoolTime: 0
+  currentAttackCount: 0
 --- !u!114 &408891315037831956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,20 +184,41 @@ MonoBehaviour:
   unitLifePoint: 100
   unitAttackPoint: 10
   unitDefencePoint: 12
-  moveSpeed: 0
+  moveSpeed: 5
   unitTypes: 1
   enemyType: -1
-  detectionRange: 0
+  detectionRange: 4
   currentHp: 0
   phase: {fileID: 0}
   damageManager: {fileID: 0}
   enemyAIController: {fileID: 0}
   statusBounus: {fileID: 11400000, guid: 3500f6f677a6b3e4987c42304e1c7d68, type: 2}
   soulCore: {fileID: 8271277268464571018, guid: 2b967ff45f43b20418fc3482fd9b1639, type: 3}
-  enemyHpBar: {fileID: 0}
   eatStatus: 0
   statusuUpPoint: 20
   maxHp: 0
+  isBossEnemy: 0
+--- !u!114 &-4292447542568867385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8815404796577700937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a11cf4e31df70b14c99eb9d205e7cf2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyAIController: {fileID: -8665739983074022530, guid: 8b0673a57ea60f942a04cc8fbedaec88, type: 3}
+  bulletList: []
+  agent: {fileID: 0}
+  weaponObject: {fileID: 4778937502266962275, guid: b3725043f4dcea14a9a4b022c3054d73, type: 3}
+  rigidbody: {fileID: -265895581917774506, guid: b3725043f4dcea14a9a4b022c3054d73, type: 3}
+  isAttacking: 0
+  initialSize: 1
+  enemyPrefabTransform: {fileID: 8367702142725326814, guid: 8b0673a57ea60f942a04cc8fbedaec88, type: 3}
+  enemyGunData: {fileID: 11400000, guid: 21e182e24b4a24c4f8f60606d79fa7c8, type: 2}
 --- !u!54 &-74469619911934843
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -246,26 +269,6 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-4292447542568867385
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8815404796577700937}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a11cf4e31df70b14c99eb9d205e7cf2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyAIController: {fileID: -8665739983074022530, guid: 8b0673a57ea60f942a04cc8fbedaec88, type: 3}
-  bulletList: []
-  weaponObject: {fileID: 4778937502266962275, guid: b3725043f4dcea14a9a4b022c3054d73, type: 3}
-  rigidbody: {fileID: -265895581917774506, guid: b3725043f4dcea14a9a4b022c3054d73, type: 3}
-  isAttacking: 0
-  initialSize: 1
-  enemyPrefabTransform: {fileID: 8367702142725326814, guid: 8b0673a57ea60f942a04cc8fbedaec88, type: 3}
-  enemyGunData: {fileID: 11400000, guid: 21e182e24b4a24c4f8f60606d79fa7c8, type: 2}
 --- !u!195 &-7887561016036486264
 NavMeshAgent:
   m_ObjectHideFlags: 0

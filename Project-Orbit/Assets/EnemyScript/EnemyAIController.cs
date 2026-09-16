@@ -27,6 +27,12 @@ public class EnemyAIController : MonoBehaviour
     [Header("攻撃フラグ")]
     [SerializeField] public bool isAttack = false;
 
+    [Header("クールタイム中かどうか")]
+    [SerializeField] public bool isCoolTime = false;
+
+    [Header("攻撃回数")]
+    [SerializeField] public int currentAttackCount = 0;
+
     private void Start()
     {
         enemyStatus = GetComponent<EnemyStatus>();
