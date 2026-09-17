@@ -165,6 +165,8 @@ public class EnemyStatus : UnitStatusBase
 
             if (isBossEnemy)
             {
+                TimeManager.Instance.GameClear();
+
                 SceneLoadManager.Instance.LoadScene(
                     SceneType.RankingScene,
                     FadeType.None);

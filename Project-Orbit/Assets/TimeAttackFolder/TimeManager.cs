@@ -105,6 +105,8 @@ public class TimeManager : SingletonBehaviour<TimeManager>
     /// </summary>
     public void GameClear()
     {
+
+        Debug.Log("クリアタイムを追加しました。");
         // 今回のクリアタイムを保存
         userDataHolder.clearTime = timer;
 
