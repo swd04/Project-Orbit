@@ -731,7 +731,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneType: 0
-  fadeType: 0
+  fadeType: 1
 --- !u!4 &1472294736
 Transform:
   m_ObjectHideFlags: 0

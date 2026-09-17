@@ -40,31 +40,66 @@ public class SoulCore : MonoBehaviour
     /// </summary>
     public SkillDate Skill => skill;
 
-    public void SoulLevelUp()
+    /// <summary>
+    /// 現在のレベルでのコア取得数
+    /// </summary>
+    public int CoreGetCount => coreGetCount;
+
+    /// <summary>
+    /// 現在のレベルでレベルアップに必要な取得数
+    /// </summary>
+    public int RequiredCoreCount
     {
-        coreGetCount++;
-        if (coreGetCount > coreLevelUpCountList[soulLevel])
+        get
         {
-            soulLevel++;
+            //対応するレベルのデータがなければ0を返す
+            if (soulLevel < 0 || soulLevel >= coreLevelUpCountList.Count)
+            {
+                return 0;
+            }
+
+            return coreLevelUpCountList[soulLevel];
         }
-        
     }
 
+    public void SoulLevelUp()
+    {
+        //最大レベルなら処理を終了
+        if (soulLevel >= coreLevelUpCountList.Count - 1)
+        {
+            return;
+        }
+
+        //コア取得数を1増やす
+        coreGetCount++;
+
+        if (coreGetCount >= coreLevelUpCountList[soulLevel])
+        {
+            soulLevel++;
+
+            //次のレベル用に取得数をリセット
+            coreGetCount = 0;
+
+            Debug.Log(
+            $"コア「{coreName}」がレベルアップしました。" +
+            $"現在レベル：{soulLevel}");
+        }
+    }
 }
 
 public enum CoreType
 {
     None,
-    [Tooltip("パッシブタイプのコア")]Passive,
-    [Tooltip("攻撃モーション追加のコア")]AttackMotion
+    [Tooltip("パッシブタイプのコア")] Passive,
+    [Tooltip("攻撃モーション追加のコア")] AttackMotion
 }
 
 public enum CoreID
 {
     None,
-    [Tooltip("自動回復コア")]RegenerationCore,
-    [Tooltip("確率攻撃強化コア")]EncahntAttackCore,
-    [Tooltip("移動速度強化コア")]EnchantMoveSpeedCore,
+    [Tooltip("自動回復コア")] RegenerationCore,
+    [Tooltip("確率攻撃強化コア")] EncahntAttackCore,
+    [Tooltip("移動速度強化コア")] EnchantMoveSpeedCore,
 
     [Tooltip("スラッシュウェーブコア")] SlashWaveCore
 }

@@ -1,6 +1,5 @@
 using UnityEngine;
 using TMPro;
-using UnityEngine.SceneManagement;
 
 /// <summary>
 /// –¼‘O“ü—Íˆ—‚ğŠÇ—‚·‚éƒNƒ‰ƒX
@@ -37,7 +36,7 @@ public class NameInputController : SingletonBehaviour<NameInputController>
         {
             if (GetPlayerName() != null)
             {
-                SceneManager.LoadScene("TimeAttackMainScene");
+                SceneLoadManager.Instance.LoadScene(SceneType.TimeAttackMainScene, FadeType.Alpha);
             }
         }
     }
