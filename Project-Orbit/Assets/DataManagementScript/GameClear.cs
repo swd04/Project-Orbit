@@ -57,7 +57,7 @@ public class GameClear : SingletonMonoBehaviour<GameClear>
         //左クリックでタイトル画面へ戻る
         if (Input.GetMouseButtonDown(0))
         {
-            SceneLoadManager.Instance.LoadScene(SceneType.GameTitleScene, FadeType.None);
+            SceneLoadManager.Instance.LoadScene(SceneType.GameTitleScene, FadeType.Alpha);
         }
     }
 
