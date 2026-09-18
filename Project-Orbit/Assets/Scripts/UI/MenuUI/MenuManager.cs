@@ -46,6 +46,9 @@ public class MenuManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             ToggleMenu();
+
+
+            
         }
     }
 

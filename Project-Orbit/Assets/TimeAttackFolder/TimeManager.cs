@@ -54,7 +54,7 @@ public class TimeManager : SingletonBehaviour<TimeManager>
     /// </summary>
     private void Update()
     {
-       
+
 
 
         TimerSceneDisplay();
@@ -64,10 +64,12 @@ public class TimeManager : SingletonBehaviour<TimeManager>
         if (countdownTime <= 0)
         {
             timer += Time.deltaTime;
+
         }
 
         if (countdownTime < 0)
         {
+
             countdownDisplay.SetActive(false);
             timerDisplay.SetActive(true);
             countDownCamera.SetActive(false);
@@ -83,11 +85,11 @@ public class TimeManager : SingletonBehaviour<TimeManager>
             }
         }
 
-        // 仮のゲームクリア処理
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            GameClear();
-        }
+        //// 仮のゲームクリア処理
+        //if (Input.GetKeyDown(KeyCode.Return))
+        //{
+        //    GameClear();
+        //}
     }
 
     public void TimerSceneDisplay()
@@ -111,7 +113,7 @@ public class TimeManager : SingletonBehaviour<TimeManager>
         userDataHolder.clearTime = timer;
 
         // ランキングへ登録
-        RankingManager.Instance.AddPlayer(userDataHolder. userName, userDataHolder.clearTime);
+        RankingManager.Instance.AddPlayer(userDataHolder.userName, userDataHolder.clearTime);
 
         // ランキング画面へ遷移
         SceneManager.LoadScene("RankingScene");

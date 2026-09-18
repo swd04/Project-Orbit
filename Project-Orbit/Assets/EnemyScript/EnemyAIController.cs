@@ -51,6 +51,11 @@ public class EnemyAIController : MonoBehaviour
 
     private void Update()
     {
+        if(!TimeAttackManager.Instance.isPlayingGame)
+        {
+            return;
+        }
+
         currentHp = enemyStatus.currentHp;
 
         // 行動選択メソッド
