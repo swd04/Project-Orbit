@@ -97,12 +97,12 @@ public class EnemyStatus : UnitStatusBase
         //敵の最大体力を取得
         int damage = DamageManager.Instance.EnemyDamageCalculation(unitLifePoint);
 
-        Debug.Log("敵が受けるダメージ : " + damage);
+        //Debug.Log("敵が受けるダメージ : " + damage);
 
         //HP減少
         unitLifePoint = damage;
 
-        Debug.Log("敵の現在HP : " + unitLifePoint);
+        //Debug.Log("敵の現在HP : " + unitLifePoint);
 
         //HPが0未満にならないよう制限
         unitLifePoint = Mathf.Max(unitLifePoint, 0);
@@ -165,6 +165,8 @@ public class EnemyStatus : UnitStatusBase
 
             if (isBossEnemy)
             {
+                TimeManager.Instance.GameClear();
+
                 SceneLoadManager.Instance.LoadScene(
                     SceneType.RankingScene,
                     FadeType.None);

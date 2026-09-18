@@ -29,6 +29,11 @@ public class ChaseAction : Enemy
 
     public override void Execute(EnemyAIController enemy)
     {
+        if (!TimeAttackManager.Instance.isPlayingGame)
+        {
+            return;
+        }
+
         enemy.agent.isStopped = false;
         Debug.Log("¡ƒvƒŒƒCƒ„[‚ğ’Ç‚Á‚Ä‚¢‚Ü‚·");
         enemy.agent.SetDestination(enemy.target.position);

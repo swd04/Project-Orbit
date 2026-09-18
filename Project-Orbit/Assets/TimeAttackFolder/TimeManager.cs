@@ -47,6 +47,8 @@ public class TimeManager : SingletonBehaviour<TimeManager>
         countdownDisplay.SetActive(true);
 
         userDataHolder = FindAnyObjectByType<UserDataHolder>();
+
+        TimeAttackManager.Instance.isPlayingGame = false;
     }
 
     /// <summary>
@@ -54,7 +56,7 @@ public class TimeManager : SingletonBehaviour<TimeManager>
     /// </summary>
     private void Update()
     {
-       
+
 
 
         TimerSceneDisplay();
@@ -64,6 +66,7 @@ public class TimeManager : SingletonBehaviour<TimeManager>
         if (countdownTime <= 0)
         {
             timer += Time.deltaTime;
+
         }
 
         if (countdownTime < 0)
@@ -75,6 +78,8 @@ public class TimeManager : SingletonBehaviour<TimeManager>
 
             if (timer < startTextDisplayTime)
             {
+                TimeAttackManager.Instance.isPlayingGame = true;
+
                 startText.gameObject.SetActive(true);
             }
             else
@@ -83,11 +88,11 @@ public class TimeManager : SingletonBehaviour<TimeManager>
             }
         }
 
-        // 仮のゲームクリア処理
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            GameClear();
-        }
+        //// 仮のゲームクリア処理
+        //if (Input.GetKeyDown(KeyCode.Return))
+        //{
+        //    GameClear();
+        //}
     }
 
     public void TimerSceneDisplay()
@@ -105,11 +110,13 @@ public class TimeManager : SingletonBehaviour<TimeManager>
     /// </summary>
     public void GameClear()
     {
+
+        Debug.Log("クリアタイムを追加しました。");
         // 今回のクリアタイムを保存
         userDataHolder.clearTime = timer;
 
         // ランキングへ登録
-        RankingManager.Instance.AddPlayer(userDataHolder. userName, userDataHolder.clearTime);
+        RankingManager.Instance.AddPlayer(userDataHolder.userName, userDataHolder.clearTime);
 
         // ランキング画面へ遷移
         SceneManager.LoadScene("RankingScene");

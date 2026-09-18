@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 4620370559415813243}
   - component: {fileID: -3270927495638831206}
   m_Layer: 0
-  m_Name: EnemyObject
+  m_Name: ClashEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -169,6 +169,8 @@ MonoBehaviour:
   enemyData: {fileID: 11400000, guid: f0f67d85a4b08b54c9a6dd8409f17c56, type: 2}
   currentAction: {fileID: 0}
   isAttack: 0
+  isCoolTime: 0
+  currentAttackCount: 0
 --- !u!114 &408891315037831956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,10 +196,10 @@ MonoBehaviour:
   enemyAIController: {fileID: 0}
   statusBounus: {fileID: 11400000, guid: 24a72328994c06140ab96b4f265a6ee0, type: 2}
   soulCore: {fileID: 6796319796385555961, guid: 2a622d318a3338e4ea43d4d0315e5621, type: 3}
-  enemyHpBar: {fileID: 0}
   eatStatus: 0
   statusuUpPoint: 0
   maxHp: 0
+  isBossEnemy: 0
 --- !u!114 &3974445201911938328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,7 +213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chargeTime: 3
-  clashSpeed: 50
+  clashSpeed: 180
   clashDuration: 1
   enemyAIController: {fileID: 0}
   agent: {fileID: 0}
@@ -256,7 +258,6 @@ MonoBehaviour:
   weaponCollider: {fileID: 0}
   enemyAIController: {fileID: 0}
   stoppingDistance: 1.5
-  isAttack: 0
   isRotating: 0
   isReturning: 0
   rotateSpeed: 5

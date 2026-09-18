@@ -61,6 +61,13 @@ public class PlayerAttack : MonoBehaviour
     /// </summary>
     private void Update()
     {
+        if (!TimeAttackManager.Instance.isPlayingGame)
+        {
+            return;
+        }
+
+        Debug.Log("ｇんｆｍｋｄｓｌｇｋｆ；ｌｄｓんｇｆｄｓんｈｋｊｌんｆｇｄｓｋｈｌ；ｇんｆｄｓｋｌｈ；んｇｆｋｌｈ");
+
         InputKey();
 
         // 攻撃コマンドの入力回数をカウントする処理
@@ -188,7 +195,7 @@ public class PlayerAttack : MonoBehaviour
         //            }
         //        }
         //    }
-            
+
         //}
     }
 }

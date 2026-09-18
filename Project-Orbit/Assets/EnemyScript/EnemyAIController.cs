@@ -27,11 +27,17 @@ public class EnemyAIController : MonoBehaviour
     [Header("攻撃フラグ")]
     [SerializeField] public bool isAttack = false;
 
+    [Header("クールタイム中かどうか")]
+    [SerializeField] public bool isCoolTime = false;
+
+    [Header("攻撃回数")]
+    [SerializeField] public int currentAttackCount = 0;
+
     private void Start()
     {
         enemyStatus = GetComponent<EnemyStatus>();
 
-        Debug.Log(agent.speed + "ここはEnemyAIControllerクラス");
+        //Debug.Log(agent.speed + "ここはEnemyAIControllerクラス");
 
         //// 初期化メソッドを置く
         //Initialize();
@@ -45,6 +51,13 @@ public class EnemyAIController : MonoBehaviour
 
     private void Update()
     {
+        if(!TimeAttackManager.Instance.isPlayingGame)
+        {
+            agent.isStopped = true;
+            return;
+        }
+
+        Debug.Log("EnemyAIControllerクラスのUpdateメソッドが呼ばれています");
         currentHp = enemyStatus.currentHp;
 
         // 行動選択メソッド

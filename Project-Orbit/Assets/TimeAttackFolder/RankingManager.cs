@@ -101,4 +101,16 @@ public class RankingManager : SingletonMonoBehaviour<RankingManager>
             rankingData.Players = new List<PlayerData>();
         }
     }
+
+    /// <summary>
+    /// セーブデータを削除するメソッド
+    /// </summary>
+    public void DeleteSaveData()
+    {
+        if (File.Exists(SavePath))
+        {
+            File.Delete(SavePath);
+            Debug.Log("セーブデータを削除しました");
+        }
+    }
 }

@@ -37,6 +37,11 @@ public class ControlPlayer : MonoBehaviour
     /// </summary>
     private void FixedUpdate()
     {
+        if (!TimeAttackManager.Instance.isPlayingGame)
+        {
+            return;
+        }
+
         // プレイヤー操作
         PlayerMovement();
     }

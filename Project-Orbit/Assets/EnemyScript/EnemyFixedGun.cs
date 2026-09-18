@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using UnityEngine.AI;
 
 /// <summary>
 /// âìãóó£çUåÇå^ÇÃìGÇ™
@@ -49,15 +50,16 @@ public class EnemyFixedGun : MonoBehaviour
 
     }
 
-
-
     private void Update()
     {
-
         if (enemyAIController.isAttack && !isAttacking)
         {
+            Debug.Log("çUåÇäJén");
             StartCoroutine(EnemyGun());
         }
+
+        
+
     }
 
     private IEnumerator EnemyGun()
@@ -67,7 +69,7 @@ public class EnemyFixedGun : MonoBehaviour
 
         EnemyGunBullet obj = bulletPool.Get();
 
-        obj.transform.SetPositionAndRotation( transform.position, transform.rotation);
+        obj.transform.SetPositionAndRotation(transform.position, transform.rotation);
 
         Rigidbody rb = obj.GetComponent<Rigidbody>();
 
@@ -78,12 +80,7 @@ public class EnemyFixedGun : MonoBehaviour
 
         bulletList.Add(obj);
 
-
-
-
         yield return new WaitForSeconds(2.0f);
-
-       
 
         isAttacking = false;
 

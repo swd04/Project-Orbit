@@ -26,9 +26,6 @@ public class SkeletonEnemyController : MonoBehaviour
     [Header("ÉvÉåÉCÉÑÅ[ÇÃÇ«ÇÍÇ≠ÇÁÇ¢ëOÇ≈é~Ç‹ÇÈÇ©")]
     [SerializeField] private float stoppingDistance = 0.0f;
 
-    [Header("çUåÇíÜÇ©Ç«Ç§Ç©")]
-    [SerializeField] private bool isAttack = false;
-
     [Header("âÒì]íÜÇ©Ç«Ç§Ç©")]
     [SerializeField] private bool isRotating = false;
 
@@ -91,13 +88,14 @@ public class SkeletonEnemyController : MonoBehaviour
             weaponObject.transform.localRotation =
                 Quaternion.RotateTowards(weaponObject.transform.localRotation, initialRotation, rotateSpeed * Time.deltaTime);
 
+            enemyAIController.isAttack = false;
+
             if (Quaternion.Angle(weaponObject.transform.localRotation, initialRotation) < 0.1f)
             {
                 weaponObject.transform.localRotation = initialRotation;
 
                 isReturning = false;
-                isAttack = false;
-
+                isRotating = false;
                 weaponCollider.enabled = false;
                 enemyAIController.agent.isStopped = false;
             }
@@ -115,6 +113,8 @@ public class SkeletonEnemyController : MonoBehaviour
         }
 
         //isAttack = true;
+
+        enemyAIController.currentAttackCount++;
 
         weaponCollider.enabled = true;
 

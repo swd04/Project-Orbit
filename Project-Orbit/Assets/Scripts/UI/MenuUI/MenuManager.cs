@@ -46,6 +46,8 @@ public class MenuManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             ToggleMenu();
+
+            TimeAttackManager.Instance.isPlayingGame = !TimeAttackManager.Instance.isPlayingGame;
         }
     }
 
