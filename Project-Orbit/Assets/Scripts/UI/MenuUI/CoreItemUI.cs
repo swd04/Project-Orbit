@@ -7,7 +7,9 @@ using UnityEngine.UI;
 /// コア一覧1行分の表示UI
 /// </summary>
 public class CoreItemUI : MonoBehaviour,
-    IPointerClickHandler
+    IPointerClickHandler,
+    IPointerEnterHandler,
+    IPointerExitHandler
 {
     [Header("コア名表示Text")]
     [SerializeField] private TMP_Text coreNameText = null;
@@ -134,5 +136,29 @@ public class CoreItemUI : MonoBehaviour,
 
         //クリックされたコアを装備する
         coreListUI.OnClickItem(soulCore);
+    }
+
+    /// <summary>
+    /// コアにカーソルを乗せた時の処理
+    /// </summary>
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        //コアが設定されていなければ処理を終了
+        if (soulCore == null)
+        {
+            return;
+        }
+
+        //スキル説明を表示
+        coreListUI.ShowSkillDescription(soulCore,transform.position);
+    }
+
+    /// <summary>
+    /// コアからカーソルが離れた時の処理
+    /// </summary>
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        //スキル説明を非表示
+        coreListUI.HideSkillDescription();
     }
 }

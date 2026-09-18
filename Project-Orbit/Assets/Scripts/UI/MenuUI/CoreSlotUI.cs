@@ -4,18 +4,24 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 /// <summary>
-/// コアをセットするスロットUIクラス
+/// セットしたコアのスロットUIクラス
 /// </summary>
-public class CoreSlotUI : MonoBehaviour, IPointerClickHandler
+public class CoreSlotUI : MonoBehaviour,
+    IPointerClickHandler,
+    IPointerEnterHandler,
+    IPointerExitHandler
 {
-    [Header("スキルスロット")]
-    [SerializeField] private Image slotImage = null;
+    //[Header("スキルスロット")]
+    //[SerializeField] private Image slotImage = null;
 
     [Header("コア情報表示")]
     [SerializeField] private TMP_Text coreNameText = null;
 
     [Header("スロット管理")]
     [SerializeField] private CoreSlotManager slotManager = null;
+
+    [Header("スキル説明UI")]
+    [SerializeField] private SkillDescriptionUI skillDescriptionUI = null;
 
     /// <summary>
     /// 現在セットされているコア
@@ -93,6 +99,42 @@ public class CoreSlotUI : MonoBehaviour, IPointerClickHandler
 
         //スロットを前詰めする
         slotManager.SortSlots();
+    }
+
+    /// <summary>
+    /// マウスカーソルがスロットに入ったときの処理
+    /// </summary>
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        //コアがセットされていなければ処理を終了
+        if (currentCore == null)
+        {
+            return;
+        }
+
+        //スキルが設定されていなければ処理を終了
+        if (currentCore.Skill == null)
+        {
+            return;
+        }
+
+        //スキル説明を表示
+        skillDescriptionUI.Show(currentCore.Skill, transform.position);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        //スキル説明を非表示にする
+        skillDescriptionUI.Hide();
+    }
+
+    /// <summary>
+    /// UI無効化時処理
+    /// </summary>
+    private void OnDisable()
+    {
+        //スキル説明を非表示にする
+        skillDescriptionUI.Hide();
     }
 
     /// <summary>
