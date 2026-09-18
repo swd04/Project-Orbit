@@ -20,6 +20,9 @@ public class MenuCoreCollectionUI : MonoBehaviour
     [Header("管理するコア種類")]
     [SerializeField] private CoreType coreType = CoreType.None;
 
+    [Header("スキル説明UI")]
+    [SerializeField] private SkillDescriptionUI skillDescriptionUI = null;
+
     /// <summary>
     /// UI有効化時処理
     /// </summary>
@@ -84,5 +87,44 @@ public class MenuCoreCollectionUI : MonoBehaviour
     {
         //空いているスロットへコアを追加
         slotManager.AddCore(core);
+    }
+
+    /// <summary>
+    /// スキル説明を表示する処理
+    /// </summary>
+    public void ShowSkillDescription(SoulCore core,Vector3 corePosition)
+    {
+        //コアが設定されていなければ処理を終了
+        if (core == null)
+        {
+            return;
+        }
+
+        //スキルが設定されていなければ処理を終了
+        if (core.Skill == null)
+        {
+            return;
+        }
+
+        //スキル説明を表示
+        skillDescriptionUI.Show(core.Skill,corePosition);
+    }
+
+    /// <summary>
+    /// スキル説明を非表示にする処理
+    /// </summary>
+    public void HideSkillDescription()
+    {
+        //スキル説明を非表示にする
+        skillDescriptionUI.Hide();
+    }
+
+    /// <summary>
+    /// UI無効化時処理
+    /// </summary>
+    private void OnDisable()
+    {
+        //スキル説明を非表示にする
+        skillDescriptionUI.Hide();
     }
 }
