@@ -47,6 +47,8 @@ public class TimeManager : SingletonBehaviour<TimeManager>
         countdownDisplay.SetActive(true);
 
         userDataHolder = FindAnyObjectByType<UserDataHolder>();
+
+        TimeAttackManager.Instance.isPlayingGame = false;
     }
 
     /// <summary>
@@ -69,7 +71,6 @@ public class TimeManager : SingletonBehaviour<TimeManager>
 
         if (countdownTime < 0)
         {
-
             countdownDisplay.SetActive(false);
             timerDisplay.SetActive(true);
             countDownCamera.SetActive(false);
@@ -77,6 +78,8 @@ public class TimeManager : SingletonBehaviour<TimeManager>
 
             if (timer < startTextDisplayTime)
             {
+                TimeAttackManager.Instance.isPlayingGame = true;
+
                 startText.gameObject.SetActive(true);
             }
             else

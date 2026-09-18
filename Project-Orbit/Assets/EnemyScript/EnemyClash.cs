@@ -46,7 +46,7 @@ public class EnemyClash : MonoBehaviour
         {
             StartCoroutine(ChargeCoroutine());
         }
-        Debug.Log(agent.isStopped);
+        Debug.Log("止まっているか"+ agent.isStopped);
     }
 
     /// <summary>

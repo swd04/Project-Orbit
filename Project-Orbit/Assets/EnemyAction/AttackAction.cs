@@ -40,6 +40,11 @@ public class AttackAction : Enemy
 
     public override void Execute(EnemyAIController enemy)
     {
+        if (!TimeAttackManager.Instance.isPlayingGame)
+        {
+            return;
+        }
+
         Debug.Log("UŒ‚ƒAƒNƒVƒ‡ƒ“");
 
         Debug.Log("UŒ‚‰ñ”" + enemy.currentAttackCount);

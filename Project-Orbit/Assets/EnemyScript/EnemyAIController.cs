@@ -53,9 +53,11 @@ public class EnemyAIController : MonoBehaviour
     {
         if(!TimeAttackManager.Instance.isPlayingGame)
         {
+            agent.isStopped = true;
             return;
         }
 
+        Debug.Log("EnemyAIControllerクラスのUpdateメソッドが呼ばれています");
         currentHp = enemyStatus.currentHp;
 
         // 行動選択メソッド

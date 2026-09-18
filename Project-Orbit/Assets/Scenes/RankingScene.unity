@@ -2248,7 +2248,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 676047022}
         m_TargetAssemblyTypeName: GameClear, Assembly-CSharp
-        m_MethodName: OnClickReturnTitleButton
+        m_MethodName: OnClickTurnTitle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

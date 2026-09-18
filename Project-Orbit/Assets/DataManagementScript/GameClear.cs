@@ -51,14 +51,12 @@ public class GameClear : SingletonMonoBehaviour<GameClear>
     /// </summary>
     private void Update()
     {
-        //リザルト表示中でなければ終了
-        //if (!isResult) return;
+              
+    }
 
-        //左クリックでタイトル画面へ戻る
-        if (Input.GetMouseButtonDown(0))
-        {
-            SceneLoadManager.Instance.LoadScene(SceneType.GameTitleScene, FadeType.Alpha);
-        }
+    public  void OnClickTurnTitle()
+    {
+        SceneLoadManager.Instance.LoadScene(SceneType.GameTitleScene, FadeType.Alpha);
     }
 
     public void GetUserData(string name, float clearTime)

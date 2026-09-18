@@ -66,6 +66,8 @@ public class PlayerAttack : MonoBehaviour
             return;
         }
 
+        Debug.Log("ｇんｆｍｋｄｓｌｇｋｆ；ｌｄｓんｇｆｄｓんｈｋｊｌんｆｇｄｓｋｈｌ；ｇんｆｄｓｋｌｈ；んｇｆｋｌｈ");
+
         InputKey();
 
         // 攻撃コマンドの入力回数をカウントする処理

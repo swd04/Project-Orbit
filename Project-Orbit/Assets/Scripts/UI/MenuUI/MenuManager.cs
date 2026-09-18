@@ -47,8 +47,7 @@ public class MenuManager : MonoBehaviour
         {
             ToggleMenu();
 
-
-            
+            TimeAttackManager.Instance.isPlayingGame = !TimeAttackManager.Instance.isPlayingGame;
         }
     }
 
