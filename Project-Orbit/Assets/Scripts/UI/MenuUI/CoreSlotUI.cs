@@ -41,7 +41,7 @@ public class CoreSlotUI : MonoBehaviour,
     /// <summary>
     /// ‰Šú‰»ˆ—
     /// </summary>
-    private void Start()
+    private void Awake()
     {
         //‰Šúó‘Ô‚Å‚Í”ñ•\¦
         coreNameText.text = "";
