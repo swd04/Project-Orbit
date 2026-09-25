@@ -12,8 +12,14 @@ public class AttackModeUI : MonoBehaviour
     [Header("捕食UI")]
     [SerializeField] private Image predationImage = null;
 
+    [Header("捕食名前UI")]
+    [SerializeField] private Image predationNameImage = null;
+
     [Header("魂化UI")]
     [SerializeField] private Image soulReinforceImage = null;
+
+    [Header("魂化名前UI")]
+    [SerializeField] private Image soulReinforceNameImage = null;
 
     /// <summary>
     /// 初期化処理
@@ -52,12 +58,14 @@ public class AttackModeUI : MonoBehaviour
         if (predationImage != null)
         {
             predationImage.enabled = isPredation;
+            predationNameImage.enabled = isPredation;
         }
 
         //魂化モードUIの表示切り替え
         if (soulReinforceImage != null)
         {
             soulReinforceImage.enabled = isSoul;
+            soulReinforceNameImage.enabled = isSoul;
         }
     }
 }

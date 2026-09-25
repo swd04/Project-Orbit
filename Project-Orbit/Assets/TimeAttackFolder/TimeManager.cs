@@ -39,6 +39,11 @@ public class TimeManager : SingletonBehaviour<TimeManager>
 
     [SerializeField] private GameObject countDownCamera = null;
 
+    [Header("BGMデータ")]
+    [SerializeField] private BGMData bgmData = null;
+
+    private bool isBGMPlayed = false;
+
     /// <summary>
     /// カウントダウンを最初に表する
     /// </summary>
@@ -75,6 +80,13 @@ public class TimeManager : SingletonBehaviour<TimeManager>
             timerDisplay.SetActive(true);
             countDownCamera.SetActive(false);
             gameMainObject.SetActive(true);
+
+            //BGMを一度だけ再生
+            if (!isBGMPlayed)
+            {
+                BGMManager.Instance.PlayBGM(bgmData.GetBGM(BGMType.Game));
+                isBGMPlayed = true;
+            }
 
             if (timer < startTextDisplayTime)
             {
@@ -119,6 +131,6 @@ public class TimeManager : SingletonBehaviour<TimeManager>
         RankingManager.Instance.AddPlayer(userDataHolder.userName, userDataHolder.clearTime);
 
         // ランキング画面へ遷移
-        SceneManager.LoadScene("RankingScene");
+        //SceneManager.LoadScene("RankingScene");
     }
 }

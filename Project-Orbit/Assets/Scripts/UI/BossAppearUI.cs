@@ -16,6 +16,11 @@ public class BossAppearUI : MonoBehaviour
     [Header("表示時間")]
     [SerializeField] private float displayTime = 1.0f;
 
+    [Header("BGMデータ")]
+    [SerializeField] private BGMData bgmData = null;
+
+    private bool isBGMPlayed = false;
+
     /// <summary>
     /// 初期化処理
     /// </summary>
@@ -27,7 +32,7 @@ public class BossAppearUI : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// ボス出現演出を表示する処理
     /// </summary>
     public void Show()
     {
@@ -35,14 +40,24 @@ public class BossAppearUI : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// ボス出現演出を表示するコルーチン
     /// </summary>
     private IEnumerator ShowRoutine()
     {
+        //ボス出現演出用UIを表示
         CaveatImage.gameObject.SetActive(true);
 
+        //BGMを一度だけ再生
+        if (!isBGMPlayed)
+        {
+            BGMManager.Instance.PlayBGM(bgmData.GetBGM(BGMType.Boss));
+            isBGMPlayed = true;
+        }
+
+        //指定した時間待機
         yield return new WaitForSeconds(displayTime);
 
+        //ボス出現演出用UIを非表示
         CaveatImage.gameObject.SetActive(false);
     }
 }
