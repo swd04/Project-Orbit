@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: 
   icon: {fileID: 21300000, guid: bf88c9ebe85d56646a56ec5e1b359c35, type: 3}
-  skillDescription: "\u30B9\u30AD\u30EB2\n\u3044\n\u3044\n\u3044"
+  skillDescription: "\u30D1\u30C3\u30B7\u30D6\u30B9\u30AD\u30EB\u3000\u81EA\u52D5\u56DE\u5FA9\n\u81EA\u8EAB\u306E\u6B8B\u308AHP\u304C30\uFF05\u4EE5\u4E0B\u306B\u306A\u3063\u305F\u6642\u300110\u79D2\u7D4C\u3064\u3054\u3068\u306B\u81EA\u8EAB\u306E1\uFF05\u3092\u81EA\u52D5\u56DE\u5FA9\u3059\u308B"

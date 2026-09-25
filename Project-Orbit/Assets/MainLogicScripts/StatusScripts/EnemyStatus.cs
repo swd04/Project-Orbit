@@ -165,6 +165,9 @@ public class EnemyStatus : UnitStatusBase
 
             if (isBossEnemy)
             {
+                //BGMを停止
+                BGMManager.Instance.StopBGM();
+
                 TimeManager.Instance.GameClear();
 
                 SceneLoadManager.Instance.LoadScene(
