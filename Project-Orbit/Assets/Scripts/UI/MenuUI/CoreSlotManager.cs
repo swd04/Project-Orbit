@@ -18,6 +18,9 @@ public class CoreSlotManager : MonoBehaviour
     [Header("パッシブ管理")]
     [SerializeField] private EquipmentCore equipmentCore = null;
 
+    [Header("コア一覧UI")]
+    [SerializeField] private MenuCoreCollectionUI coreCollectionUI = null;
+
     /// <summary>
     /// コアを空いているスロットへ追加する処理
     /// </summary>
@@ -96,6 +99,12 @@ public class CoreSlotManager : MonoBehaviour
             slots[i].SetCore(cores[i]);
             EquipCore(cores[i]);
         }
+
+        //コア一覧の装備状態を更新
+        if (coreCollectionUI != null)
+        {
+            coreCollectionUI.Refresh();
+        }
     }
 
     /// <summary>
@@ -121,6 +130,12 @@ public class CoreSlotManager : MonoBehaviour
     /// </summary>
     public void RemoveCore(SoulCore core)
     {
+        //コアが設定されていなければ処理を終了
+        if (core == null)
+        {
+            return;
+        }
+
         //攻撃モーションコアならスキルを解除
         if (core.coreType == CoreType.AttackMotion)
         {
@@ -131,5 +146,29 @@ public class CoreSlotManager : MonoBehaviour
         {
             equipmentCore.Unequip(core);
         }
+    }
+
+    /// <summary>
+    /// 指定したコアが装備されているか確認する処理
+    /// </summary>
+    public bool IsCoreEquipped(SoulCore core)
+    {
+        //コアが設定されていなければ処理を終了
+        if (core == null)
+        {
+            return false;
+        }
+
+        //全スロットを確認
+        foreach (CoreSlotUI slot in slots)
+        {
+            //コアが装備されている場合
+            if (!slot.IsEmpty && slot.CurrentCore == core)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

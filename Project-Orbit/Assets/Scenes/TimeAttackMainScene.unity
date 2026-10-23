@@ -3250,6 +3250,7 @@ MonoBehaviour:
   coreType: 2
   skillActivation: {fileID: 716702448}
   equipmentCore: {fileID: 716702447}
+  coreCollectionUI: {fileID: 1622084824}
 --- !u!224 &335745815
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6625,6 +6626,7 @@ MonoBehaviour:
   coreType: 1
   skillActivation: {fileID: 716702448}
   equipmentCore: {fileID: 716702447}
+  coreCollectionUI: {fileID: 1032675725}
 --- !u!224 &711603539
 RectTransform:
   m_ObjectHideFlags: 0
