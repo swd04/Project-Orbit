@@ -92,7 +92,13 @@ public class CoreSlotUI : MonoBehaviour,
             return;
         }
 
+        //解除するコアを保持
+        SoulCore core = currentCore;
+
         Debug.Log(currentCore.name + " を外しました");
+
+        //コアの装備効果を解除
+        slotManager.RemoveCore(core);
 
         //スロットを空にする
         Clear();

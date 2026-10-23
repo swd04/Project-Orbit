@@ -17,11 +17,17 @@ public class CoreItemUI : MonoBehaviour,
     [Header("レベル表示Text")]
     [SerializeField] private TMP_Text countText = null;
 
-    [Header("レベルアップゲージ")]
+    [Header("レベルアップゲージSlider")]
     [SerializeField] private Slider levelUpSlider = null;
 
-    [Header("取得数表示Text")]
+    [Header("経験値取得数表示Text")]
     [SerializeField] private TMP_Text levelUpCountText = null;
+
+    [Header("スキル装備中の表示UI")]
+    [SerializeField] private GameObject skillEquippedUI = null;
+
+    [Header("パッシブ装備中の表示UI")]
+    [SerializeField] private GameObject passiveEquippedUI = null;
 
     /// <summary>
     /// このUIが表すコア
@@ -150,7 +156,7 @@ public class CoreItemUI : MonoBehaviour,
         }
 
         //スキル説明を表示
-        coreListUI.ShowSkillDescription(soulCore,transform.position);
+        coreListUI.ShowSkillDescription(soulCore, transform.position);
     }
 
     /// <summary>
@@ -160,5 +166,29 @@ public class CoreItemUI : MonoBehaviour,
     {
         //スキル説明を非表示
         coreListUI.HideSkillDescription();
+    }
+
+    /// <summary>
+    /// コアの装備状態表示を更新する処理
+    /// </summary>
+    public void UpdateEquipStatus(bool isEquipped)
+    {
+        //コアが設定されていなければ処理を終了
+        if (soulCore == null)
+        {
+            return;
+        }
+
+        //スキル装備中の表示を更新
+        if (skillEquippedUI != null)
+        {
+            skillEquippedUI.SetActive(isEquipped && soulCore.coreType == CoreType.AttackMotion);
+        }
+
+        //パッシブ装備中の表示を更新
+        if (passiveEquippedUI != null)
+        {
+            passiveEquippedUI.SetActive(isEquipped && soulCore.coreType == CoreType.Passive);
+        }
     }
 }

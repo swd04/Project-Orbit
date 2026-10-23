@@ -77,6 +77,9 @@ public class MenuCoreCollectionUI : MonoBehaviour
 
             //コア情報を表示
             item.SetData(core);
+
+            //装備状態を表示
+            item.UpdateEquipStatus(slotManager.IsCoreEquipped(core));
         }
     }
 
@@ -86,7 +89,11 @@ public class MenuCoreCollectionUI : MonoBehaviour
     public void OnClickItem(SoulCore core)
     {
         //空いているスロットへコアを追加
-        slotManager.AddCore(core);
+        if (slotManager.AddCore(core))
+        {
+            //コア一覧を更新
+            Refresh();
+        }
     }
 
     /// <summary>
