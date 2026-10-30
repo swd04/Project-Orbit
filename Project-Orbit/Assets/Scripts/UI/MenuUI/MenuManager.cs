@@ -12,6 +12,11 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject[] menuPanels = null;
 
     /// <summary>
+    /// 現在表示している画面
+    /// </summary>
+    private MenuTab currentTab = MenuTab.Status;
+
+    /// <summary>
     /// メニューが開いているか
     /// </summary>
     public bool IsMenuOpen => menuPanel.activeSelf;
@@ -22,9 +27,9 @@ public class MenuManager : MonoBehaviour
     private void Awake()
     {
         //登録されている画面数とMenuTypeの数が一致しているか確認
-        if (menuPanels.Length != System.Enum.GetValues(typeof(MenuType)).Length)
+        if (menuPanels.Length != System.Enum.GetValues(typeof(MenuTab)).Length)
         {
-            Debug.LogError("menuPanelsの数とMenuTypeの数が一致していません");
+            Debug.LogError("menuPanelsの数とMenuTabの数が一致していません");
         }
 
         //メニューを非表示にする
@@ -72,17 +77,17 @@ public class MenuManager : MonoBehaviour
         //メニューを開いたらステータス画面を表示する
         if (isOpen)
         {
-            Open(MenuType.Status);
+            Open(MenuTab.Status);
         }
     }
 
     /// <summary>
-    /// メニューを開き、指定した画面を表示する処理
+    /// 指定した画面を表示する処理
     /// </summary>
-    public void Open(MenuType type)
+    public void Open(MenuTab tab)
     {
         //指定された番号が存在するか確認
-        if ((int)type >= menuPanels.Length)
+        if ((int)tab < 0 || (int)tab >= menuPanels.Length)
         {
             Debug.LogError("指定されたメニュー画面が存在しません");
             return;
@@ -94,7 +99,28 @@ public class MenuManager : MonoBehaviour
             panel.SetActive(false);
         }
 
-        //指定された画面のみ表示する
-        menuPanels[(int)type].SetActive(true);
+        //現在の画面を更新
+        currentTab = tab;
+
+        //指定された画面のみ表示
+        menuPanels[(int)currentTab].SetActive(true);
+    }
+
+    /// <summary>
+    /// 次の画面へ切り替える処理
+    /// </summary>
+    public void NextTab()
+    {
+        int nextIndex = ((int)currentTab + 1) % menuPanels.Length;
+        Open((MenuTab)nextIndex);
+    }
+
+    /// <summary>
+    /// 前の画面へ切り替える処理
+    /// </summary>
+    public void PreviousTab()
+    {
+        int previousIndex = ((int)currentTab - 1 + menuPanels.Length) % menuPanels.Length;
+        Open((MenuTab)previousIndex);
     }
 }
