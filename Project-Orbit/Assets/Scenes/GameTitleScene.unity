@@ -849,7 +849,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 757e5a4544e0e624fb6061651d54f54e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneType: 1
+  sceneType: 6
   fadeType: 1
 --- !u!4 &316010988
 Transform:
